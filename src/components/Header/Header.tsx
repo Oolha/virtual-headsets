@@ -10,15 +10,14 @@ import { BiShoppingBag } from "react-icons/bi";
 import { MdOutlineExplore, MdOutlineFacebook } from "react-icons/md";
 
 import css from "./Header.module.css";
+import NavBar from "../NavBar/NavBar";
 
 const Header = ({}) => {
   return (
     <div className={css.header}>
       <div className={css.panel}>
         <div className={css.box1}>
-          <button className={css.menuBtn}>
-            <IoMdMenu className={css.menuIcon} />
-          </button>
+          <NavBar />
         </div>
         <h3 className={css.nameBrand}>
           <span className={css.span}>Holo</span>Gaze

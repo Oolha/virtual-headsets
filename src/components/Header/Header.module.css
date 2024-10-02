@@ -50,6 +50,10 @@
   height: 22px;
   color: #beafc3;
 }
+.icons:focus,
+.icons:hover {
+  transform: scale(1.2);
+}
 .productName {
   font-family: "Satoshi Variable", sans-serif;
   font-weight: 500;
