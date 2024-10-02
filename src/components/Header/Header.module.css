@@ -1,0 +1,169 @@
+.panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.box1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.menuBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 5px;
+}
+.menuIcon {
+  width: 24px;
+  height: 24px;
+  color: white;
+  transition: transform 0.2s;
+}
+.menuIcon:hover {
+  transform: scale(1.2);
+}
+.nameBrand {
+  font-family: "Sarpanch", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: white;
+}
+.span {
+  color: #3ddeed;
+}
+.box2 {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+.headerBtns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+}
+.icons {
+  width: 22px;
+  height: 22px;
+  color: #beafc3;
+}
+.productName {
+  font-family: "Satoshi Variable", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 36px;
+}
+.title {
+  font-family: "Satoshi Variable", sans-serif;
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #fff;
+  min-width: 345px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+.textBox {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+.textIcon {
+  width: 20px;
+  height: 20px;
+  fill: #bf23f5;
+}
+.text {
+  font-family: "Satoshi Variable", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.8);
+  min-width: 313px;
+}
+.btnsBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+  margin-bottom: 36px;
+}
+.visitStoreBtn {
+  border-radius: 4px;
+  padding: 16px 24px;
+  width: 248px;
+  height: 54px;
+  box-shadow: 0 20px 49px 0 rgba(61, 222, 237, 0.17);
+  background: #3ddeed;
+  font-family: "Satoshi Variable", sans-serif;
+  text-align: center;
+  color: #182627;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.arrowIcon {
+  width: 20px;
+  height: 20px;
+  margin-left: 24px;
+}
+.exploreBtn {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  padding: 16px 24px;
+  width: 248px;
+  height: 54px;
+  font-family: "Satoshi Variable", sans-serif;
+  text-align: center;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.exploreIcon {
+  width: 20px;
+  height: 20px;
+  color: white;
+  margin-right: 12px;
+}
+.btnsBox {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.textFollowUs {
+  font-family: "Satoshi Variable", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+.links {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+.linkIcon {
+  fill: white;
+  width: 24px;
+  height: 24px;
+}
+.linkBtn {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
