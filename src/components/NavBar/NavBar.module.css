@@ -1,45 +1,95 @@
 .nav {
   position: relative;
+  width: 100%;
 }
+
 .navMenu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.9);
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  z-index: 1000;
+  gap: 32px;
+}
+
+.navLink {
+  text-decoration: none;
+  transition: background-color 0.3s;
+  font-family: "Satoshi Variable", sans-serif;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .navLink:hover {
   background-color: rgba(255, 255, 255, 0.5);
 }
+
 .menuBtn {
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-right: 5px;
+  padding: 5px;
+  background: none;
+  border: none;
 }
+
 .menuIcon {
   width: 24px;
   height: 24px;
   color: white;
   transition: transform 0.2s;
 }
+
 .menuIcon:hover {
   transform: scale(1.2);
 }
-.navCloseBtn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: none;
-  border: none;
-  font-size: 30px;
+
+.closeBtn {
+  display: none;
+}
+
+@media only screen and (max-width: 1023px) {
+  .menuBtn {
+    display: flex;
+    padding: 0;
+  }
+
+  .navMenu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9);
+    flex-direction: column;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .navMenu.isOpen {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .closeBtn {
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 30px;
+    color: white;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .nav {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .navCloseBtn {
+    display: none;
+  }
 }

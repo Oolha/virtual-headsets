@@ -20,25 +20,26 @@ const NavBar = ({}) => {
         {!isOpenNavigation ? <IoMdMenu className={css.menuIcon} /> : null}
       </button>
 
-      {isOpenNavigation && (
-        <div className={css.navMenu} onClick={handleMenuClick}>
-          <button onClick={toggleMenu}>
-            <FaWindowClose className={css.navCloseBtn} />
-          </button>
-          <NavLink to="/" className={css.navLink}>
-            Home
-          </NavLink>
-          <NavLink to="/catalog" className={css.navLink}>
-            Catalog
-          </NavLink>
-          <NavLink to="/contact" className={css.navLink}>
-            Contact
-          </NavLink>
-          <NavLink to="/" className={css.navLink}>
-            Features
-          </NavLink>
-        </div>
-      )}
+      <div
+        className={`${css.navMenu} ${isOpenNavigation ? css.isOpen : ""}`}
+        onClick={handleMenuClick}
+      >
+        <button onClick={toggleMenu} className={css.closeBtn}>
+          <FaWindowClose className={css.navCloseBtn} />
+        </button>
+        <NavLink to="/" className={css.navLink}>
+          Home
+        </NavLink>
+        <NavLink to="/catalog" className={css.navLink}>
+          Catalog
+        </NavLink>
+        <NavLink to="/contact" className={css.navLink}>
+          Contact
+        </NavLink>
+        <NavLink to="/" className={css.navLink}>
+          Features
+        </NavLink>
+      </div>
     </nav>
   );
 };

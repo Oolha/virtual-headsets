@@ -24,9 +24,17 @@ const Header = ({}) => {
           <span className={css.span}>.</span>
         </h3>
         <div className={css.box2}>
-          <button className={css.headerBtns}>
-            <PiMagnifyingGlassBold className={css.icons} />
-          </button>
+          <form className={css.form}>
+            <input
+              type="text"
+              className={css.input}
+              placeholder={"Search games & products.."}
+            />
+            <button className={css.headerBtns}>
+              <PiMagnifyingGlassBold className={css.icons} />
+            </button>
+          </form>
+
           <button className={css.headerBtns}>
             <BiShoppingBag className={css.icons} />
           </button>

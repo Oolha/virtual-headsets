@@ -47,3 +47,8 @@ img {
 body {
   padding: 27px 24px;
 }
+@media (min-width: 1024px) {
+  body {
+    padding: 56px 156px;
+  }
+}
