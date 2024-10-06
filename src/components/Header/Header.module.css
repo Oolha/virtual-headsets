@@ -62,7 +62,6 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.8);
-  margin-top: 36px;
 }
 .title {
   font-family: "Satoshi Variable", sans-serif;
@@ -95,8 +94,8 @@
 }
 .btnsBox {
   display: flex;
-  justify-content: center;
-  align-items: center;
+
+  gap: 24px;
   margin-top: 24px;
   margin-bottom: 36px;
 }
@@ -138,11 +137,7 @@
   color: white;
   margin-right: 12px;
 }
-.btnsBox {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
+
 .textFollowUs {
   font-family: "Satoshi Variable", sans-serif;
   font-weight: 700;
@@ -172,9 +167,42 @@
   justify-content: center;
   align-items: center;
 }
+.secondHeaderBox {
+  margin-top: 22px;
+}
+.picture {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.iconsBox1,
+.iconsBox2 {
+  display: flex;
+  gap: 12px;
+}
+.iconsBoxText {
+  font-family: "Satoshi Variable", sans-serif;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
 @media only screen and (max-width: 1023px) {
   .input {
     display: none;
+  }
+  .headerBox {
+    margin-top: 36px;
+  }
+  .btnsBox {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .iconsBox1 {
+    margin-top: 24px;
+    margin-bottom: 22px;
   }
 }
 @media only screen and (min-width: 1024px) {
@@ -188,7 +216,7 @@
     gap: 16px;
     border-radius: 4px;
     padding: 12px 24px;
-    width: 336px;
+    width: 300px;
     height: 46px;
     background: rgba(255, 255, 255, 0.05);
   }
@@ -201,7 +229,42 @@
     font-family: "Satoshi Variable", sans-serif;
     color: #7b678a;
   }
+
   .title {
-    font-size: 80px;
+    font-size: 70px;
+    max-width: 630px;
+  }
+  .text {
+    font-size: 16px;
+    width: 456px;
+  }
+  .headerBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 80px;
+    gap: 50px;
+  }
+
+  .btnsBox {
+    flex-direction: row;
+  }
+  .visitStoreBtn {
+    width: 184px;
+    height: 56px;
+  }
+  .exploreBtn {
+    width: 145px;
+    height: 56px;
+  }
+  .iconsBox {
+    display: flex;
+    flex-direction: row;
+    gap: 42px;
+    margin-top: 20px;
+  }
+  .iconsSvg {
+    height: 32px;
+    width: 32px;
   }
 }
