@@ -1,16 +1,46 @@
 import { HeadsetsCollection } from '../db/models/headset.js';
 import { calculatePaginationData } from '../utils/calculatePaginationData.js';
+import { SORT_ORDER } from '../constants/index.js';
 
-export const getAllVirtualHeadsets = async ({ page, perPage }) => {
+export const getAllVirtualHeadsets = async ({
+  page = 1,
+  perPage = 8,
+  sortOrder = SORT_ORDER.ASC,
+  sortBy = '_id',
+  filter = {},
+}) => {
   const limit = perPage;
   const skip = (page - 1) * perPage;
+
   const virtualHeaderQuery = HeadsetsCollection.find();
-  const virtualHeaderCount = await HeadsetsCollection.find()
-    .merge(virtualHeaderQuery)
-    .countDocuments();
-
-  const headers = await virtualHeaderQuery.skip(skip).limit(limit).exec();
-
+  if (filter.name) {
+    virtualHeaderQuery.where('name').equals(filter.name);
+  }
+  if (filter.maxPrice) {
+    virtualHeaderQuery.where('price').lte(filter.maxPrice);
+  }
+  if (filter.minPrice) {
+    virtualHeaderQuery.where('price').gte(filter.minPrice);
+  }
+  if (filter.compatibility) {
+    virtualHeaderQuery.where('compatibility').equals(filter.compatibility);
+  }
+  if (filter.color) {
+    virtualHeaderQuery.where('color').equals(filter.color);
+  }
+  if (filter.manufacturer) {
+    virtualHeaderQuery
+      .where('manufacturer')
+      .equals(filter.manufacturer.toUpperCase());
+  }
+  const [virtualHeaderCount, headers] = await Promise.all([
+    HeadsetsCollection.find().merge(virtualHeaderQuery).countDocuments(),
+    virtualHeaderQuery
+      .skip(skip)
+      .limit(limit)
+      .sort({ [sortBy]: sortOrder })
+      .exec(),
+  ]);
   const paginationData = calculatePaginationData(
     virtualHeaderCount,
     perPage,
