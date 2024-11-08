@@ -21,29 +21,29 @@ const jsonParser = express.json({
   type: 'application/json',
 });
 
-router.get('/headsets', ctrlWrapper(getVirtualHeadsetsController));
+router.get('/', ctrlWrapper(getVirtualHeadsetsController));
 
 router.get(
-  '/headsets/:headsetId',
+  '/:headsetId',
   isValidId,
   ctrlWrapper(getVirtualHeadsetByIdController),
 );
 
 router.post(
-  '/headsets',
+  '/',
   jsonParser,
   validateBody(virtualHeadsetValidationSchema),
   ctrlWrapper(createVirtualHeadsetsController),
 );
 
 router.delete(
-  '/headsets/:headsetId',
+  '/:headsetId',
   isValidId,
   ctrlWrapper(deleteVirtualHeadsetController),
 );
 
 router.put(
-  '/headsets/:headsetId',
+  '/:headsetId',
   jsonParser,
   isValidId,
   validateBody(virtualHeadsetValidationSchema),
@@ -51,7 +51,7 @@ router.put(
 );
 
 router.patch(
-  '/headsets/:headsetId',
+  '/:headsetId',
   jsonParser,
   isValidId,
   validateBody(updateVirtualHeadsetValidationSchema),
