@@ -10,6 +10,11 @@ import createHttpError from 'http-errors';
 import { parsePaginationParams } from '../utils/parsePaginationParams.js';
 import { parseSortParams } from '../utils/parseSortParams.js';
 import { parseFilterParams } from '../utils/parseFilterParams.js';
+import { saveFileToUploadDir } from '../utils/saveFileToUploadDir.js';
+import {
+  deleteFromCloudinary,
+  saveFileToCloudinary,
+} from '../utils/saveFileToCloudinary.js';
 
 export const getVirtualHeadsetsController = async (req, res) => {
   const { page, perPage } = parsePaginationParams(req.query);
@@ -37,7 +42,7 @@ export const getVirtualHeadsetByIdController = async (req, res, next) => {
   const virtualHeadset = await getVirtualHeadsetById(headsetId);
 
   if (!virtualHeadset) {
-    throw createHttpError(404, 'Student not found');
+    throw createHttpError(404, 'Product not found');
   }
 
   res.json({
@@ -48,12 +53,31 @@ export const getVirtualHeadsetByIdController = async (req, res, next) => {
 };
 
 export const createVirtualHeadsetsController = async (req, res) => {
-  const virtualHeadset = await createVirtualHeadset(req.body);
+  const photo = req.file;
+  let photoUrl;
+
+  if (photo) {
+    if (process.env.ENABLE_CLOUDINARY === 'true') {
+      photoUrl = await saveFileToCloudinary(photo);
+    } else {
+      photoUrl = await saveFileToUploadDir(photo);
+    }
+  }
+  const virtualHeadset = {
+    name: req.body.name,
+    description: req.body.description,
+    price: req.body.price,
+    screenResolution: req.body.screenResolution,
+    compatibility: req.body.compatibility,
+    color: req.body.color,
+    photo: photoUrl,
+  };
+  const result = await createVirtualHeadset(virtualHeadset);
 
   res.status(201).json({
     status: 201,
-    message: `Successfully created a virtual headset!`,
-    data: virtualHeadset,
+    message: `Successfully created a product!`,
+    data: result,
   });
 };
 
@@ -63,7 +87,7 @@ export const deleteVirtualHeadsetController = async (req, res) => {
   const virtualHeadset = await deleteVirtualHeadset(headsetId);
 
   if (!virtualHeadset) {
-    next(createHttpError(404, 'Virtual headset not found'));
+    next(createHttpError(404, 'Product not found'));
     return;
   }
 
@@ -72,25 +96,77 @@ export const deleteVirtualHeadsetController = async (req, res) => {
 
 export const upsertVirtualHeadsetController = async (req, res) => {
   const { headsetId } = req.params;
+  const photo = req.file;
+  let photoUrl;
 
-  const result = await updateVirtualHeadset(headsetId, req.body, {
+  if (photo) {
+    photoUrl = await saveFileToCloudinary(photo);
+  } else {
+    photoUrl = await saveFileToUploadDir(photo);
+  }
+
+  const virtualHeadset = {
+    name: req.body.name,
+    description: req.body.description,
+    price: req.body.price,
+    screenResolution: req.body.screenResolution,
+    compatibility: req.body.compatibility,
+    color: req.body.color,
+    photo: photoUrl,
+  };
+  const result = await updateVirtualHeadset(headsetId, virtualHeadset, {
     upsert: true,
   });
 
   if (!result) {
-    next(createHttpError(404, 'Virtual headset not found'));
-    return;
+    throw createHttpError(404, 'Product not found');
   }
 
   const status = result.isNew ? 201 : 200;
-
   res.status(status).json({
     status,
-    message: `Successfully upserted a virtual headset!`,
+    message: `Successfully ${result.isNew ? 'created' : 'updated'} a product!`,
     data: result.virtualHeadset,
   });
 };
 
 export const patchVirtualHeadsetController = async (req, res) => {
-  // Тіло функції
+  const { headsetId } = req.params;
+  const photo = req.file;
+
+  let photoUrl;
+
+  const existingHeadset = await getVirtualHeadsetById(headsetId);
+  if (photo) {
+    if (process.env.ENABLE_CLOUDINARY === 'true') {
+      if (existingHeadset && existingHeadset.photo) {
+        await deleteFromCloudinary(existingHeadset.photo);
+      }
+      photoUrl = await saveFileToCloudinary(photo);
+    } else {
+      photoUrl = await saveFileToUploadDir(photo);
+    }
+  }
+  const virtualHeadset = {
+    name: req.body.name,
+    description: req.body.description,
+    price: req.body.price,
+    screenResolution: req.body.screenResolution,
+    compatibility: req.body.compatibility,
+    color: req.body.color,
+    ...(photoUrl && { photo: photoUrl }),
+  };
+  const result = await updateVirtualHeadset(headsetId, virtualHeadset, {
+    upsert: true,
+  });
+
+  if (result === null) {
+    throw createHttpError(404, 'Product not found');
+  }
+
+  res.json({
+    status: 200,
+    message: 'Successfully patched a product!',
+    data: result,
+  });
 };

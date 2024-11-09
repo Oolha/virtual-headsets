@@ -1,5 +1,5 @@
 import express from 'express';
-
+import { upload } from '../middlewares/multer.js';
 import {
   getVirtualHeadsetsController,
   getVirtualHeadsetByIdController,
@@ -32,6 +32,8 @@ router.get(
 router.post(
   '/',
   jsonParser,
+  isValidId,
+  upload.single('photo'),
   validateBody(virtualHeadsetValidationSchema),
   ctrlWrapper(createVirtualHeadsetsController),
 );
@@ -46,6 +48,7 @@ router.put(
   '/:headsetId',
   jsonParser,
   isValidId,
+  upload.single('photo'),
   validateBody(virtualHeadsetValidationSchema),
   ctrlWrapper(upsertVirtualHeadsetController),
 );
@@ -54,6 +57,7 @@ router.patch(
   '/:headsetId',
   jsonParser,
   isValidId,
+  upload.single('photo'),
   validateBody(updateVirtualHeadsetValidationSchema),
   ctrlWrapper(patchVirtualHeadsetController),
 );

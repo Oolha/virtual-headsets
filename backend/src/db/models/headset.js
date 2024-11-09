@@ -29,6 +29,7 @@ const virtualHeadsetSchema = new Schema(
       type: technicalSpecificationsSchema,
       required: true,
     },
+    photo: { type: String },
   },
   {
     timestamps: true,
