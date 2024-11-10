@@ -76,36 +76,19 @@ export const updateVirtualHeadset = async (
   payload,
   options = {},
 ) => {
-  const rawResult = await HeadsetsCollection.findOneAndUpdate(
-    { _id: headsetId },
-    payload,
+  const rawResult = await HeadsetsCollection.findByIdAndUpdate(
+    headsetId,
+    { $set: payload },
     {
       new: true,
-      includeResultMetadata: true,
+      runValidators: true,
       ...options,
     },
   );
-
-  if (!rawResult || !rawResult.value) return null;
+  if (!rawResult) return null;
 
   return {
-    virtualHeadset: rawResult.value,
-    isNew: Boolean(rawResult?.lastErrorObject?.upserted),
+    virtualHeadset: rawResult,
+    isNew: false,
   };
-};
-
-export const patchVirtualHeadsetController = async (req, res, next) => {
-  const { headsetId } = req.params;
-  const result = await updateVirtualHeadset(headsetId, req.body);
-
-  if (!result) {
-    next(createHttpError(404, 'Virtual headset not found'));
-    return;
-  }
-
-  res.json({
-    status: 200,
-    message: `Successfully patched a virtual headset!`,
-    data: result.virtualHeadset,
-  });
 };
