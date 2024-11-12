@@ -7,7 +7,6 @@ const parseName = (name) => {
 
 // Parsing function for price (number or string validation)
 const parsePrice = (price) => {
-  // If already a number, validate it directly
   if (typeof price === 'number') {
     return price >= 0 ? price : undefined;
   }

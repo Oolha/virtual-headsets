@@ -3,12 +3,24 @@ import {
   deleteGame,
   getAllGames,
   getGameById,
+  getTopGames,
+  updateGame,
 } from '../services/games.js';
 import createHttpError from 'http-errors';
-import { getPublicIdFromUrl } from '../utils/saveFileToCloudinary.js';
+import {
+  deleteFromCloudinary,
+  getPublicIdFromUrl,
+  saveFileToCloudinary,
+} from '../utils/saveFileToCloudinary.js';
+import { parsePaginationParams } from '../utils/parsePaginationParams.js';
+import { parseSortParams } from '../utils/parseSortParams.js';
+import { parseFilterParams } from '../utils/parseFilterParamsForGames.js';
 
 export const getGamesController = async (req, res) => {
-  const games = await getAllGames();
+  const { page, perPage } = parsePaginationParams(req.query);
+  const { sortBy, sortOrder } = parseSortParams(req.query);
+  const filter = parseFilterParams(req.query);
+  const games = await getAllGames({ page, perPage, sortBy, sortOrder, filter });
 
   res.json({
     status: 200,
@@ -33,6 +45,7 @@ export const getGameByIdController = async (req, res, next) => {
 
 export const createGameController = async (req, res) => {
   const game = await createGame(req.body);
+  const photo = req.file;
 
   res.status(201).json({
     status: 201,
@@ -108,5 +121,14 @@ export const patchGameController = async (req, res) => {
     status: 200,
     message: 'Successfully patched a product!',
     data: result,
+  });
+};
+
+export const getTopGamesController = async (req, res) => {
+  const topGames = await getTopGames();
+  res.json({
+    status: 200,
+    message: 'Successfully found games!',
+    data: topGames,
   });
 };

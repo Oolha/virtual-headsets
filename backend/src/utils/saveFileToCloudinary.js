@@ -18,7 +18,7 @@ export const saveFileToCloudinary = async (file) => {
     }
 
     const response = await cloudinary.uploader.upload(file.path, {
-      folder: 'headsets',
+      folder: 'virtual-headsets',
       resource_type: 'auto',
       transformation: {
         width: 1000,

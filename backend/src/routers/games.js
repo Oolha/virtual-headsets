@@ -5,19 +5,35 @@ import {
   createGameController,
   deleteGameController,
   patchGameController,
+  getTopGamesController,
 } from '../controllers/games.js';
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
+import { validateBody } from '../middlewares/validateBody.js';
+import { vrGamePatchSchema, vrGameSchema } from '../validation/games.js';
+import { upload } from '../middlewares/multer.js';
 
 const router = Router();
 
-router.get('/games', ctrlWrapper(getGamesController));
+router.get('/', ctrlWrapper(getGamesController));
 
-router.get('/games/:gameId', ctrlWrapper(getGameByIdController));
+router.get('/top5', ctrlWrapper(getTopGamesController));
 
-router.post('/games', ctrlWrapper(createGameController));
+router.get('/:gameId', ctrlWrapper(getGameByIdController));
 
-router.delete('/games/:gameId', ctrlWrapper(deleteGameController));
+router.post(
+  '/',
+  upload.single('photo'),
+  validateBody(vrGameSchema),
+  ctrlWrapper(createGameController),
+);
 
-router.patch('/students/:studentId', ctrlWrapper(patchGameController));
+router.delete('/:gameId', ctrlWrapper(deleteGameController));
+
+router.patch(
+  '/:gameId',
+  upload.single('photo'),
+  validateBody(vrGamePatchSchema),
+  ctrlWrapper(patchGameController),
+);
 
 export default router;
