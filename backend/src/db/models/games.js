@@ -52,6 +52,9 @@ const gameSchema = new Schema(
       max: 5,
       default: 0,
     },
+    isTopGame: {
+      type: Boolean,
+    },
     photo: { type: String },
   },
   {
@@ -61,4 +64,3 @@ const gameSchema = new Schema(
 );
 
 export const GamesCollection = model('games', gameSchema, 'vrGames');
-export const TopGamesCollection = model('topGames', gameSchema, 'top-5-games');

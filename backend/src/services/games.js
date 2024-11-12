@@ -1,4 +1,4 @@
-import { GamesCollection, TopGamesCollection } from '../db/models/games.js';
+import { GamesCollection } from '../db/models/games.js';
 import { calculatePaginationData } from '../utils/calculatePaginationData.js';
 import { SORT_ORDER } from '../constants/index.js';
 
@@ -84,7 +84,7 @@ export const updateGame = async (gameId, payload, options = {}) => {
 };
 
 export const getTopGames = async () => {
-  const topGames = await TopGamesCollection.find()
+  const topGames = await GamesCollection.find({ isTopGame: true })
     .sort({ rating: -1 })
     .limit(5)
     .exec();
