@@ -9,6 +9,7 @@ import { UPLOAD_DIR } from './constants/index.js';
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
 app.use('/uploads', express.static(UPLOAD_DIR));
 app.use(
   cors({
@@ -23,10 +24,9 @@ app.use(
     },
   }),
 );
-app.use(cookieParser());
-app.use('/', router);
-app.use('*', notFoundHandler);
 
+app.use('/', router);
 app.use(errorHandler);
+app.use('*', notFoundHandler);
 
 export default app;
