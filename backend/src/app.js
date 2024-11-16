@@ -13,7 +13,7 @@ app.use(cookieParser());
 app.use('/uploads', express.static(UPLOAD_DIR));
 app.use(
   cors({
-    origin: 'http://localhost:7070',
+    origin: '*',
     optionsSuccessStatus: 200,
   }),
 );
