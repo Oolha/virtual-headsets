@@ -90,33 +90,36 @@ const Header = ({}) => {
           </div>
         </div>
         <div className={css.secondHeaderBox}>
-          <picture className={css.picture}>
-            <source
-              srcSet="../../../public/images/desktop/hero-desktop@1x.png 1x,
+          <div className={css.pictureBox}>
+            <picture className={css.picture}>
+              <source
+                srcSet="../../../public/images/desktop/hero-desktop@1x.png 1x,
                         ../../../public/images/desktop/hero-desktop@2x.png 2x"
-              media="(min-width: 1024px)"
-              className={css.heroImg}
-            />
-            <source
-              srcSet="../../../public/images/mobile/hero-mobile@1x.png 1x,
+                media="(min-width: 1024px)"
+                className={css.heroImg}
+              />
+              <source
+                srcSet="../../../public/images/mobile/hero-mobile@1x.png 1x,
                                         ../../../public/images/mobile/hero-mobile@2x.png 2x"
-              media="(min-width: 375px)"
-            />
-            <img
-              src="../../../public/images/desktop/hero-desktop@1x.png 1x"
-              alt="man in virtual headsets"
-            />
-          </picture>
-          <picture className={css.picture}>
-            <source
-              srcSet="../../../public/svg/big-line-under-heroImg.svg"
-              media="(min-width: 1024px)"
-            />
-            <img
-              src="../../../public/svg/small-line-under-heroImg.svg"
-              alt="line"
-            />
-          </picture>
+                media="(min-width: 375px)"
+              />
+              <img
+                src="../../../public/images/desktop/hero-desktop@1x.png 1x"
+                alt="man in virtual headsets"
+              />
+            </picture>
+            <picture className={css.linePicture}>
+              <source
+                srcSet="../../../public/svg/big-line-under-heroImg.svg"
+                media="(min-width: 1024px)"
+              />
+              <img
+                src="../../../public/svg/small-line-under-heroImg.svg"
+                alt="line"
+              />
+            </picture>
+          </div>
+
           <div className={css.iconsBox}>
             <div className={css.iconsBox1}>
               <img

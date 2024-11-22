@@ -1,32 +1,46 @@
-import { createSlice } from "@reduxjs/toolkit";
-const initialState = {
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { VRHeadset } from "../types";
+import { fetchAllVrHeadsets } from "./operations";
+
+interface VRHeadsetState {
+  virtualHeadsets: VRHeadset[];
+  isLoading: boolean;
+  error: string | null;
+}
+const initialState: VRHeadsetState = {
   virtualHeadsets: [],
   isLoading: false,
   error: null,
 };
 
-const handlePending = (state) => {
+const handlePending = (state: VRHeadsetState) => {
   state.isLoading = true;
   state.error = null;
 };
-const handleRejected = (state, { payload }) => {
+const handleRejected = (
+  state: VRHeadsetState,
+  action: PayloadAction<string | undefined>
+) => {
   state.isLoading = false;
-  state.error = payload;
+  state.error = action.payload || "An error occurred";
 };
 
 export const sliceVirtualHeadsets = createSlice({
-  name: "VirtualHeadsets",
+  name: "virtualHeadsets",
   initialState,
-
+  reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchData.fulfilled, (state, { payload: userData }) => {
-        state.isLoading = false;
-        state.error = null;
-        state.items = userData;
-      })
-      .addCase(fetchData.pending, handlePending)
-      .addCase(fetchData.rejected, handleRejected);
+      .addCase(
+        fetchAllVrHeadsets.fulfilled,
+        (state, action: PayloadAction<VRHeadset[]>) => {
+          state.isLoading = false;
+          state.error = null;
+          state.virtualHeadsets = action.payload;
+        }
+      )
+      .addCase(fetchAllVrHeadsets.pending, handlePending)
+      .addCase(fetchAllVrHeadsets.rejected, handleRejected);
   },
 });
 

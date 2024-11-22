@@ -1,10 +1,10 @@
-import style from './Catalog.module.css';
-
+import VRHeadsetsList from "../../components/VRHeadsets/VRHeadsets";
+import style from "./Catalog.module.css";
 
 const Catalog = ({}) => {
   return (
     <div>
-      Catalog
+      <VRHeadsetsList />
     </div>
   );
 };

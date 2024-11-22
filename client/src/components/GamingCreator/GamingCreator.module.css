@@ -1,0 +1,170 @@
+.mainBox {
+  margin-top: 32px;
+}
+.box {
+  position: relative;
+}
+.title {
+  font-family: "Satoshi Variable", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+.text {
+  font-family: "Satoshi Variable", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #fff;
+  margin-top: 24px;
+}
+.blogBtn {
+  border-radius: 4px;
+  padding: 16px 24px;
+  width: 192px;
+  height: 54px;
+  font-family: "Satoshi Variable", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  text-align: center;
+  color: #3ddeed;
+  padding: 16px 24px;
+  background: rgba(61, 222, 237, 0.1);
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 24px;
+}
+.arrow {
+  color: #3ddeed;
+  width: 20px;
+  height: 20px;
+}
+.pictureBox {
+  margin-top: 24px;
+  width: 100%;
+}
+
+.twitterPost {
+  display: flex;
+  flex-direction: column;
+  padding: 14px;
+  background-color: white;
+  box-shadow: 0 0px 0 0 #ced5dc;
+}
+.nickNameBox {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+.namesBox {
+  display: flex;
+  flex-direction: column;
+}
+.name {
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  color: #141619;
+}
+.nickname {
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  color: #687684;
+}
+.postTitle {
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 1.40909;
+  letter-spacing: -0.03em;
+  color: #141619;
+  color: black;
+  margin-bottom: 23px;
+}
+.date {
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  color: #687684;
+}
+.twitter {
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  color: #4c9eeb;
+}
+.line {
+  border: 0.33px solid #bdc5cd;
+  width: 100%;
+  height: 0px;
+  margin-top: 13px;
+}
+.activity {
+  margin-top: 13px;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+.span {
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  color: #141619;
+}
+.postIcons {
+  padding: 0 29px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 15px;
+}
+@media only screen and (max-width: 1023px) {
+  .twitterPost {
+    bottom: -208px;
+    left: 0;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .mainBox {
+    margin-top: 134px;
+    display: flex;
+    flex-direction: row;
+    gap: 104px;
+  }
+  .gamingCreatorBox {
+    max-width: 512px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .title {
+    font-size: 45px;
+    max-width: 430px;
+  }
+  .text {
+    margin-top: 40px;
+    font-size: 16px;
+  }
+  .blogBtn {
+    margin-top: 40px;
+  }
+  .twitterPost {
+    position: absolute;
+
+    z-index: 1;
+    border-radius: 8px;
+    bottom: -100px;
+    left: -60px;
+  }
+}

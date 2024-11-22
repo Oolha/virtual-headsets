@@ -167,9 +167,7 @@
   justify-content: center;
   align-items: center;
 }
-.secondHeaderBox {
-  margin-top: 22px;
-}
+
 .picture {
   display: flex;
   justify-content: center;
@@ -194,6 +192,9 @@
   .headerBox {
     margin-top: 36px;
   }
+  .secondHeaderBox {
+    margin-top: 22px;
+  }
   .btnsBox {
     flex-direction: column;
     justify-content: center;
@@ -203,6 +204,19 @@
   .iconsBox1 {
     margin-top: 24px;
     margin-bottom: 22px;
+  }
+  .pictureBox {
+    position: relative;
+    width: 100%;
+  }
+  .linePicture {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 0;
+    right: 0;
   }
 }
 @media only screen and (min-width: 1024px) {
@@ -231,21 +245,20 @@
   }
 
   .title {
-    font-size: 70px;
-    max-width: 630px;
+    font-size: 60px;
+    width: 450px;
   }
   .text {
     font-size: 16px;
-    width: 456px;
+    max-width: 445px;
   }
   .headerBox {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-top: 80px;
-    gap: 50px;
+    gap: 104px;
   }
-
   .btnsBox {
     flex-direction: row;
   }
@@ -257,11 +270,40 @@
     width: 145px;
     height: 56px;
   }
+  .firstHeadetBox {
+    width: 512px;
+  }
+  .secondHeaderBox {
+    min-width: 512px;
+    padding-top: 45px;
+  }
+  .pictureBox {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .picture {
+    width: 440px;
+  }
+  img {
+    object-fit: cover;
+  }
+  .linePicture {
+    width: auto;
+    height: auto;
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-right: -156px;
+  }
   .iconsBox {
     display: flex;
     flex-direction: row;
     gap: 42px;
-    margin-top: 20px;
+    margin-top: 64px;
   }
   .iconsSvg {
     height: 32px;
