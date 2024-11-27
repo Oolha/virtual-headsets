@@ -7,14 +7,18 @@ import {
   selectGames,
   selectIsLoading,
 } from "../../redux/games/selectors";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchTop5Games } from "../../redux/games/operations";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper as SwiperType } from "swiper";
+import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { Icon } from "../Icon/Icon";
 
-const TopGames = ({}) => {
+const TopGames = () => {
+  const [swiper, setSwiper] = useState<SwiperType | null>(null);
   const dispatch = useAppDispatch();
   const data = useSelector(selectGames);
 
@@ -32,6 +36,21 @@ const TopGames = ({}) => {
     fetchData();
   }, [dispatch]);
 
+  const handlePrevClick = () => {
+    if (swiper) swiper.slidePrev();
+  };
+
+  const handleNextClick = () => {
+    if (swiper) swiper.slideNext();
+  };
+
+  const getClipPath = (id: string) => {
+    const isDesktop = window.matchMedia("(min-width: 1440px)").matches;
+    return isDesktop
+      ? `M0 0 L300 0 L348 80 L348 361 L0 361 Z`
+      : `M0 0 L186 0 L233 48 L233 240 L0 240 Z`;
+  };
+
   return (
     <div className={css.topGamesBox}>
       <div className={css.gamesTextBox}>
@@ -40,32 +59,48 @@ const TopGames = ({}) => {
           If you buy video of 2 games, you will receive 1 video game for free,
           along with a <span className={css.span}>50%</span> discount.
         </p>
+        <div className={css.navigationContainer}>
+          <button onClick={handlePrevClick} className={css.customPrevButton}>
+            <Icon id="icon-arrow-left" size={16} />
+          </button>
+          <button onClick={handleNextClick} className={css.customNextButton}>
+            <Icon id="icon-arrow-right" size={16} />
+          </button>
+        </div>
       </div>
 
       <Swiper
+        onSwiper={(swiper: SwiperType) => setSwiper(swiper)}
+        modules={[Navigation]}
         pagination={{ clickable: true }}
         spaceBetween={24}
         slidesPerView={1.5}
         className={css.swiper}
+        breakpoints={{
+          1440: {
+            slidesPerView: 3,
+            spaceBetween: 32.5,
+          },
+        }}
         allowTouchMove={true}
       >
         {data.map((game) => (
           <SwiperSlide key={game._id} className={css.swiperSlide}>
             <div className={css.listItem}>
               <div className={css.imageWrapper}>
-                {/* <svg className={css.svg}>
+                <svg className={css.svg}>
                   <defs>
                     <clipPath id={`clipPath-${game._id}`}>
-                      <path d="M0 0 L186 0 L233 48 L233 240 L0 240 Z" />
+                      <path d={getClipPath(game._id)} />
                     </clipPath>
                   </defs>
                   <path
-                    d="M0 0 L186 0 L233 48 L233 240 L0 240 Z"
+                    d={getClipPath(game._id)}
                     fill="none"
                     stroke="rgba(189, 0, 255, 0.2)"
                     strokeWidth="4"
                   />
-                </svg> */}
+                </svg>
                 <img
                   src={game.photo}
                   alt={game.name}
