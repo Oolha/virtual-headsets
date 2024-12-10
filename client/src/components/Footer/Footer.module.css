@@ -1,0 +1,30 @@
+.footerBox {
+  margin-top: 28px;
+  background: #1c1128;
+  border-radius: 8px;
+  width: 100vw;
+  margin-left: calc(-1 * (100vw - 100%) / 2);
+  padding: 24px;
+}
+.logoAndLinksBox {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.phoneNumber {
+  font-weight: 400;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 24px;
+}
+.title {
+  margin-top: 24px;
+  font-weight: 700;
+  font-size: 18px;
+  color: #fff;
+}
+.navLinks {
+  display: flex;
+  flex-direction: row;
+  gap: 60px;
+}

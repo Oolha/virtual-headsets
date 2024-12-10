@@ -1,16 +1,12 @@
 import { IoMdMenu, IoMdArrowForward } from "react-icons/io";
-import {
-  PiMagnifyingGlassBold,
-  PiStarFourFill,
-  PiTwitterLogoFill,
-  PiInstagramLogoFill,
-  PiDiscordLogoFill,
-} from "react-icons/pi";
+import { PiMagnifyingGlassBold, PiStarFourFill } from "react-icons/pi";
 import { BiShoppingBag } from "react-icons/bi";
-import { MdOutlineExplore, MdOutlineFacebook } from "react-icons/md";
+import { MdOutlineExplore } from "react-icons/md";
 
 import css from "./Header.module.css";
 import NavBar from "../NavBar/NavBar";
+import Logo from "../Logo/Logo";
+import SocialLinks from "../SocialLinks/SocialLinks";
 
 const Header = ({}) => {
   return (
@@ -19,10 +15,7 @@ const Header = ({}) => {
         <div className={css.box1}>
           <NavBar />
         </div>
-        <h3 className={css.nameBrand}>
-          <span className={css.span}>Holo</span>Gaze
-          <span className={css.span}>.</span>
-        </h3>
+        <Logo />
         <div className={css.box2}>
           <form className={css.form}>
             <input
@@ -74,20 +67,7 @@ const Header = ({}) => {
             </button>
           </div>
           <p className={css.textFollowUs}>Follow us</p>
-          <div className={css.links}>
-            <button className={css.linkBtn}>
-              <PiTwitterLogoFill className={css.linkIcon} />
-            </button>
-            <button className={css.linkBtn}>
-              <PiInstagramLogoFill className={css.linkIcon} />
-            </button>
-            <button className={css.linkBtn}>
-              <PiDiscordLogoFill className={css.linkIcon} />
-            </button>
-            <button className={css.linkBtn}>
-              <MdOutlineFacebook className={css.linkIcon} />
-            </button>
-          </div>
+          <SocialLinks />
         </div>
         <div className={css.secondHeaderBox}>
           <div className={css.pictureBox}>

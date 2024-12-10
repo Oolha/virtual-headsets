@@ -25,15 +25,7 @@
 .menuIcon:hover {
   transform: scale(1.2);
 }
-.nameBrand {
-  font-family: "Sarpanch", sans-serif;
-  font-weight: 700;
-  font-size: 20px;
-  color: white;
-}
-.span {
-  color: #3ddeed;
-}
+
 .box2 {
   display: flex;
   align-items: center;
@@ -148,25 +140,6 @@
   margin-top: 12px;
   margin-bottom: 12px;
 }
-.links {
-  display: flex;
-  flex-direction: row;
-  gap: 12px;
-}
-.linkIcon {
-  fill: white;
-  width: 24px;
-  height: 24px;
-}
-.linkBtn {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-  width: 44px;
-  height: 44px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 .picture {
   display: flex;
@@ -220,10 +193,6 @@
   }
 }
 @media only screen and (min-width: 1024px) {
-  .nameBrand {
-    margin-left: 32px;
-    margin-right: 32px;
-  }
   .form {
     display: flex;
     justify-content: space-between;

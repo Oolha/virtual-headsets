@@ -1,0 +1,19 @@
+.links {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+.linkIcon {
+  fill: white;
+  width: 24px;
+  height: 24px;
+}
+.linkBtn {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

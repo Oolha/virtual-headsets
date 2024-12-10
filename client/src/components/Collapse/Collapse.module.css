@@ -1,0 +1,69 @@
+.collapseWrapper :global(.ant-collapse) {
+  background-color: #20112d;
+  border: none;
+  border-radius: 8px;
+}
+.collapseWrapper :global(.ant-collapse-item) {
+  margin-bottom: 24px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: none;
+  transition: background-color 0.3s ease;
+}
+.collapseWrapper :global(.ant-collapse-item-active) {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.collapseWrapper :global(.ant-collapse-header) {
+  font-weight: bold;
+  background-color: transparent;
+}
+.collapseWrapper :global(.ant-collapse-content) {
+  color: #fff;
+  background-color: transparent;
+  border: none;
+}
+.collapseWrapper :global(.ant-collapse-header-text) {
+  color: #fff;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.collapseWrapper :global(.ant-collapse-item:last-child) {
+  margin-bottom: 0;
+}
+
+.defaultIcon {
+  stroke: #fff;
+  width: 15px;
+  height: 15px;
+}
+.activeIcon {
+  transform: rotate(180deg);
+  stroke: #bd00ff;
+  width: 15px;
+  height: 15px;
+}
+
+@media only screen and (min-width: 1440px) {
+  .collapseWrapper :global(.ant-collapse-item) {
+    padding: 32px 40px;
+  }
+  .collapseWrapper :global(.ant-collapse-header-text) {
+    font-weight: 700;
+    font-size: 24px;
+  }
+  .collapseWrapper :global(.ant-collapse-content-box) {
+    font-weight: 400;
+    font-size: 18px;
+  }
+  .defaultIcon {
+    width: 21px;
+    height: 21px;
+  }
+  .activeIcon {
+    width: 21px;
+    height: 21px;
+  }
+}

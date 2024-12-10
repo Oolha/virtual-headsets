@@ -1,0 +1,15 @@
+.nameBrand {
+  font-family: "Sarpanch", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: white;
+}
+.span {
+  color: #3ddeed;
+}
+@media only screen and (min-width: 1440px) {
+  .nameBrand {
+    margin-left: 32px;
+    margin-right: 32px;
+  }
+}

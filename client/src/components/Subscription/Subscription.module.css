@@ -1,0 +1,47 @@
+.subscrBox {
+  font-weight: 400;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 24px;
+}
+.title {
+  font-weight: 700;
+  font-size: 18px;
+  color: #fff;
+}
+.text {
+  font-weight: 400;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 24px;
+}
+.input {
+  font-weight: 400;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  padding: 10px 16px;
+  width: 327px;
+  height: 62px;
+  background: transparent;
+}
+.btn {
+  margin-top: 24px;
+  margin-bottom: 28px;
+  border-radius: 0 4px 4px 0;
+  padding: 10px 16px;
+  width: 327px;
+  height: 62px;
+  background: #3ddeed;
+  font-weight: 700;
+  font-size: 16px;
+  color: #0f041c;
+}
+.rights {
+  font-weight: 400;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 32px;
+}
