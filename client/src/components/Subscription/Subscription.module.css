@@ -39,9 +39,24 @@
   font-size: 16px;
   color: #0f041c;
 }
-.rights {
-  font-weight: 400;
-  font-size: 16px;
-  color: rgba(255, 255, 255, 0.8);
-  margin-top: 32px;
+
+@media only screen and (min-width: 1440px) {
+  .subscrBox {
+    margin: 0;
+  }
+  .input {
+    margin: 0;
+    width: 280px;
+  }
+  .btn {
+    padding: 16px;
+    width: 137px;
+    margin: 0;
+    margin-left: -5px;
+  }
+  .inputAndBtnBox {
+    margin-top: 45px;
+    display: flex;
+    flex-direction: row;
+  }
 }

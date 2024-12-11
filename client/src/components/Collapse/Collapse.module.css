@@ -47,6 +47,14 @@
 }
 
 @media only screen and (min-width: 1440px) {
+  .collapseWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .collapseWrapper :global(.ant-collapse) {
+    width: 800px;
+  }
   .collapseWrapper :global(.ant-collapse-item) {
     padding: 32px 40px;
   }
