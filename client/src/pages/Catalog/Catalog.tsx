@@ -1,9 +1,13 @@
 import VRHeadsetsList from "../../components/VRHeadsets/VRHeadsets";
-import style from "./Catalog.module.css";
+import css from "./Catalog.module.css";
+import Header from "../../components/Header/Header";
+import CatalogHero from "../../components/CatalogHero/CatalogHero";
 
 const Catalog = ({}) => {
   return (
-    <div>
+    <div className={css.noPaddingWrapper}>
+      <Header />
+      <CatalogHero />
       <VRHeadsetsList />
     </div>
   );

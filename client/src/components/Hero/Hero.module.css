@@ -1,0 +1,208 @@
+.productName {
+  font-family: "Satoshi Variable", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+}
+.title {
+  font-family: "Satoshi Variable", sans-serif;
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #fff;
+  min-width: 345px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+.textBox {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+.textIcon {
+  width: 20px;
+  height: 20px;
+  fill: #bf23f5;
+}
+.text {
+  font-family: "Satoshi Variable", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.8);
+  min-width: 313px;
+}
+.btnsBox {
+  display: flex;
+
+  gap: 24px;
+  margin-top: 24px;
+  margin-bottom: 36px;
+}
+.visitStoreBtn {
+  border-radius: 4px;
+  padding: 16px 24px;
+  width: 248px;
+  height: 54px;
+  box-shadow: 0 20px 49px 0 rgba(61, 222, 237, 0.17);
+  background: #3ddeed;
+  font-family: "Satoshi Variable", sans-serif;
+  text-align: center;
+  color: #182627;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.arrowIcon {
+  width: 20px;
+  height: 20px;
+  margin-left: 24px;
+}
+.exploreBtn {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  padding: 16px 24px;
+  width: 248px;
+  height: 54px;
+  font-family: "Satoshi Variable", sans-serif;
+  text-align: center;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.exploreIcon {
+  width: 20px;
+  height: 20px;
+  color: white;
+  margin-right: 12px;
+}
+
+.textFollowUs {
+  font-family: "Satoshi Variable", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.picture {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.iconsBox1,
+.iconsBox2 {
+  display: flex;
+  gap: 12px;
+}
+.iconsBoxText {
+  font-family: "Satoshi Variable", sans-serif;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.6);
+}
+@media only screen and (max-width: 1023px) {
+  .headerBox {
+    margin-top: 36px;
+  }
+  .secondHeaderBox {
+    margin-top: 22px;
+  }
+  .btnsBox {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .iconsBox1 {
+    margin-top: 24px;
+    margin-bottom: 22px;
+  }
+  .pictureBox {
+    position: relative;
+    width: 100%;
+  }
+  .linePicture {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 0;
+    right: 0;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .title {
+    font-size: 60px;
+    width: 450px;
+  }
+  .text {
+    font-size: 16px;
+    max-width: 445px;
+  }
+  .headerBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 80px;
+    gap: 104px;
+  }
+  .btnsBox {
+    flex-direction: row;
+  }
+  .visitStoreBtn {
+    width: 184px;
+    height: 56px;
+  }
+  .exploreBtn {
+    width: 145px;
+    height: 56px;
+  }
+  .firstHeadetBox {
+    width: 512px;
+  }
+  .secondHeaderBox {
+    min-width: 512px;
+    padding-top: 45px;
+  }
+  .pictureBox {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .picture {
+    width: 440px;
+  }
+  img {
+    object-fit: cover;
+  }
+  .linePicture {
+    width: auto;
+    height: auto;
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-right: -156px;
+  }
+  .iconsBox {
+    display: flex;
+    flex-direction: row;
+    gap: 42px;
+    margin-top: 64px;
+  }
+  .iconsSvg {
+    height: 32px;
+    width: 32px;
+  }
+}

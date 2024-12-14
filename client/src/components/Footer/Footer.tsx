@@ -3,7 +3,7 @@ import Logo from "../Logo/Logo";
 import NavBar from "../NavBar/NavBar";
 import NavMenu from "../NavMenu/NavMenu";
 import SocialLinks from "../SocialLinks/SocialLinks";
-import Subscription from "../Subscription/subscription";
+import Subscription from "../Subscription/Subscription";
 import css from "./Footer.module.css";
 import { useState } from "react";
 
