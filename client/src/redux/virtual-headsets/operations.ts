@@ -25,7 +25,10 @@ export const fetchAllVrHeadsets = createAsyncThunk<
   const url = BASE_URL + END_POINT;
   try {
     const response = await axios.get<ApiResponse>(url);
-    return response.data.data.data;
+    const sortedData = response.data.data.data.sort(
+      (a, b) => a.order - b.order
+    );
+    return sortedData;
   } catch (error) {
     return thunkAPI.rejectWithValue((error as Error).message);
   }

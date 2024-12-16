@@ -9,7 +9,11 @@ const CatalogHero = ({}) => {
         <source src={vrVideo} type="video/mp4" />
         Ваш браузер не підтримує відео.
       </video>
-      <div className={css.overlay}>Explore the World of VR Headsets</div>
+      <div className={css.overlay}>
+        <h2 className={css.title}>
+          Enhance Your Reality. Get Your VR Headset Today!
+        </h2>
+      </div>
     </div>
   );
 };

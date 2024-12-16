@@ -4,6 +4,7 @@ import { VROneHeadset } from "../VROneHeadset/VROneHeadset";
 import { useEffect } from "react";
 import { fetchAllVrHeadsets } from "../../redux/virtual-headsets/operations";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
+import css from "./VRHeadsets.module.css";
 
 const VRHeadsetsList = ({}) => {
   const dispatch = useAppDispatch();
@@ -23,6 +24,7 @@ const VRHeadsetsList = ({}) => {
 
   return (
     <div>
+      <h2 className={css.title}>Featured Gears</h2>
       <ul>
         {data.map((item) => {
           return <VROneHeadset item={item} key={item._id} />;

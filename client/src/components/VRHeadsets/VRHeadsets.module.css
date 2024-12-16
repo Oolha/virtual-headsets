@@ -1,0 +1,10 @@
+.title {
+  font-size: 16px;
+  margin-bottom: 32px;
+}
+@media only screen and (min-width: 1440px) {
+  .title {
+    font-size: 32px;
+    margin-top: 100px;
+  }
+}

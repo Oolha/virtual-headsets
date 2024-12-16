@@ -20,6 +20,7 @@ export interface VRHeadset {
     manufacturer: string;
   };
   photo: string;
+  order: number;
 }
 export interface Game {
   _id: string;
