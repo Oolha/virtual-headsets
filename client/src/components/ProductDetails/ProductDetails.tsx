@@ -10,6 +10,8 @@ import { useEffect } from "react";
 import { fetchAllVrHeadsets } from "../../redux/virtual-headsets/operations";
 import { useParams } from "react-router-dom";
 import { Icon } from "../Icon/Icon";
+import CollapseForOneProduct from "../CollapseForOneProduct/CollapseForOneProduct";
+import AddToCart from "../AddToCart/AddToCart";
 
 const ProductDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -48,7 +50,6 @@ const ProductDetails: React.FC = () => {
       <div className={css.info}>
         <h2 className={css.title}>{item.name}</h2>
         <p className={css.description}>{item.description}</p>
-        <p className={css.price}>Starting at ${item.price}</p>
       </div>
       <div className={css.photoBox}>
         <img src={item.photo} alt={item.name} className={css.img} />
@@ -72,6 +73,10 @@ const ProductDetails: React.FC = () => {
           </li>
         </ul>
       </div>
+      <div className={css.line}></div>
+      <AddToCart item={item} />
+      <div className={css.line}></div>
+      <CollapseForOneProduct item={item} />
     </div>
   );
 };

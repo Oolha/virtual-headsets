@@ -1,0 +1,80 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.price {
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 12px;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.quantityControl {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.input {
+  width: 60px;
+  height: 40px;
+  padding: 8px;
+  border: 1px solid #d341cf;
+  border-radius: 4px;
+  font-size: 16px;
+  text-align: center;
+  background-color: #fff;
+  color: #182627;
+}
+
+.input::-webkit-inner-spin-button,
+.input::-webkit-outer-spin-button {
+  opacity: 1;
+}
+
+.maxQuantity {
+  font-size: 14px;
+  color: #666;
+}
+
+.addButton {
+  transition: background-color 0.2s;
+  border-radius: 4px;
+  padding: 16px 24px;
+  width: 100%;
+  height: 54px;
+  box-shadow: 0 20px 49px 0 rgba(24, 88, 93, 0.17);
+  background: #3ddeed;
+  font-family: "Satoshi Variable", sans-serif;
+  text-align: center;
+  color: #182627;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.addButton:hover {
+  background-color: #3fcad7;
+}
+
+.addButton:active {
+  background-color: #3fcad7;
+}
+.text {
+  font-family: "Satoshi Variable", sans-serif;
+  font-size: 14px;
+  color: #666;
+  font-weight: 400;
+}
+.shipping {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}

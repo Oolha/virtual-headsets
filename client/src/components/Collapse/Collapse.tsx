@@ -3,14 +3,12 @@ import { Collapse } from "antd";
 import css from "./Collapse.module.css";
 import { Icon as CustomArrow } from "../Icon/Icon";
 
-// A type for the FAQ item
 type FAQItem = {
   key: string;
   label: string;
   children: React.ReactNode;
 };
 
-// FAQAccordion component
 const FAQAccordion: React.FC = () => {
   const defaultKeys = window.innerWidth >= 1440 ? ["2"] : [];
   const faqData: FAQItem[] = [
