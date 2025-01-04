@@ -10,7 +10,7 @@ function App() {
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<HomePage />} />
         <Route path="/catalog" element={<Catalog />} />
-        <Route path="/singleProduct" element={<SingleProduct />} />
+        <Route path="/catalog/:id" element={<SingleProduct />} />
       </Route>
     </Routes>
   );

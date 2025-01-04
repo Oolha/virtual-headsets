@@ -1,7 +1,5 @@
 .item {
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
 }
 .vrItem {
@@ -20,7 +18,7 @@
   font-size: 18px;
   line-height: 1.29412;
   letter-spacing: 0em;
-  color: #64d9e3;
+  color: #3ddeed;
 }
 .text {
   font-weight: 400;
@@ -28,13 +26,18 @@
   line-height: 1.6;
   letter-spacing: 0.01em;
 }
+.imgBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .img {
   width: 200px;
   height: 200px;
   object-fit: contain;
   object-position: center;
-  margin-top: -130px;
-  margin-right: -170px;
+  margin-top: -120px;
+  margin-right: -150px;
 }
 .box {
   border-radius: 0 0 16px 16px;
@@ -43,6 +46,50 @@
   background-color: #3ddeed;
   margin-left: -24px;
   margin-bottom: -24px;
+}
+.infoBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.text {
+  margin-top: 6px;
+  color: #bac5cf;
+}
+.price {
+  color: #bac5cf;
+}
+.list {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.listItem {
+  font-family: "Satoshi Variable", sans-serif;
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
+.boxBtn {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  align-items: center;
+}
+.detailsBtn {
+  border: none;
+  background-color: transparent;
+}
+.detAndPrice {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
 }
 @media only screen and (min-width: 1440px) {
 }
