@@ -1,6 +1,9 @@
 .title {
   font-size: 16px;
 }
+.wrapperBox {
+  margin: 24px 0;
+}
 @media only screen and (max-width: 1439px) {
   .list {
     display: flex;
@@ -11,6 +14,9 @@
   }
 }
 @media only screen and (min-width: 1440px) {
+  .wrapperBox {
+    margin: 132px 0;
+  }
   .title {
     font-size: 32px;
   }

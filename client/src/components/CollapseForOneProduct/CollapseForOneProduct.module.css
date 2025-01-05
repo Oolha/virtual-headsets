@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  margin-top: 12px;
+  margin-top: 24px;
 }
 
 .mainList {
@@ -48,6 +48,7 @@
   background-color: #d44cef;
   border-radius: 50%;
 }
+
 :global(.ant-collapse) {
   background: none !important;
   border: none !important;
@@ -62,6 +63,7 @@
   padding: 0 !important;
   display: flex;
   align-items: center !important;
+  justify-content: space-between;
 }
 
 :global(.ant-collapse-content) {
@@ -79,9 +81,44 @@
   padding-inline-start: 8px !important;
 }
 
+:global(.ant-collapse-expand-icon svg) {
+  width: 24px !important;
+  height: 24px !important;
+}
+
 :global(.ant-collapse-header-text) {
   font-family: "Satoshi Variable", sans-serif;
   font-size: 24px;
   color: rgba(0, 0, 0, 0.8);
   font-weight: 500;
+}
+@media only screen and (max-width: 1439px) {
+  .container {
+    padding-bottom: 24px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .specsContainer {
+    font-size: 18px;
+  }
+  .container {
+    margin-top: 64px;
+    padding-bottom: 100px;
+  }
+  :global(.ant-collapse) {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  :global(.ant-collapse-header-text) {
+    font-size: 36px;
+  }
+
+  :global(.ant-collapse-expand-icon svg) {
+    width: 32px !important;
+    height: 32px !important;
+  }
 }

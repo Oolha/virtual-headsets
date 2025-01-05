@@ -1,6 +1,7 @@
 import { Collapse } from "antd";
 import css from "./CollapseForOneProduct.module.css";
 import { VRHeadset } from "../../redux/types";
+import Reviews from "../Reviews/Reviews";
 
 interface CollapseForOneProductProps {
   item: VRHeadset;
@@ -75,11 +76,7 @@ const CollapseForOneProduct: React.FC<CollapseForOneProductProps> = ({
     {
       key: "2",
       label: "Reviews",
-      children: (
-        <div className={css.reviewsContainer}>
-          <p className={css.noReviews}>No reviews yet</p>
-        </div>
-      ),
+      children: <Reviews />,
     },
   ];
 

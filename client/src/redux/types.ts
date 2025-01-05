@@ -1,3 +1,9 @@
+export interface Review {
+  reviewer_name: string;
+  reviewer_rating: number;
+  comment: string;
+}
+
 export interface VRHeadset {
   _id: string;
   name: string;
@@ -21,7 +27,9 @@ export interface VRHeadset {
   };
   photo: string;
   order: number;
+  reviews: Review[];
 }
+
 export interface Game {
   _id: string;
   name: string;

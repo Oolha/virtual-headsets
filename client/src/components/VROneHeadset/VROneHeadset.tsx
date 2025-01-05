@@ -47,7 +47,7 @@ export const VROneHeadset: React.FC<VROneHeadsetProps> = ({ item }) => {
               <Icon id="seeDetails" size={13} />
             </div>
 
-            <p className={css.price}>{item.price} $</p>
+            <p className={css.price}>€{item.price}</p>
           </div>
         </div>
 

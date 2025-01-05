@@ -1,5 +1,4 @@
 .footer {
-  margin-top: 28px;
   background: #1c1128;
   border-radius: 8px;
   width: 100vw;
@@ -38,7 +37,6 @@
 @media only screen and (min-width: 1440px) {
   .footer {
     padding: 80px 156px;
-    margin-top: 132px;
   }
   .footerBox {
     display: flex;

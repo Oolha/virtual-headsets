@@ -1,1 +1,20 @@
-
+.wrapperHeader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #20112d;
+  padding: 27px 24px;
+}
+.productWrapper {
+  margin-top: 62px;
+}
+@media only screen and (min-width: 1440px) {
+  .wrapperHeader {
+    padding: 36px 156px;
+  }
+  .productWrapper {
+    margin-top: 82px;
+  }
+}

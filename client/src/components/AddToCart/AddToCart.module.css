@@ -7,7 +7,7 @@
 .price {
   font-size: 24px;
   font-weight: 600;
-  margin-top: 12px;
+  margin-top: 36px;
 }
 
 .controls {
@@ -77,4 +77,29 @@
   display: flex;
   flex-direction: row;
   gap: 8px;
+}
+@media only screen and (min-width: 1440px) {
+  .price {
+    margin: 0;
+    font-size: 34px;
+  }
+  .container {
+    gap: 8px;
+  }
+  .text {
+    font-size: 16px;
+  }
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+  .shipping {
+    align-items: center;
+  }
+  .addButton {
+    font-size: 24px;
+  }
+  .maxQuantity {
+    font-size: 16px;
+  }
 }

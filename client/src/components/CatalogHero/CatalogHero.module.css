@@ -13,7 +13,7 @@
 .videoContainer {
   position: relative;
   overflow: hidden;
-  margin-top: 36px;
+  margin-top: 27px;
   left: calc(-1 * var(--body-padding, 24px));
   width: calc(100% + 2 * var(--body-padding, 24px));
   margin-bottom: 36px;
@@ -44,9 +44,9 @@
     max-height: 60vh;
   }
   .videoContainer {
-    margin-top: 60px;
     left: calc(-1 * var(--body-padding, 156px));
     width: calc(100% + 2 * var(--body-padding, 156px));
+    margin-top: 36px;
   }
   .overlay {
     padding: 60px 156px;

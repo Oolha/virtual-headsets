@@ -28,8 +28,8 @@ const AddToCart: React.FC<AddToCartProps> = ({ item }) => {
 
   return (
     <div className={css.container}>
-      <h3 className={css.price}>€ {item.price}</h3>
       <div className={css.controls}>
+        <h3 className={css.price}>€{item.price}</h3>
         <div className={css.quantityControl}>
           <input
             type="text"
@@ -43,7 +43,7 @@ const AddToCart: React.FC<AddToCartProps> = ({ item }) => {
         <button className={css.addButton}>Add to cart</button>
       </div>
       <div className={css.shipping}>
-        <FaShippingFast />
+        <FaShippingFast className={css.icon} />
         <p className={css.text}>
           Free shipping with any laptop/desktop PC within the EU
         </p>

@@ -53,7 +53,7 @@ const VRHeadsetsList = () => {
   };
 
   return (
-    <div>
+    <div className={css.wrapperBox}>
       <div className={css.arrowsBox}>
         <h2 className={css.title}>Featured Gears</h2>
         {isDesktop && (
