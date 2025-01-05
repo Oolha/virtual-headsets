@@ -17,7 +17,7 @@ export const VROneHeadset: React.FC<VROneHeadsetProps> = ({ item }) => {
     }
   };
   return (
-    <div className={css.item}>
+    <div className={css.item} onClick={() => handleClick(item._id)}>
       <div className={css.vrItem}>
         <div className={css.infoBox}>
           <h4 className={css.title}>{item.name}</h4>

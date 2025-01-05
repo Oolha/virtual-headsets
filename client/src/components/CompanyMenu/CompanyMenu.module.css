@@ -5,7 +5,8 @@
   position: relative;
   margin-top: 28px;
 }
-.navLink {
+.navLink,
+.authButton {
   text-decoration: none;
   transition: background-color 0.3s;
   font-size: 16px;
@@ -13,7 +14,11 @@
   font-weight: 400;
   font-size: 16px;
 }
-
-.navLink:hover {
+.authButton {
+  border: none;
+  text-align: left;
+}
+.navLink:hover,
+.authButton:hover {
   background-color: rgba(255, 255, 255, 0.5);
 }
