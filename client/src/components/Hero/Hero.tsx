@@ -2,9 +2,15 @@ import css from "./Hero.module.css";
 import SocialLinks from "../SocialLinks/SocialLinks";
 import { MdOutlineExplore } from "react-icons/md";
 import { PiStarFourFill } from "react-icons/pi";
-import { IoMdMenu, IoMdArrowForward } from "react-icons/io";
+import { IoMdArrowForward } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
 const Hero = ({}) => {
+  const navigate = useNavigate();
+
+  const handleVisitStoreClick = () => {
+    navigate("/catalog");
+  };
   return (
     <div className={css.headerBox}>
       <div className={css.firstHeaderBox}>
@@ -31,7 +37,7 @@ const Hero = ({}) => {
           </p>
         </div>
         <div className={css.btnsBox}>
-          <button className={css.visitStoreBtn}>
+          <button className={css.visitStoreBtn} onClick={handleVisitStoreClick}>
             Visit Store <IoMdArrowForward className={css.arrowIcon} />
           </button>
           <button className={css.exploreBtn}>

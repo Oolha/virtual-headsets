@@ -46,3 +46,19 @@ export interface Game {
   updatedAt: string;
   isTopGame: boolean;
 }
+
+export interface CartItem {
+  id: string;
+  name: string;
+  price: number;
+  photo: string;
+  quantity: number;
+}
+
+export interface CartState {
+  items: CartItem[];
+}
+
+export const initialCartState: CartState = {
+  items: [],
+};

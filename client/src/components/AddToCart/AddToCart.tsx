@@ -1,7 +1,10 @@
-import { VRHeadset } from "../../redux/types";
-import css from "./AddToCart.module.css";
+// components/AddToCart/AddToCart.tsx
 import { useState } from "react";
 import { FaShippingFast } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/cart/cartSlice";
+import css from "./AddToCart.module.css";
+import { VRHeadset } from "../../redux/types";
 
 interface AddToCartProps {
   item: VRHeadset;
@@ -9,6 +12,7 @@ interface AddToCartProps {
 
 const AddToCart: React.FC<AddToCartProps> = ({ item }) => {
   const [quantity, setQuantity] = useState<string>("1");
+  const dispatch = useDispatch();
 
   const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.trim();
@@ -26,6 +30,18 @@ const AddToCart: React.FC<AddToCartProps> = ({ item }) => {
     }
   };
 
+  const handleAddToCart = () => {
+    dispatch(
+      addToCart({
+        id: item._id,
+        name: item.name,
+        price: item.price,
+        photo: item.photo,
+        quantity: parseInt(quantity, 10),
+      })
+    );
+  };
+
   return (
     <div className={css.container}>
       <div className={css.controls}>
@@ -40,7 +56,9 @@ const AddToCart: React.FC<AddToCartProps> = ({ item }) => {
           />
           <span className={css.maxQuantity}>Max: 10</span>
         </div>
-        <button className={css.addButton}>Add to cart</button>
+        <button className={css.addButton} onClick={handleAddToCart}>
+          Add to cart
+        </button>
       </div>
       <div className={css.shipping}>
         <FaShippingFast className={css.icon} />
