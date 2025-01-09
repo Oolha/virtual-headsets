@@ -4,6 +4,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Modal from "../Modal/Modal";
 import css from "./SignUp.module.css";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
+import { selectAuthError } from "../../redux/auth/selectors";
+import { apiRegister } from "../../redux/auth/operations";
 
 interface SignUpFormData {
   name: string;
@@ -35,6 +38,9 @@ export const SignUpModal: React.FC<{
   isOpen: boolean;
   onClose: () => void;
 }> = ({ isOpen, onClose }) => {
+  const dispatch = useAppDispatch();
+  const authError = useAppSelector(selectAuthError);
+
   const {
     register,
     handleSubmit,
@@ -43,16 +49,35 @@ export const SignUpModal: React.FC<{
   } = useForm<SignUpFormData>({
     resolver: yupResolver(signUpSchema),
   });
+  const [successMessage, setSuccessMessage] = useState("");
 
-  const onSubmit = (data: SignUpFormData) => {
-    console.log("Sign Up Data:", data);
-    reset();
-    onClose();
+  const onSubmit = async (data: SignUpFormData) => {
+    try {
+      const { email, password, name } = data;
+      const response = await dispatch(
+        apiRegister({ email, password, name })
+      ).unwrap();
+
+      if (response) {
+        setSuccessMessage("Registration successful!");
+        reset();
+        setTimeout(() => {
+          onClose();
+          setSuccessMessage("");
+        }, 2000);
+      }
+    } catch (error) {
+      console.error("Registration failed:", error);
+    }
   };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="Sign Up">
       <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
+        {authError && <span className={css.error}>{authError}</span>}
+        {successMessage && (
+          <span className={css.success}>{successMessage}</span>
+        )}
         <div className={css.formGroup}>
           <label htmlFor="signUpName">Name</label>
           <input

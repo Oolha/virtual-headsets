@@ -62,3 +62,21 @@ export interface CartState {
 export const initialCartState: CartState = {
   items: [],
 };
+
+export interface User {
+  name: string | null;
+  email: string | null;
+}
+
+export interface AuthState {
+  user: User;
+  token: string | null;
+  isLoggedIn: boolean;
+  isRefreshing: boolean;
+  error: string | null;
+}
+
+export interface AuthResponse {
+  token: string;
+  user: User;
+}

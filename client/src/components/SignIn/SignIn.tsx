@@ -1,9 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Modal from "../Modal/Modal";
-import css from "./SignIn.module.css"
+import css from "./SignIn.module.css";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
+import {
+  selectAuthError,
+  selectAuthIsLoggedIn,
+} from "../../redux/auth/selectors";
+import { apiLogin } from "../../redux/auth/operations";
 
 interface SignInFormData {
   email: string;
@@ -25,6 +31,10 @@ export const SignInModal: React.FC<{
   isOpen: boolean;
   onClose: () => void;
 }> = ({ isOpen, onClose }) => {
+  const dispatch = useAppDispatch();
+  const authError = useAppSelector(selectAuthError);
+  const isLoggedIn = useAppSelector(selectAuthIsLoggedIn);
+
   const {
     register,
     handleSubmit,
@@ -34,11 +44,20 @@ export const SignInModal: React.FC<{
     resolver: yupResolver(signInSchema),
   });
 
-  const onSubmit = (data: SignInFormData) => {
-    console.log("Sign In Data:", data);
-    reset();
-    onClose();
+  const onSubmit = async (data: SignInFormData) => {
+    try {
+      await dispatch(apiLogin(data)).unwrap();
+    } catch (error) {
+      console.error("Login error:", error);
+    }
   };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      reset();
+      onClose();
+    }
+  }, [isLoggedIn, onClose, reset]);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="Sign In">
@@ -70,7 +89,7 @@ export const SignInModal: React.FC<{
             <span className={css.error}>{errors.password.message}</span>
           )}
         </div>
-
+        {authError && <span className={css.error}>{authError}</span>}
         <button type="submit" className={css.submitButton}>
           Sign In
         </button>
