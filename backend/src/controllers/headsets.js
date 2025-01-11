@@ -72,6 +72,9 @@ export const createVirtualHeadsetsController = async (req, res) => {
     compatibility: req.body.compatibility,
     color: req.body.color,
     photo: photoUrl,
+    technicalSpecifications: req.body.technicalSpecifications,
+    reviews: [],
+    order: req.body.order,
   };
   const result = await createVirtualHeadset(virtualHeadset);
 
@@ -114,6 +117,9 @@ export const upsertVirtualHeadsetController = async (req, res) => {
     compatibility: req.body.compatibility,
     color: req.body.color,
     photo: photoUrl,
+    technicalSpecifications: req.body.technicalSpecifications,
+    reviews: req.body.reviews || [],
+    order: req.body.order,
   };
   const result = await updateVirtualHeadset(headsetId, virtualHeadset, {
     upsert: true,
@@ -167,6 +173,9 @@ export const patchVirtualHeadsetController = async (req, res) => {
     ...(req.body.technicalSpecifications && {
       technicalSpecifications: req.body.technicalSpecifications,
     }),
+    ...(photoUrl && { photo: photoUrl }),
+    ...(req.body.reviews && { reviews: req.body.reviews }),
+    ...(req.body.order && { order: req.body.order }),
     ...(photoUrl && { photo: photoUrl }),
   };
 

@@ -1,5 +1,22 @@
 import Joi from 'joi';
 
+const reviewSchema = Joi.object({
+  reviewer_name: Joi.string().required().messages({
+    'string.base': 'Reviewer name must be a string',
+    'any.required': 'Reviewer name is required',
+  }),
+  reviewer_rating: Joi.number().min(1).max(5).required().messages({
+    'number.base': 'Rating must be a number',
+    'number.min': 'Rating must be at least 1',
+    'number.max': 'Rating cannot exceed 5',
+    'any.required': 'Rating is required',
+  }),
+  comment: Joi.string().required().messages({
+    'string.base': 'Comment must be a string',
+    'any.required': 'Comment is required',
+  }),
+});
+
 const technicalSpecificationsSchema = Joi.object({
   includedAccessories: Joi.array()
     .items(Joi.string().required())
@@ -84,71 +101,45 @@ export const virtualHeadsetValidationSchema = Joi.object({
   technicalSpecifications: technicalSpecificationsSchema.required().messages({
     'any.required': 'Technical specifications are required.',
   }),
+  photo: Joi.string().uri().required().messages({
+    'string.base': 'The photo must be a string.',
+    'string.uri': 'The photo must be a valid URI.',
+    'any.required': 'Photo is required.',
+  }),
+  order: Joi.number().required().messages({
+    'number.base': 'The order must be a number.',
+    'any.required': 'Order is required.',
+  }),
+  reviews: Joi.array().items(reviewSchema).default([]).messages({
+    'array.base': 'Reviews must be an array.',
+  }),
 });
 
 const updateTechnicalSpecificationsSchema = Joi.object({
-  includedAccessories: Joi.array().items(Joi.string().required()).messages({
-    'array.base': 'Included accessories should be an array of strings.',
-  }),
-  guarantee: Joi.string().messages({
-    'string.base': 'The guarantee must be a string.',
-  }),
-  purpose: Joi.string().messages({
-    'string.base': 'The purpose must be a string.',
-  }),
-  refreshRate: Joi.string().messages({
-    'string.base': 'The refresh rate must be a string.',
-  }),
-  fieldOfView: Joi.string().messages({
-    'string.base': 'The field of view must be a string.',
-  }),
-  builtInMemory: Joi.string().messages({
-    'string.base': 'The built-in memory must be a string.',
-  }),
-  sound: Joi.string().messages({
-    'string.base': 'The sound must be a string.',
-  }),
-  sensors: Joi.array().items(Joi.string().required()).messages({
-    'array.base': 'Sensors should be an array of strings.',
-  }),
-  connectors: Joi.array().items(Joi.string().required()).messages({
-    'array.base': 'Connectors should be an array of strings.',
-  }),
-  recommendedHardwareRequirements: Joi.array()
-    .items(Joi.string().required())
-    .messages({
-      'array.base':
-        'Recommended hardware requirements should be an array of strings.',
-    }),
-  manufacturer: Joi.string().messages({
-    'string.base': 'The manufacturer must be a string.',
-  }),
+  includedAccessories: Joi.array().items(Joi.string()),
+  guarantee: Joi.string(),
+  purpose: Joi.string(),
+  refreshRate: Joi.string(),
+  fieldOfView: Joi.string(),
+  builtInMemory: Joi.string(),
+  sound: Joi.string(),
+  sensors: Joi.array().items(Joi.string()),
+  connectors: Joi.array().items(Joi.string()),
+  recommendedHardwareRequirements: Joi.array().items(Joi.string()),
+  manufacturer: Joi.string(),
 });
 
 export const updateVirtualHeadsetValidationSchema = Joi.object({
-  name: Joi.string().min(3).messages({
-    'string.base': 'The name must be a string.',
-    'string.min': 'The name must be at least 3 characters long.',
-  }),
-  description: Joi.string().messages({
-    'string.base': 'The description must be a string.',
-  }),
-  price: Joi.number().positive().messages({
-    'number.base': 'The price must be a number.',
-    'number.positive': 'The price must be a positive number.',
-  }),
-  screenResolution: Joi.string().messages({
-    'string.base': 'The screen resolution must be a string.',
-  }),
-  compatibility: Joi.string().messages({
-    'string.base': 'The compatibility must be a string.',
-  }),
-  color: Joi.string().messages({
-    'string.base': 'The color must be a string.',
-  }),
-  technicalSpecifications: updateTechnicalSpecificationsSchema.messages({
-    'object.base': 'Technical specifications should be a valid object.',
-  }),
+  name: Joi.string().min(3),
+  description: Joi.string(),
+  price: Joi.number().positive(),
+  screenResolution: Joi.string(),
+  compatibility: Joi.string(),
+  color: Joi.string(),
+  technicalSpecifications: updateTechnicalSpecificationsSchema,
+  photo: Joi.string().uri(),
+  order: Joi.number(),
+  reviews: Joi.array().items(reviewSchema),
 })
   .min(1)
   .messages({
