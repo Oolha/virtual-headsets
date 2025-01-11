@@ -1,23 +1,31 @@
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-
+import { useEffect, useState } from "react";
 import css from "./Reviews.module.css";
 import { Icon } from "../Icon/Icon";
-import { useAppDispatch } from "../../redux/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 import {
   selectError,
   selectIsLoading,
   selectVRHeadsets,
 } from "../../redux/virtual-headsets/selectors";
-import { fetchAllVrHeadsets } from "../../redux/virtual-headsets/operations";
+import {
+  fetchAllVrHeadsets,
+  addReview,
+} from "../../redux/virtual-headsets/operations";
+import { selectAuthIsLoggedIn } from "../../redux/auth/selectors";
+import { SignInModal } from "../SignIn/SignIn";
+import { ReviewForm } from "../ReviewForm/ReviewForm";
 
 const Reviews = () => {
   const { id } = useParams<{ id: string }>();
   const dispatch = useAppDispatch();
-  const items = useSelector(selectVRHeadsets);
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
+  const isLoggedIn = useAppSelector(selectAuthIsLoggedIn);
+  const items = useAppSelector(selectVRHeadsets);
+  const isLoading = useAppSelector(selectIsLoading);
+  const error = useAppSelector(selectError);
+
+  const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
+  const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
 
   useEffect(() => {
     if (items.length === 0) {
@@ -38,6 +46,34 @@ const Reviews = () => {
   if (!item) {
     return <p>Virtual headset not found</p>;
   }
+
+  const handleReviewClick = () => {
+    if (isLoggedIn) {
+      setIsReviewModalOpen(true);
+    } else {
+      setIsSignInModalOpen(true);
+    }
+  };
+
+  const handleReviewSubmit = async (formData: {
+    comment: string;
+    rating: number;
+  }) => {
+    if (!id) return;
+
+    try {
+      await dispatch(
+        addReview({
+          productId: id,
+          comment: formData.comment,
+          reviewer_rating: formData.rating,
+        })
+      ).unwrap();
+      setIsReviewModalOpen(false);
+    } catch (error) {
+      console.error("Failed to add review:", error);
+    }
+  };
 
   return (
     <div className={css.reviewsContainer}>
@@ -72,7 +108,20 @@ const Reviews = () => {
           <p className={css.comment}>{review.comment}</p>
         </div>
       ))}
-          <button className={css.reviewBtn}>Leave a review</button>
+      <button className={css.reviewBtn} onClick={handleReviewClick}>
+        Leave a review
+      </button>
+
+      <SignInModal
+        isOpen={isSignInModalOpen}
+        onClose={() => setIsSignInModalOpen(false)}
+      />
+
+      <ReviewForm
+        isOpen={isReviewModalOpen}
+        onClose={() => setIsReviewModalOpen(false)}
+        onSubmit={handleReviewSubmit}
+      />
     </div>
   );
 };

@@ -64,12 +64,12 @@ export const initialCartState: CartState = {
 };
 
 export interface User {
-  name: string | null;
-  email: string | null;
+  name: string;
+  email: string;
 }
 
 export interface AuthState {
-  user: User;
+  user: User | null;
   token: string | null;
   isLoggedIn: boolean;
   isRefreshing: boolean;

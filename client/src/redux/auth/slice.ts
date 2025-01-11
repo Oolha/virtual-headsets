@@ -4,10 +4,7 @@ import { apiRegister, apiLogin, apiLogout, refreshPage } from "./operations";
 import { AuthState, AuthResponse } from "../types";
 
 const INITIAL_STATE: AuthState = {
-  user: {
-    name: null,
-    email: null,
-  },
+  user: null,
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
