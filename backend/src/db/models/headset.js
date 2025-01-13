@@ -16,6 +16,14 @@ const technicalSpecificationsSchema = new Schema(
   },
   { _id: false },
 );
+const reviewSchema = new Schema(
+  {
+    reviewer_name: { type: String, required: true },
+    reviewer_rating: { type: Number, required: true },
+    comment: { type: String, required: true },
+  },
+  { _id: false },
+);
 
 const virtualHeadsetSchema = new Schema(
   {
@@ -30,6 +38,8 @@ const virtualHeadsetSchema = new Schema(
       required: true,
     },
     photo: { type: String },
+    reviews: [reviewSchema],
+    order: { type: Number },
   },
   {
     timestamps: true,

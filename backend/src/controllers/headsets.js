@@ -161,23 +161,23 @@ export const patchVirtualHeadsetController = async (req, res) => {
       console.log('New photo URL:', photoUrl);
     }
   }
-  const updateData = {
-    ...(req.body.name && { name: req.body.name }),
-    ...(req.body.description && { description: req.body.description }),
-    ...(req.body.price && { price: req.body.price }),
-    ...(req.body.screenResolution && {
-      screenResolution: req.body.screenResolution,
-    }),
-    ...(req.body.compatibility && { compatibility: req.body.compatibility }),
-    ...(req.body.color && { color: req.body.color }),
-    ...(req.body.technicalSpecifications && {
-      technicalSpecifications: req.body.technicalSpecifications,
-    }),
-    ...(photoUrl && { photo: photoUrl }),
-    ...(req.body.reviews && { reviews: req.body.reviews }),
-    ...(req.body.order && { order: req.body.order }),
-    ...(photoUrl && { photo: photoUrl }),
-  };
+  const updateData = {};
+  if (req.body.name) updateData.name = req.body.name;
+  if (req.body.description) updateData.description = req.body.description;
+  if (req.body.price) updateData.price = req.body.price;
+  if (req.body.screenResolution)
+    updateData.screenResolution = req.body.screenResolution;
+  if (req.body.compatibility) updateData.compatibility = req.body.compatibility;
+  if (req.body.color) updateData.color = req.body.color;
+  if (req.body.technicalSpecifications)
+    updateData.technicalSpecifications = req.body.technicalSpecifications;
+  if (req.body.order) updateData.order = req.body.order;
+  if (photoUrl) updateData.photo = photoUrl;
+
+  // $push is a MongoDB operator for adding elements to an array.
+  if (req.body.reviews && req.body.reviews.length > 0) {
+    updateData.$push = { reviews: { $each: req.body.reviews } };
+  }
 
   const result = await updateVirtualHeadset(headsetId, updateData);
 

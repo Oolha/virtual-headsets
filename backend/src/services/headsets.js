@@ -76,15 +76,25 @@ export const updateVirtualHeadset = async (
   payload,
   options = {},
 ) => {
+  let updateQuery = {};
+
+  if (payload.$push) {
+    updateQuery.$push = payload.$push;
+    delete payload.$push;
+  }
+
+  updateQuery.$set = payload;
+
   const rawResult = await HeadsetsCollection.findByIdAndUpdate(
     headsetId,
-    { $set: payload },
+    updateQuery,
     {
       new: true,
       runValidators: true,
       ...options,
     },
   );
+
   if (!rawResult) return null;
 
   return {
