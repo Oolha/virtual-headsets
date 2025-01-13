@@ -42,11 +42,13 @@
   width: 22px;
   height: 22px;
   color: #beafc3;
+  fill: #beafc3;
 }
 .icons:focus,
 .icons:hover {
   transform: scale(1.2);
   color: #3ddeed;
+  fill: #3ddeed;
 }
 .mobileSearchBtn {
   display: none;
@@ -62,6 +64,7 @@
   bottom: -0.1px;
   right: -0.1px;
 }
+
 @media only screen and (max-width: 1023px) {
   .form {
     display: none;

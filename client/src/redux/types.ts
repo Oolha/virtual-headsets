@@ -64,19 +64,41 @@ export const initialCartState: CartState = {
 };
 
 export interface User {
+  _id: string;
   name: string;
   email: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface AuthState {
   user: User | null;
-  token: string | null;
+  accessToken: string | null;
+  isLoading: boolean;
   isLoggedIn: boolean;
-  isRefreshing: boolean;
   error: string | null;
 }
 
-export interface AuthResponse {
-  token: string;
-  user: User;
+export interface LoginCredentials {
+  email: string;
+  password: string;
+}
+
+export interface RegisterCredentials extends LoginCredentials {
+  name: string;
+}
+
+export interface LoginResponse {
+  status: number;
+  message: string;
+  data: {
+    accessToken: string;
+    user: User;
+  };
+}
+
+export interface RegisterResponse {
+  status: number;
+  message: string;
+  data: User;
 }

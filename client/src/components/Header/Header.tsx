@@ -1,5 +1,4 @@
-// Header.tsx
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PiMagnifyingGlassBold } from "react-icons/pi";
 import { BiShoppingBag } from "react-icons/bi";
 
@@ -7,18 +6,40 @@ import css from "./Header.module.css";
 import NavBar from "../NavBar/NavBar";
 import Logo from "../Logo/Logo";
 import SearchModal from "../SearchModal/SearchModal";
-import { useAppDispatch } from "../../redux/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 import { performSearch } from "../../redux/search/searchOperations";
 import SearchResults from "../SearchResults/SearchResults";
-import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { useNavigate } from "react-router-dom";
+import { Icon } from "../Icon/Icon";
+import { selectAuthIsLoggedIn } from "../../redux/auth/selectors";
+import { SignInModal } from "../SignIn/SignIn";
 
 const Header = () => {
   const navigate = useNavigate();
-  const cartItems = useSelector((state: RootState) => state.cart.items);
+  const cartItems = useAppSelector((state: RootState) => state.cart.items);
   const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+  const isLoggedIn = useAppSelector(selectAuthIsLoggedIn);
 
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+
+  useEffect(() => {
+    const currentPath = window.location.pathname;
+    if (
+      isLoggedIn &&
+      (currentPath === "/login" || currentPath === "/register")
+    ) {
+      navigate("/profile");
+    }
+  }, [isLoggedIn, navigate]);
+
+  const handleProfileClick = () => {
+    if (isLoggedIn) {
+      navigate("/profile");
+    } else {
+      setIsLoginModalOpen(true);
+    }
+  };
   const handleCartClick = () => {
     navigate("/cart");
   };
@@ -57,7 +78,6 @@ const Header = () => {
             </button>
           </form>
 
-          {/* Мобільна кнопка пошуку */}
           <button
             className={`${css.headerBtns} ${css.mobileSearchBtn}`}
             onClick={() => setIsSearchOpen(true)}
@@ -73,10 +93,18 @@ const Header = () => {
               )}
             </button>
           </div>
+
+          <button className={css.headerBtns} onClick={handleProfileClick}>
+            <Icon id="profile" className={css.icons} />
+          </button>
         </div>
       </div>
-
-      {/* Модальне вікно пошуку для мобільної версії */}
+      {isLoginModalOpen && (
+        <SignInModal
+          isOpen={isLoginModalOpen}
+          onClose={() => setIsLoginModalOpen(false)}
+        />
+      )}
       <SearchModal
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}

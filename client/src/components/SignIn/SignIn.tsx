@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -7,14 +7,11 @@ import css from "./SignIn.module.css";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 import {
   selectAuthError,
+  selectAuthIsLoading,
   selectAuthIsLoggedIn,
 } from "../../redux/auth/selectors";
 import { apiLogin } from "../../redux/auth/operations";
-
-interface SignInFormData {
-  email: string;
-  password: string;
-}
+import { LoginCredentials } from "../../redux/types";
 
 const signInSchema = yup.object().shape({
   email: yup
@@ -27,12 +24,15 @@ const signInSchema = yup.object().shape({
     .required("Password is required"),
 });
 
-export const SignInModal: React.FC<{
+interface Props {
   isOpen: boolean;
   onClose: () => void;
-}> = ({ isOpen, onClose }) => {
+}
+
+export const SignInModal: React.FC<Props> = ({ isOpen, onClose }) => {
   const dispatch = useAppDispatch();
   const authError = useAppSelector(selectAuthError);
+  const isLoading = useAppSelector(selectAuthIsLoading);
   const isLoggedIn = useAppSelector(selectAuthIsLoggedIn);
 
   const {
@@ -40,11 +40,11 @@ export const SignInModal: React.FC<{
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<SignInFormData>({
+  } = useForm<LoginCredentials>({
     resolver: yupResolver(signInSchema),
   });
 
-  const onSubmit = async (data: SignInFormData) => {
+  const onSubmit = async (data: LoginCredentials) => {
     try {
       await dispatch(apiLogin(data)).unwrap();
     } catch (error) {
@@ -90,8 +90,8 @@ export const SignInModal: React.FC<{
           )}
         </div>
         {authError && <span className={css.error}>{authError}</span>}
-        <button type="submit" className={css.submitButton}>
-          Sign In
+        <button type="submit" className={css.submitButton} disabled={isLoading}>
+          {isLoading ? "Signing in..." : "Sign In"}
         </button>
       </form>
     </Modal>

@@ -5,13 +5,14 @@ import * as yup from "yup";
 import Modal from "../Modal/Modal";
 import css from "./SignUp.module.css";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
-import { selectAuthError } from "../../redux/auth/selectors";
+import {
+  selectAuthError,
+  selectAuthIsLoading,
+} from "../../redux/auth/selectors";
 import { apiRegister } from "../../redux/auth/operations";
+import { RegisterCredentials } from "../../redux/types";
 
-interface SignUpFormData {
-  name: string;
-  email: string;
-  password: string;
+interface SignUpFormData extends RegisterCredentials {
   confirmPassword: string;
 }
 
@@ -34,12 +35,16 @@ const signUpSchema = yup.object().shape({
     .required("Please confirm your password"),
 });
 
-export const SignUpModal: React.FC<{
+interface Props {
   isOpen: boolean;
   onClose: () => void;
-}> = ({ isOpen, onClose }) => {
+}
+
+export const SignUpModal: React.FC<Props> = ({ isOpen, onClose }) => {
   const dispatch = useAppDispatch();
   const authError = useAppSelector(selectAuthError);
+  const isLoading = useAppSelector(selectAuthIsLoading);
+  const [successMessage, setSuccessMessage] = useState("");
 
   const {
     register,
@@ -49,7 +54,6 @@ export const SignUpModal: React.FC<{
   } = useForm<SignUpFormData>({
     resolver: yupResolver(signUpSchema),
   });
-  const [successMessage, setSuccessMessage] = useState("");
 
   const onSubmit = async (data: SignUpFormData) => {
     try {
@@ -78,6 +82,7 @@ export const SignUpModal: React.FC<{
         {successMessage && (
           <span className={css.success}>{successMessage}</span>
         )}
+
         <div className={css.formGroup}>
           <label htmlFor="signUpName">Name</label>
           <input
@@ -134,8 +139,8 @@ export const SignUpModal: React.FC<{
           )}
         </div>
 
-        <button type="submit" className={css.submitButton}>
-          Sign Up
+        <button type="submit" className={css.submitButton} disabled={isLoading}>
+          {isLoading ? "Signing up..." : "Sign Up"}
         </button>
       </form>
     </Modal>

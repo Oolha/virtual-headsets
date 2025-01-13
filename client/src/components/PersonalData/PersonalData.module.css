@@ -1,0 +1,46 @@
+.mainBox {
+  margin-top: 27px;
+}
+.avatarContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+}
+
+.avatar {
+  border-radius: 60px;
+  width: 60px;
+  height: 60px;
+  background-color: #f2f4f7;
+  color: #d341cf;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.33333;
+}
+.nameBox {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.logOut {
+  font-size: 14px;
+  color: #d341cf;
+  padding: 2px 0;
+}
+.logOut:focus,
+.logOut:hover {
+  color: #b035ac;
+}
+@media only screen and (min-width: 1440px) {
+  .mainBox {
+    margin-top: 36px;
+  }
+  .avatar {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+  }
+}

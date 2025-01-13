@@ -12,14 +12,19 @@ import {
   fetchAllVrHeadsets,
   addReview,
 } from "../../redux/virtual-headsets/operations";
-import { selectAuthIsLoggedIn } from "../../redux/auth/selectors";
+import {
+  selectAuthIsLoggedIn,
+  selectAuthUser,
+} from "../../redux/auth/selectors";
 import { SignInModal } from "../SignIn/SignIn";
-import { ReviewForm } from "../ReviewForm/ReviewForm";
+import ReviewForm from "../ReviewForm/ReviewForm";
 
 const Reviews = () => {
   const { id } = useParams<{ id: string }>();
   const dispatch = useAppDispatch();
+
   const isLoggedIn = useAppSelector(selectAuthIsLoggedIn);
+  const user = useAppSelector(selectAuthUser);
   const items = useAppSelector(selectVRHeadsets);
   const isLoading = useAppSelector(selectIsLoading);
   const error = useAppSelector(selectError);
@@ -48,7 +53,7 @@ const Reviews = () => {
   }
 
   const handleReviewClick = () => {
-    if (isLoggedIn) {
+    if (isLoggedIn && user) {
       setIsReviewModalOpen(true);
     } else {
       setIsSignInModalOpen(true);
@@ -108,7 +113,13 @@ const Reviews = () => {
           <p className={css.comment}>{review.comment}</p>
         </div>
       ))}
-      <button className={css.reviewBtn} onClick={handleReviewClick}>
+      <button
+        className={css.reviewBtn}
+        onClick={() => {
+          console.log("Button clicked");
+          handleReviewClick();
+        }}
+      >
         Leave a review
       </button>
 

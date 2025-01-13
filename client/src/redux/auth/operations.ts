@@ -1,129 +1,112 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios, { AxiosInstance } from "axios";
-
-interface AuthResponse {
-  token: string;
-  user: {
-    email: string;
-    name: string;
-  };
-}
-
-interface RegisterFormData {
-  email: string;
-  password: string;
-  name: string;
-}
-
-interface LoginFormData {
-  email: string;
-  password: string;
-}
-
-interface RootState {
-  auth: {
-    token: string | null;
-  };
-}
+import {
+  LoginCredentials,
+  RegisterCredentials,
+  LoginResponse,
+  RegisterResponse,
+} from "../types";
+import {
+  saveToken,
+  saveUser,
+  removeToken,
+  removeUser,
+  getToken,
+} from "./localStorage";
 
 export const instance: AxiosInstance = axios.create({
   baseURL: "https://virtual-headsets-store-api.onrender.com",
 });
 
-const setAuthHeaders = (token: string): void => {
+const setAuthHeader = (token: string) => {
   instance.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
-export const apiRegister = createAsyncThunk<
-  AuthResponse,
-  RegisterFormData,
-  {
-    rejectValue: string;
-  }
->("auth/register", async (formData, thunkApi) => {
-  try {
-    const { data } = await instance.post<AuthResponse>(
-      "/auth/register",
-      formData
-    );
-    setAuthHeaders(data.token);
-    return data;
-  } catch (error) {
-    if (error instanceof Error) {
-      return thunkApi.rejectWithValue(error.message);
-    }
-    return thunkApi.rejectWithValue("An unknown error occurred");
-  }
-});
+const clearAuthHeader = () => {
+  instance.defaults.headers.common.Authorization = "";
+};
 
-export const apiLogin = createAsyncThunk<
-  AuthResponse,
-  LoginFormData,
-  {
-    rejectValue: string;
-  }
->("auth/login", async (formData, thunkApi) => {
-  try {
-    const { data } = await instance.post<AuthResponse>("/auth/login", formData);
-    setAuthHeaders(data.token);
-    return data;
-  } catch (error) {
-    if (error instanceof Error) {
-      return thunkApi.rejectWithValue(error.message);
-    }
-    return thunkApi.rejectWithValue("An unknown error occurred");
-  }
-});
-
-export const refreshPage = createAsyncThunk<
-  AuthResponse,
-  void,
-  {
-    rejectValue: string;
-    state: RootState;
-  }
->(
-  "auth/refresh",
-  async (_, thunkApi) => {
+export const apiLogin = createAsyncThunk<LoginResponse, LoginCredentials>(
+  "auth/login",
+  async (credentials, { rejectWithValue }) => {
     try {
-      const state = thunkApi.getState();
-      const token = state.auth.token;
-      setAuthHeaders(token || "");
-      const { data } = await instance.get<AuthResponse>("/auth/refresh");
-      return data;
-    } catch (error) {
-      if (error instanceof Error) {
-        return thunkApi.rejectWithValue(error.message);
-      }
-      return thunkApi.rejectWithValue("An unknown error occurred");
-    }
-  },
-  {
-    condition: (_, thunkApi) => {
-      const state = thunkApi.getState();
-      const token = state.auth.token;
+      const response = await instance.post<LoginResponse>(
+        "/auth/login",
+        credentials
+      );
+      const { accessToken, user } = response.data.data;
 
-      if (token) return true;
-      return false;
-    },
+      setAuthHeader(accessToken);
+      saveToken(accessToken);
+      saveUser(user);
+
+      return response.data;
+    } catch (error: any) {
+      return rejectWithValue(error.response?.data?.message || "Login failed");
+    }
   }
 );
 
-export const apiLogout = createAsyncThunk<
-  void,
-  void,
-  {
-    rejectValue: string;
-  }
->("auth/logout", async (_, thunkApi) => {
-  try {
-    await instance.post("/auth/logout");
-    setAuthHeaders("");
-    return;
-  } catch (error) {
-    if (error instanceof Error) {
-      return thunkApi.rejectWithValue(error.message);
+export const apiRegister = createAsyncThunk<LoginResponse, RegisterCredentials>(
+  "auth/register",
+  async (credentials, { dispatch, rejectWithValue }) => {
+    try {
+      await instance.post<RegisterResponse>("/auth/register", credentials);
+
+      const loginResponse = await instance.post<LoginResponse>("/auth/login", {
+        email: credentials.email,
+        password: credentials.password,
+      });
+
+      const { accessToken, user } = loginResponse.data.data;
+
+      setAuthHeader(accessToken);
+      saveToken(accessToken);
+      saveUser(user);
+
+      return loginResponse.data;
+    } catch (error: any) {
+      return rejectWithValue(
+        error.response?.data?.message || "Registration failed"
+      );
     }
-    return thunkApi.rejectWithValue("An unknown error occurred");
   }
-});
+);
+
+export const refreshAuth = createAsyncThunk(
+  "auth/refresh",
+  async (_, { rejectWithValue }) => {
+    const token = getToken();
+    if (!token) {
+      return rejectWithValue("No token found");
+    }
+
+    try {
+      setAuthHeader(token);
+      const response = await instance.get<LoginResponse>("/auth/refresh");
+      return response.data;
+    } catch (error: any) {
+      removeToken();
+      removeUser();
+      clearAuthHeader();
+      return rejectWithValue(
+        error.response?.data?.message || "Authentication failed"
+      );
+    }
+  }
+);
+
+export const apiLogout = createAsyncThunk(
+  "auth/logout",
+  async (_, { rejectWithValue }) => {
+    try {
+      await instance.post("/auth/logout");
+      clearAuthHeader();
+      removeToken();
+      removeUser();
+      return null;
+    } catch (error: any) {
+      return rejectWithValue(error.response?.data?.message || "Logout failed");
+    }
+  }
+);
