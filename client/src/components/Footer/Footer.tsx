@@ -5,7 +5,6 @@ import NavMenu from "../NavMenu/NavMenu";
 import SocialLinks from "../SocialLinks/SocialLinks";
 import Subscription from "../Subscription/Subscription";
 import css from "./Footer.module.css";
-import { useState } from "react";
 
 const Footer = ({}) => {
   return (

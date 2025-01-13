@@ -4,13 +4,22 @@ import { MdOutlineExplore } from "react-icons/md";
 import { PiStarFourFill } from "react-icons/pi";
 import { IoMdArrowForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "../../redux/hooks/hooks";
+import { selectIsLoading } from "../../redux/virtual-headsets/selectors";
+import Loader from "../Loader/Loader";
 
 const Hero = ({}) => {
   const navigate = useNavigate();
+  const isLoading = useAppSelector(selectIsLoading);
 
   const handleVisitStoreClick = () => {
     navigate("/catalog");
   };
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
   return (
     <div className={css.headerBox}>
       <div className={css.firstHeaderBox}>

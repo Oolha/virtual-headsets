@@ -5,12 +5,14 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/cart/cartSlice";
 import css from "./AddToCart.module.css";
 import { VRHeadset } from "../../redux/types";
+import Loader from "../Loader/Loader";
 
 interface AddToCartProps {
   item: VRHeadset;
 }
 
 const AddToCart: React.FC<AddToCartProps> = ({ item }) => {
+  const [isAdding, setIsAdding] = useState(false);
   const [quantity, setQuantity] = useState<string>("1");
   const dispatch = useDispatch();
 
@@ -31,6 +33,7 @@ const AddToCart: React.FC<AddToCartProps> = ({ item }) => {
   };
 
   const handleAddToCart = () => {
+    setIsAdding(true);
     dispatch(
       addToCart({
         id: item._id,
@@ -40,6 +43,7 @@ const AddToCart: React.FC<AddToCartProps> = ({ item }) => {
         quantity: parseInt(quantity, 10),
       })
     );
+    setIsAdding(false);
   };
 
   return (
@@ -56,8 +60,16 @@ const AddToCart: React.FC<AddToCartProps> = ({ item }) => {
           />
           <span className={css.maxQuantity}>Max: 10</span>
         </div>
-        <button className={css.addButton} onClick={handleAddToCart}>
-          Add to cart
+        <button
+          className={css.addButton}
+          onClick={handleAddToCart}
+          disabled={isAdding}
+        >
+          {isAdding ? (
+            <Loader height={20} width={20} color="#fff" />
+          ) : (
+            "Add to cart"
+          )}
         </button>
       </div>
       <div className={css.shipping}>

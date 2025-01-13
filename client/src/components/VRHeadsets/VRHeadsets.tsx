@@ -15,6 +15,7 @@ import "swiper/css/navigation";
 import css from "./VRHeadsets.module.css";
 import { Navigation } from "swiper/modules";
 import { Icon } from "../Icon/Icon";
+import Loader from "../Loader/Loader";
 
 const VRHeadsetsList = () => {
   const dispatch = useAppDispatch();
@@ -51,6 +52,14 @@ const VRHeadsetsList = () => {
   const handleNextClick = () => {
     if (swiper) swiper.slideNext();
   };
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (isError) {
+    return <div>Error loading data: {isError}</div>;
+  }
 
   return (
     <div className={css.wrapperBox}>

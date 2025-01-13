@@ -73,6 +73,7 @@
 .reviewBtn:focus {
   background-color: #e3e5e6;
 }
+
 @media only screen and (min-width: 1440px) {
   .reviewsContainer {
     font-size: 18px;

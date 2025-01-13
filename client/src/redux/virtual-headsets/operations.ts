@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { VRHeadset } from "../types";
+import { RootState } from "../store";
 
 interface ApiResponse {
   data: {
@@ -59,35 +60,25 @@ export const addReview = createAsyncThunk<
   const END_POINT = `/headsets/${formData.productId}`;
   const url = BASE_URL + END_POINT;
 
+  const user = (thunkAPI.getState() as RootState).auth.user;
+
   try {
-    const response = await axios.get<ApiResponse>(url);
-    const product = response.data.data.data.find(
-      (item) => item._id === formData.productId
-    );
-
-    if (!product) {
-      return thunkAPI.rejectWithValue("Product not found");
-    }
-
-    const newReview: NewReview = {
-      reviewer_name: "User",
-      reviewer_rating: formData.reviewer_rating,
-      comment: formData.comment,
+    const newReview = {
+      reviews: [
+        {
+          reviewer_name: user?.name || "Anonymous",
+          reviewer_rating: formData.reviewer_rating,
+          comment: formData.comment,
+        },
+      ],
     };
 
-    const updatedProductData: UpdatedProductData = {
-      reviews: [...product.reviews, newReview],
-    };
-
-    await axios.patch<UpdatedProductData>(url, updatedProductData);
-
+    await axios.patch(url, newReview);
     await thunkAPI.dispatch(fetchAllVrHeadsets());
   } catch (error) {
     if (error instanceof Error) {
       return thunkAPI.rejectWithValue(error.message);
     }
-    return thunkAPI.rejectWithValue(
-      "An error occurred while adding the review"
-    );
+    return thunkAPI.rejectWithValue("Failed to add review");
   }
 });

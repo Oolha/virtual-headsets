@@ -6,6 +6,8 @@ import { selectAuthUser } from "../../redux/auth/selectors";
 import Modal from "../Modal/Modal";
 import { Icon } from "../Icon/Icon";
 import css from "./ReviewForm.module.css";
+import { useState } from "react";
+import Loader from "../Loader/Loader";
 
 interface ReviewFormData {
   comment: string;
@@ -29,7 +31,7 @@ const ReviewForm: React.FC<ReviewFormProps> = ({
   onSubmit,
 }) => {
   const user = useAppSelector(selectAuthUser);
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const {
     register,
     handleSubmit,
@@ -48,7 +50,13 @@ const ReviewForm: React.FC<ReviewFormProps> = ({
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="Write a Review">
       {user ? (
-        <form onSubmit={handleSubmit(onSubmit)} className={css.reviewForm}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSubmit(onSubmit)(e);
+          }}
+          className={css.reviewForm}
+        >
           <div className={css.userInfo}>
             <span>Reviewing as: {user.name}</span>
           </div>
@@ -84,8 +92,16 @@ const ReviewForm: React.FC<ReviewFormProps> = ({
             )}
           </div>
 
-          <button type="submit" className={css.submitButton}>
-            Submit Review
+          <button
+            type="submit"
+            className={css.submitButton}
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? (
+              <Loader height={20} width={20} color="#fff" />
+            ) : (
+              "Submit Review"
+            )}
           </button>
         </form>
       ) : (

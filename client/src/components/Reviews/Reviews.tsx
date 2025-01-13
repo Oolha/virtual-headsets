@@ -1,8 +1,9 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import css from "./Reviews.module.css";
 import { Icon } from "../Icon/Icon";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
+import { notification } from "antd";
 import {
   selectError,
   selectIsLoading,
@@ -18,10 +19,16 @@ import {
 } from "../../redux/auth/selectors";
 import { SignInModal } from "../SignIn/SignIn";
 import ReviewForm from "../ReviewForm/ReviewForm";
+import Loader from "../Loader/Loader";
 
-const Reviews = () => {
+interface ReviewsProps {
+  onReviewAdded: () => void;
+}
+
+const Reviews = ({ onReviewAdded }: ReviewsProps) => {
   const { id } = useParams<{ id: string }>();
   const dispatch = useAppDispatch();
+  const reviewsRef = useRef<HTMLDivElement>(null);
 
   const isLoggedIn = useAppSelector(selectAuthIsLoggedIn);
   const user = useAppSelector(selectAuthUser);
@@ -41,7 +48,7 @@ const Reviews = () => {
   const item = items.find((item) => item._id === id);
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Loader />;
   }
 
   if (error) {
@@ -75,13 +82,23 @@ const Reviews = () => {
         })
       ).unwrap();
       setIsReviewModalOpen(false);
+      onReviewAdded();
+      notification.success({
+        message: "Review Added",
+        description: "Your review has been successfully published",
+        placement: "top",
+      });
     } catch (error) {
-      console.error("Failed to add review:", error);
+      notification.error({
+        message: "Error",
+        description: "Failed to add review. Please try again.",
+        placement: "top",
+      });
     }
   };
 
   return (
-    <div className={css.reviewsContainer}>
+    <div ref={reviewsRef} className={css.reviewsContainer}>
       {item.reviews.map((review, index) => (
         <div key={index} className={css.reviewCard}>
           <div className={css.box}>

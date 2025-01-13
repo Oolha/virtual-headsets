@@ -11,6 +11,7 @@ import {
 } from "../../redux/auth/selectors";
 import { apiRegister } from "../../redux/auth/operations";
 import { RegisterCredentials } from "../../redux/types";
+import Loader from "../Loader/Loader";
 
 interface SignUpFormData extends RegisterCredentials {
   confirmPassword: string;
@@ -140,7 +141,11 @@ export const SignUpModal: React.FC<Props> = ({ isOpen, onClose }) => {
         </div>
 
         <button type="submit" className={css.submitButton} disabled={isLoading}>
-          {isLoading ? "Signing up..." : "Sign Up"}
+          {isLoading ? (
+            <Loader height={20} width={20} color="#fff" />
+          ) : (
+            "Sign Up"
+          )}
         </button>
       </form>
     </Modal>

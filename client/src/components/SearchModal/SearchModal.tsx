@@ -3,11 +3,13 @@ import { PiMagnifyingGlassBold } from "react-icons/pi";
 import Modal from "../Modal/Modal";
 import css from "./SearchModal.module.css";
 import SearchResults from "../SearchResults/SearchResults";
-import { useAppDispatch } from "../../redux/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { performSearch } from "../../redux/search/searchOperations";
+import { selectIsLoading } from "../../redux/virtual-headsets/selectors";
+import Loader from "../Loader/Loader";
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -24,6 +26,7 @@ const SearchModal: React.FC<SearchModalProps> = ({
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { searchResults } = useSelector((state: RootState) => state.search);
+  const isLoading = useAppSelector(selectIsLoading);
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
@@ -65,7 +68,12 @@ const SearchModal: React.FC<SearchModalProps> = ({
           <PiMagnifyingGlassBold className={css.searchIcon} />
         </button>
       </form>
-      <SearchResults searchTerm={searchTerm} onItemClick={handleItemClick} />
+
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <SearchResults searchTerm={searchTerm} onItemClick={handleItemClick} />
+      )}
     </Modal>
   );
 };

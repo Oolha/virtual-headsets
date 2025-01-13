@@ -12,6 +12,7 @@ import {
 } from "../../redux/auth/selectors";
 import { apiLogin } from "../../redux/auth/operations";
 import { LoginCredentials } from "../../redux/types";
+import Loader from "../Loader/Loader";
 
 const signInSchema = yup.object().shape({
   email: yup
@@ -91,7 +92,11 @@ export const SignInModal: React.FC<Props> = ({ isOpen, onClose }) => {
         </div>
         {authError && <span className={css.error}>{authError}</span>}
         <button type="submit" className={css.submitButton} disabled={isLoading}>
-          {isLoading ? "Signing in..." : "Sign In"}
+          {isLoading ? (
+            <Loader height={20} width={20} color="#fff" />
+          ) : (
+            "Sign In"
+          )}
         </button>
       </form>
     </Modal>

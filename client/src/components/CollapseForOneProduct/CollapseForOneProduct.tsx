@@ -2,6 +2,7 @@ import { Collapse } from "antd";
 import css from "./CollapseForOneProduct.module.css";
 import { VRHeadset } from "../../redux/types";
 import Reviews from "../Reviews/Reviews";
+import { useRef, useState } from "react";
 
 interface CollapseForOneProductProps {
   item: VRHeadset;
@@ -10,6 +11,9 @@ interface CollapseForOneProductProps {
 const CollapseForOneProduct: React.FC<CollapseForOneProductProps> = ({
   item,
 }) => {
+  const [activeKeys, setActiveKeys] = useState<string[]>(["2"]);
+  const collapseRef = useRef<HTMLDivElement>(null);
+
   const technicalSpecs = item.technicalSpecifications;
 
   const formatList = (items: string[]): JSX.Element => {
@@ -25,7 +29,12 @@ const CollapseForOneProduct: React.FC<CollapseForOneProductProps> = ({
       </ul>
     );
   };
-
+  const handleReviewAdded = () => {
+    collapseRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+  };
   const items = [
     {
       key: "1",
@@ -76,13 +85,18 @@ const CollapseForOneProduct: React.FC<CollapseForOneProductProps> = ({
     {
       key: "2",
       label: "Reviews",
-      children: <Reviews />,
+      children: <Reviews onReviewAdded={handleReviewAdded} />,
     },
   ];
 
   return (
-    <div className={css.container}>
-      <Collapse items={items} expandIconPosition="end" />
+    <div ref={collapseRef} className={css.container}>
+      <Collapse
+        items={items}
+        expandIconPosition="end"
+        activeKey={activeKeys}
+        onChange={(keys) => setActiveKeys(keys as string[])}
+      />
     </div>
   );
 };

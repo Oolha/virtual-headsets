@@ -16,6 +16,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Icon } from "../Icon/Icon";
+import Loader from "../Loader/Loader";
 
 const TopGames = () => {
   const [swiper, setSwiper] = useState<SwiperType | null>(null);
@@ -115,7 +116,7 @@ const TopGames = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <Loader />}
       {isError && <p>Error: {isError}</p>}
     </div>
   );

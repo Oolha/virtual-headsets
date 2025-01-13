@@ -2,6 +2,9 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import css from "./SearchResults.module.css";
 import { Game, VRHeadset } from "../../redux/types";
+import Loader from "../Loader/Loader";
+import { useAppSelector } from "../../redux/hooks/hooks";
+import { selectIsLoading } from "../../redux/virtual-headsets/selectors";
 
 interface SearchResultsProps {
   searchTerm: string;
@@ -15,6 +18,11 @@ const SearchResults: React.FC<SearchResultsProps> = ({
   const { headsets, games } = useSelector(
     (state: RootState) => state.search.searchResults
   );
+  const isLoading = useAppSelector(selectIsLoading);
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   // Фільтрація VR шоломів за назвою
   const filteredHeadsets = headsets.filter(

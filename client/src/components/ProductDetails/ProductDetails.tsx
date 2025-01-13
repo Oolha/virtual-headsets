@@ -12,6 +12,7 @@ import { useParams } from "react-router-dom";
 import { Icon } from "../Icon/Icon";
 import CollapseForOneProduct from "../CollapseForOneProduct/CollapseForOneProduct";
 import AddToCart from "../AddToCart/AddToCart";
+import Loader from "../Loader/Loader";
 
 const ProductDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -34,7 +35,7 @@ const ProductDetails: React.FC = () => {
   const item = items.find((item) => item._id === id);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   if (error) {
@@ -59,17 +60,17 @@ const ProductDetails: React.FC = () => {
           <p className={css.text}>High-end VR-Headset</p>
           <ul className={css.list}>
             <li className={css.listItem}>
-              <Icon id="star"  className={css.icon} />
+              <Icon id="star" className={css.icon} />
               <p>Resolution: {item.screenResolution}</p>
             </li>
             <li className={css.listItem}>
-              <Icon id="star"  className={css.icon} />
+              <Icon id="star" className={css.icon} />
               <p>
                 Refresh rate: up to {item.technicalSpecifications.refreshRate}
               </p>
             </li>
             <li className={css.listItem}>
-              <Icon id="star"  className={css.icon} />
+              <Icon id="star" className={css.icon} />
               <p>Field of view: {item.technicalSpecifications.fieldOfView}</p>
             </li>
           </ul>
