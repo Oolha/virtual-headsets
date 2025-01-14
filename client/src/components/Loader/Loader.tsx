@@ -8,8 +8,8 @@ interface LoaderProps {
 }
 
 const Loader: React.FC<LoaderProps> = ({
-  height = 80,
-  width = 80,
+  height = 60,
+  width = 60,
   color = "#3ddeed",
   secondaryColor = "#fff",
 }) => {

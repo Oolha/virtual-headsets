@@ -1,13 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { VRHeadset, Game } from "../types";
-
-interface SearchState {
-  searchTerm: string;
-  searchResults: {
-    headsets: VRHeadset[];
-    games: Game[];
-  };
-}
+import { VRHeadset, Game, SearchSuggestion, SearchState } from "../types";
 
 const initialState: SearchState = {
   searchTerm: "",
@@ -15,6 +7,9 @@ const initialState: SearchState = {
     headsets: [],
     games: [],
   },
+  suggestions: [],
+  isLoading: false,
+  error: null,
 };
 
 export const searchSlice = createSlice({
@@ -30,8 +25,24 @@ export const searchSlice = createSlice({
     ) => {
       state.searchResults = action.payload;
     },
+    setSuggestions: (state, action: PayloadAction<SearchSuggestion[]>) => {
+      state.suggestions = action.payload;
+    },
+    setLoading: (state, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload;
+    },
+    setError: (state, action: PayloadAction<string | null>) => {
+      state.error = action.payload;
+    },
   },
 });
 
-export const { setSearchTerm, setSearchResults } = searchSlice.actions;
+export const {
+  setSearchTerm,
+  setSearchResults,
+  setSuggestions,
+  setLoading,
+  setError,
+} = searchSlice.actions;
+
 export default searchSlice.reducer;

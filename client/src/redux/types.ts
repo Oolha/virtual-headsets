@@ -1,9 +1,11 @@
+//Review
 export interface Review {
   reviewer_name: string;
   reviewer_rating: number;
   comment: string;
 }
 
+//VRHeadset
 export interface VRHeadset {
   _id: string;
   name: string;
@@ -30,6 +32,7 @@ export interface VRHeadset {
   reviews: Review[];
 }
 
+//Game
 export interface Game {
   _id: string;
   name: string;
@@ -47,6 +50,7 @@ export interface Game {
   isTopGame: boolean;
 }
 
+//Cart
 export interface CartItem {
   id: string;
   name: string;
@@ -63,6 +67,7 @@ export const initialCartState: CartState = {
   items: [],
 };
 
+//User
 export interface User {
   _id: string;
   name: string;
@@ -101,4 +106,24 @@ export interface RegisterResponse {
   status: number;
   message: string;
   data: User;
+}
+
+//Search
+export interface SearchSuggestion {
+  id: string;
+  name: string;
+  type: "catalog" | "game";
+  category: string;
+  photo?: string;
+}
+
+export interface SearchState {
+  searchTerm: string;
+  searchResults: {
+    headsets: VRHeadset[];
+    games: Game[];
+  };
+  suggestions: SearchSuggestion[];
+  isLoading: boolean;
+  error: string | null;
 }

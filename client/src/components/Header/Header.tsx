@@ -8,7 +8,6 @@ import Logo from "../Logo/Logo";
 import SearchModal from "../SearchModal/SearchModal";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 import { performSearch } from "../../redux/search/searchOperations";
-import SearchResults from "../SearchResults/SearchResults";
 import { RootState } from "../../redux/store";
 import { useNavigate } from "react-router-dom";
 import { Icon } from "../Icon/Icon";
@@ -16,11 +15,17 @@ import { selectAuthIsLoggedIn } from "../../redux/auth/selectors";
 import { SignInModal } from "../SignIn/SignIn";
 
 const Header = () => {
+  const dispatch = useAppDispatch();
+
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+
   const navigate = useNavigate();
+
   const cartItems = useAppSelector((state: RootState) => state.cart.items);
   const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
-  const isLoggedIn = useAppSelector(selectAuthIsLoggedIn);
 
+  const isLoggedIn = useAppSelector(selectAuthIsLoggedIn);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   useEffect(() => {
@@ -44,19 +49,11 @@ const Header = () => {
     navigate("/cart");
   };
 
-  const dispatch = useAppDispatch();
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-
-  const handleSearch = (searchTerm: string) => {
-    dispatch(performSearch(searchTerm));
-    setIsSearchOpen(false);
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const form = e.target as HTMLFormElement;
-    const input = form.querySelector("input") as HTMLInputElement;
-    handleSearch(input.value);
+  const handleSearchInput = (value: string) => {
+    setSearchTerm(value);
+    if (value.trim()) {
+      dispatch(performSearch(value));
+    }
   };
 
   return (
@@ -67,18 +64,21 @@ const Header = () => {
         </div>
         <Logo />
         <div className={css.box2}>
-          <form className={css.form} onSubmit={handleSubmit}>
+          <form className={css.form} onSubmit={(e) => e.preventDefault()}>
             <input
               type="text"
               className={css.input}
+              value={searchTerm}
               placeholder="Search games & products.."
+              onChange={(e) => handleSearchInput(e.target.value)}
+              onFocus={() => setIsSearchOpen(true)}
             />
             <button type="submit" className={css.headerBtns}>
               <PiMagnifyingGlassBold className={css.icons} />
             </button>
           </form>
 
-          <button
+          <button //for mobile version
             className={`${css.headerBtns} ${css.mobileSearchBtn}`}
             onClick={() => setIsSearchOpen(true)}
           >
@@ -108,7 +108,8 @@ const Header = () => {
       <SearchModal
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}
-        onSubmit={handleSearch}
+        searchTerm={searchTerm}
+        onSearchChange={handleSearchInput}
       />
     </div>
   );
