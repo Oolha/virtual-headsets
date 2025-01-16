@@ -34,6 +34,7 @@
 .logOut:hover {
   color: #b035ac;
 }
+
 @media only screen and (min-width: 1440px) {
   .mainBox {
     margin-top: 36px;
@@ -42,5 +43,16 @@
     width: 60px;
     height: 60px;
     font-size: 20px;
+  }
+  .cartItem {
+    font-size: 18px;
+    padding: 24px;
+  }
+  .photoBox {
+    gap: 24px;
+  }
+  .itemImage {
+    width: 92px;
+    height: 92px;
   }
 }

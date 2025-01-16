@@ -1,6 +1,7 @@
 .item {
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 }
 .vrItem {
   border-radius: 16px;
@@ -19,6 +20,7 @@
   line-height: 1.29412;
   letter-spacing: 0em;
   color: #3ddeed;
+  padding-top: 4px;
 }
 .text {
   font-weight: 400;
@@ -91,5 +93,28 @@
   gap: 12px;
   margin-top: 24px;
 }
+.favContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.favoriteBtn {
+  width: 28px;
+  height: 28px;
+  padding: 4px;
+}
+.favoriteIcon {
+  color: #bac5cf;
+  width: 22px;
+  height: 22px;
+}
+.favoriteIcon:focus,
+.favoriteIcon:hover {
+  color: rgb(159, 242, 108);
+}
+.favoriteIcon.active {
+  color: rgb(159, 242, 108);
+}
+
 @media only screen and (min-width: 1440px) {
 }

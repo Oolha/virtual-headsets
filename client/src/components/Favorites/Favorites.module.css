@@ -1,0 +1,86 @@
+.favoritesSection {
+  margin: 32px 0;
+}
+
+.sectionTitle {
+  font-size: 16px;
+  color: #3ddeed;
+  margin-bottom: 24px;
+}
+
+.emptyMessage {
+  color: #bac5cf;
+  font-size: 16px;
+}
+.favoritesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+.cartItems {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.cartItem {
+  display: flex;
+  flex-direction: column;
+  background: rgba(212, 210, 216, 0.3);
+  border-radius: 10px;
+  padding: 12px;
+  gap: 12px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.itemImage {
+  width: 72px;
+  height: 72px;
+}
+.photoBox {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+.itemDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+.icon {
+  width: 20px;
+  height: 20px;
+}
+.dumpContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dumpBtn {
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media only screen and (min-width: 1440px) {
+  .sectionTitle {
+    font-size: 24px;
+  }
+  .favoritesSection {
+    margin-top: 56px;
+    margin-bottom: 132px;
+  }
+  .cartItem {
+    font-size: 18px;
+    padding: 24px;
+  }
+  .photoBox {
+    gap: 24px;
+  }
+  .itemImage {
+    width: 92px;
+    height: 92px;
+  }
+}

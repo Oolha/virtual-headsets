@@ -1,12 +1,13 @@
 import { useSelector } from "react-redux";
 import css from "./PersonalData.module.css";
 import { selectAuthUser } from "../../redux/auth/selectors";
-import { useAppDispatch } from "../../redux/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 import { apiLogout } from "../../redux/auth/operations";
+import Favorites from "../Favorites/Favorites";
 
 const PersonalData = ({}) => {
   const dispatch = useAppDispatch();
-  const user = useSelector(selectAuthUser);
+  const user = useAppSelector(selectAuthUser);
 
   if (!user) {
     return <div>User not found. Please log in.</div>;
@@ -27,6 +28,7 @@ const PersonalData = ({}) => {
           </button>
         </div>
       </div>
+      <Favorites />
     </div>
   );
 };

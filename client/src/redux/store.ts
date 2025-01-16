@@ -4,6 +4,7 @@ import gamesReducer from "./games/slice";
 import searchReducer from "./search/searchSlice";
 import cartReducer from "./cart/cartSlice";
 import authReducer from "./auth/slice";
+import { favoritesReducer } from "./favorites/slice";
 
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   search: searchReducer,
   cart: cartReducer,
   auth: authReducer,
+  favorites: favoritesReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

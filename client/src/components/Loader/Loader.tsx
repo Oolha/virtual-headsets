@@ -19,6 +19,7 @@ const Loader: React.FC<LoaderProps> = ({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        padding: "24px",
       }}
     >
       <Oval
