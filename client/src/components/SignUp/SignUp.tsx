@@ -12,6 +12,7 @@ import {
 import { apiRegister } from "../../redux/auth/operations";
 import { RegisterCredentials } from "../../redux/types";
 import Loader from "../Loader/Loader";
+import { notification } from "antd";
 
 interface SignUpFormData extends RegisterCredentials {
   confirmPassword: string;
@@ -39,9 +40,14 @@ const signUpSchema = yup.object().shape({
 interface Props {
   isOpen: boolean;
   onClose: () => void;
+  openLogin: () => void;
 }
 
-export const SignUpModal: React.FC<Props> = ({ isOpen, onClose }) => {
+export const SignUpModal: React.FC<Props> = ({
+  isOpen,
+  onClose,
+  openLogin,
+}) => {
   const dispatch = useAppDispatch();
   const authError = useAppSelector(selectAuthError);
   const isLoading = useAppSelector(selectAuthIsLoading);
@@ -64,15 +70,22 @@ export const SignUpModal: React.FC<Props> = ({ isOpen, onClose }) => {
       ).unwrap();
 
       if (response) {
-        setSuccessMessage("Registration successful!");
+        notification.success({
+          message: "Registration successful!",
+          description: `Welcome ${name}! You have successfully registered.`,
+          placement: "topRight",
+          duration: 3,
+        });
         reset();
-        setTimeout(() => {
-          onClose();
-          setSuccessMessage("");
-        }, 2000);
+        onClose();
       }
     } catch (error) {
-      console.error("Registration failed:", error);
+      notification.error({
+        message: "Registration failed",
+        description: "Something went wrong. Please try again.",
+        placement: "topRight",
+        duration: 3,
+      });
     }
   };
 
@@ -148,6 +161,14 @@ export const SignUpModal: React.FC<Props> = ({ isOpen, onClose }) => {
           )}
         </button>
       </form>
+      <div className={css.switchPrompt}>
+        <p>
+          Already have an account?{" "}
+          <button className={css.switchLink} onClick={openLogin} type="button">
+            Log in
+          </button>
+        </p>
+      </div>
     </Modal>
   );
 };

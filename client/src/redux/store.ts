@@ -5,7 +5,6 @@ import searchReducer from "./search/searchSlice";
 import cartReducer from "./cart/cartSlice";
 import authReducer from "./auth/slice";
 import { favoritesReducer } from "./favorites/slice";
-
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 

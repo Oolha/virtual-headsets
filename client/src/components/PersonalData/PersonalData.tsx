@@ -1,10 +1,14 @@
 import { useSelector } from "react-redux";
 import css from "./PersonalData.module.css";
-import { selectAuthUser } from "../../redux/auth/selectors";
+import {
+  selectAuthIsLoading,
+  selectAuthUser,
+} from "../../redux/auth/selectors";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 import { apiLogout } from "../../redux/auth/operations";
 import Favorites from "../Favorites/Favorites";
 import { useState } from "react";
+import Loader from "../Loader/Loader";
 
 type TabType =
   | "favorites"
@@ -17,6 +21,15 @@ const PersonalData = ({}) => {
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectAuthUser);
   const [activeTab, setActiveTab] = useState<TabType>("favorites");
+  const isLoading = useAppSelector(selectAuthIsLoading);
+
+  if (isLoading) {
+    return (
+      <div className={css.loaderContainer}>
+        <Loader />
+      </div>
+    );
+  }
 
   if (!user) {
     return <div>User not found. Please log in.</div>;

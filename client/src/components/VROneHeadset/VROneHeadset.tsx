@@ -4,7 +4,11 @@ import { Icon } from "../Icon/Icon";
 import { useNavigate } from "react-router-dom";
 import { RiHeartAdd2Line, RiHeartFill } from "react-icons/ri";
 import { selectFavorites } from "../../redux/favorites/selectors";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
+import {
+  useAppDispatch,
+  useAppSelector,
+  useAuthModals,
+} from "../../redux/hooks/hooks";
 import {
   addToFavorites,
   removeFromFavorites,
@@ -13,6 +17,7 @@ import { notification } from "antd";
 import { selectAuthIsLoggedIn } from "../../redux/auth/selectors";
 import { useState } from "react";
 import { SignInModal } from "../SignIn/SignIn";
+import { AuthModals } from "../AuthModals/AuthModals";
 
 interface VROneHeadsetProps {
   item: VRHeadset;
@@ -20,10 +25,19 @@ interface VROneHeadsetProps {
 
 export const VROneHeadset: React.FC<VROneHeadsetProps> = ({ item }) => {
   const navigate = useNavigate();
+
+  const {
+    isSignInOpen,
+    isSignUpOpen,
+    openSignIn,
+    openSignUp,
+    closeSignIn,
+    closeSignUp,
+  } = useAuthModals();
+
   const dispatch = useAppDispatch();
   const favorites = useAppSelector(selectFavorites);
   const isLoggedIn = useAppSelector(selectAuthIsLoggedIn);
-  const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
 
   const isFavorite = favorites.some((fav) => fav._id === item._id);
 
@@ -39,7 +53,7 @@ export const VROneHeadset: React.FC<VROneHeadsetProps> = ({ item }) => {
     e.stopPropagation();
 
     if (!isLoggedIn) {
-      setIsSignInModalOpen(true);
+      openSignIn();
       return;
     }
 
@@ -115,9 +129,13 @@ export const VROneHeadset: React.FC<VROneHeadsetProps> = ({ item }) => {
         </div>
       </div>
 
-      <SignInModal
-        isOpen={isSignInModalOpen}
-        onClose={() => setIsSignInModalOpen(false)}
+      <AuthModals
+        isSignInOpen={isSignInOpen}
+        isSignUpOpen={isSignUpOpen}
+        closeSignIn={closeSignIn}
+        closeSignUp={closeSignUp}
+        openSignIn={openSignIn}
+        openSignUp={openSignUp}
       />
     </>
   );

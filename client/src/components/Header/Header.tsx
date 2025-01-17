@@ -6,13 +6,18 @@ import css from "./Header.module.css";
 import NavBar from "../NavBar/NavBar";
 import Logo from "../Logo/Logo";
 import SearchModal from "../SearchModal/SearchModal";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
+import {
+  useAppDispatch,
+  useAppSelector,
+  useAuthModals,
+} from "../../redux/hooks/hooks";
 import { performSearch } from "../../redux/search/searchOperations";
 import { RootState } from "../../redux/store";
 import { useNavigate } from "react-router-dom";
 import { Icon } from "../Icon/Icon";
 import { selectAuthIsLoggedIn } from "../../redux/auth/selectors";
 import { SignInModal } from "../SignIn/SignIn";
+import { AuthModals } from "../AuthModals/AuthModals";
 
 const Header = () => {
   const dispatch = useAppDispatch();
@@ -22,11 +27,19 @@ const Header = () => {
 
   const navigate = useNavigate();
 
+  const {
+    isSignInOpen,
+    isSignUpOpen,
+    openSignIn,
+    openSignUp,
+    closeSignIn,
+    closeSignUp,
+  } = useAuthModals();
+
   const cartItems = useAppSelector((state: RootState) => state.cart.items);
   const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   const isLoggedIn = useAppSelector(selectAuthIsLoggedIn);
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   useEffect(() => {
     const currentPath = window.location.pathname;
@@ -42,7 +55,7 @@ const Header = () => {
     if (isLoggedIn) {
       navigate("/profile");
     } else {
-      setIsLoginModalOpen(true);
+      openSignIn();
     }
   };
   const handleCartClick = () => {
@@ -99,12 +112,14 @@ const Header = () => {
           </button>
         </div>
       </div>
-      {isLoginModalOpen && (
-        <SignInModal
-          isOpen={isLoginModalOpen}
-          onClose={() => setIsLoginModalOpen(false)}
-        />
-      )}
+      <AuthModals
+        isSignInOpen={isSignInOpen}
+        isSignUpOpen={isSignUpOpen}
+        closeSignIn={closeSignIn}
+        closeSignUp={closeSignUp}
+        openSignIn={openSignIn}
+        openSignUp={openSignUp}
+      />
       <SearchModal
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}

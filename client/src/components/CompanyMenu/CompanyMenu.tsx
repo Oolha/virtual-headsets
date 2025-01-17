@@ -4,24 +4,26 @@ import { NavLink } from "react-router-dom";
 import css from "./CompanyMenu.module.css";
 import { SignInModal } from "../SignIn/SignIn";
 import { SignUpModal } from "../SignUp/SignUp";
+import { useAuthModals } from "../../redux/hooks/hooks";
+import { AuthModals } from "../AuthModals/AuthModals";
 
 const CompanyMenu = () => {
-  const [isSignInOpen, setIsSignInOpen] = useState(false);
-  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
+  const {
+    isSignInOpen,
+    isSignUpOpen,
+    openSignIn,
+    openSignUp,
+    closeSignIn,
+    closeSignUp,
+  } = useAuthModals();
 
   return (
     <>
       <nav className={css.nav}>
-        <button
-          onClick={() => setIsSignInOpen(true)}
-          className={css.authButton}
-        >
+        <button onClick={openSignIn} className={css.authButton}>
           Login
         </button>
-        <button
-          onClick={() => setIsSignUpOpen(true)}
-          className={css.authButton}
-        >
+        <button onClick={openSignUp} className={css.authButton}>
           Sign Up
         </button>
         <NavLink to="/privacy" className={css.navLink}>
@@ -31,15 +33,13 @@ const CompanyMenu = () => {
           Products
         </NavLink>
       </nav>
-
-      <SignInModal
-        isOpen={isSignInOpen}
-        onClose={() => setIsSignInOpen(false)}
-      />
-
-      <SignUpModal
-        isOpen={isSignUpOpen}
-        onClose={() => setIsSignUpOpen(false)}
+      <AuthModals
+        isSignInOpen={isSignInOpen}
+        isSignUpOpen={isSignUpOpen}
+        closeSignIn={closeSignIn}
+        closeSignUp={closeSignUp}
+        openSignIn={openSignIn}
+        openSignUp={openSignUp}
       />
     </>
   );

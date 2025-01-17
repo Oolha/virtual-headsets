@@ -13,6 +13,8 @@ import {
 import { apiLogin } from "../../redux/auth/operations";
 import { LoginCredentials } from "../../redux/types";
 import Loader from "../Loader/Loader";
+import { Link } from "react-router-dom";
+import { notification } from "antd";
 
 const signInSchema = yup.object().shape({
   email: yup
@@ -28,9 +30,14 @@ const signInSchema = yup.object().shape({
 interface Props {
   isOpen: boolean;
   onClose: () => void;
+  openRegister: () => void;
 }
 
-export const SignInModal: React.FC<Props> = ({ isOpen, onClose }) => {
+export const SignInModal: React.FC<Props> = ({
+  isOpen,
+  onClose,
+  openRegister,
+}) => {
   const dispatch = useAppDispatch();
   const authError = useAppSelector(selectAuthError);
   const isLoading = useAppSelector(selectAuthIsLoading);
@@ -47,18 +54,27 @@ export const SignInModal: React.FC<Props> = ({ isOpen, onClose }) => {
 
   const onSubmit = async (data: LoginCredentials) => {
     try {
-      await dispatch(apiLogin(data)).unwrap();
+      const response = await dispatch(apiLogin(data)).unwrap();
+
+      if (response) {
+        notification.success({
+          message: "Login successful!",
+          description: "Welcome back! You have successfully logged in.",
+          placement: "topRight",
+          duration: 3,
+        });
+        reset();
+        onClose();
+      }
     } catch (error) {
-      console.error("Login error:", error);
+      notification.error({
+        message: "Login failed",
+        description: "Invalid email or password. Please try again.",
+        placement: "topRight",
+        duration: 3,
+      });
     }
   };
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      reset();
-      onClose();
-    }
-  }, [isLoggedIn, onClose, reset]);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="Sign In">
@@ -99,6 +115,18 @@ export const SignInModal: React.FC<Props> = ({ isOpen, onClose }) => {
           )}
         </button>
       </form>
+      <div className={css.signupPrompt}>
+        <p>
+          Don't have an account?{" "}
+          <button
+            className={css.signupLink}
+            onClick={openRegister}
+            type="button"
+          >
+            Sign up
+          </button>
+        </p>
+      </div>
     </Modal>
   );
 };

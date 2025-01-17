@@ -2,7 +2,11 @@ import { useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import css from "./Reviews.module.css";
 import { Icon } from "../Icon/Icon";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
+import {
+  useAppDispatch,
+  useAppSelector,
+  useAuthModals,
+} from "../../redux/hooks/hooks";
 import { notification } from "antd";
 import {
   selectError,
@@ -20,12 +24,21 @@ import {
 import { SignInModal } from "../SignIn/SignIn";
 import ReviewForm from "../ReviewForm/ReviewForm";
 import Loader from "../Loader/Loader";
+import { AuthModals } from "../AuthModals/AuthModals";
 
 interface ReviewsProps {
   onReviewAdded: () => void;
 }
 
 const Reviews = ({ onReviewAdded }: ReviewsProps) => {
+  const {
+    isSignInOpen,
+    isSignUpOpen,
+    openSignIn,
+    openSignUp,
+    closeSignIn,
+    closeSignUp,
+  } = useAuthModals();
   const { id } = useParams<{ id: string }>();
   const dispatch = useAppDispatch();
   const reviewsRef = useRef<HTMLDivElement>(null);
@@ -36,7 +49,6 @@ const Reviews = ({ onReviewAdded }: ReviewsProps) => {
   const isLoading = useAppSelector(selectIsLoading);
   const error = useAppSelector(selectError);
 
-  const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
 
   useEffect(() => {
@@ -63,7 +75,7 @@ const Reviews = ({ onReviewAdded }: ReviewsProps) => {
     if (isLoggedIn && user) {
       setIsReviewModalOpen(true);
     } else {
-      setIsSignInModalOpen(true);
+      openSignIn();
     }
   };
 
@@ -140,11 +152,14 @@ const Reviews = ({ onReviewAdded }: ReviewsProps) => {
         Leave a review
       </button>
 
-      <SignInModal
-        isOpen={isSignInModalOpen}
-        onClose={() => setIsSignInModalOpen(false)}
+      <AuthModals
+        isSignInOpen={isSignInOpen}
+        isSignUpOpen={isSignUpOpen}
+        closeSignIn={closeSignIn}
+        closeSignUp={closeSignUp}
+        openSignIn={openSignIn}
+        openSignUp={openSignUp}
       />
-
       <ReviewForm
         isOpen={isReviewModalOpen}
         onClose={() => setIsReviewModalOpen(false)}
