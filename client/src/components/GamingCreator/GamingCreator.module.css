@@ -130,9 +130,18 @@
   margin-top: 15px;
 }
 @media only screen and (max-width: 1023px) {
+  .pictureBox {
+    position: relative;
+    margin-bottom: 270px;
+  }
+  .picture {
+    position: relative;
+    z-index: 1;
+  }
   .twitterPost {
-    bottom: -208px;
-    left: 0;
+    position: absolute;
+    z-index: 2;
+    bottom: -245px;
   }
 }
 @media only screen and (min-width: 1024px) {

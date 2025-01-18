@@ -33,7 +33,6 @@
   font-size: 14px;
   line-height: 1.5;
   color: rgba(255, 255, 255, 0.8);
-  min-width: 313px;
 }
 .btnsBox {
   display: flex;
@@ -55,6 +54,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.visitStoreBtn:focus,
+.visitStoreBtn:hover {
+  background-color: #3fcad7;
 }
 .arrowIcon {
   width: 20px;
@@ -138,6 +141,10 @@
     left: 0;
     right: 0;
   }
+  .pattern1,
+  .pattern2 {
+    display: none;
+  }
 }
 @media only screen and (min-width: 1024px) {
   .title {
@@ -178,6 +185,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 1;
   }
   .picture {
     width: 440px;
@@ -204,5 +212,54 @@
   .iconsSvg {
     height: 32px;
     width: 32px;
+  }
+  .pattern1 {
+    position: absolute;
+    z-index: 2;
+    top: 170px;
+    margin-left: -80px;
+  }
+  .gamesText,
+  .greeting {
+    font-family: "Satoshi Variable", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: rgba(61, 222, 237, 0.8);
+  }
+  .greeting {
+    position: absolute;
+    z-index: 3;
+    top: 30px;
+    right: 93px;
+  }
+  .discoverText,
+  .realityText {
+    font-family: "Satoshi Variable", sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    color: #fff;
+    position: absolute;
+    z-index: 5;
+  }
+  .discoverText {
+    bottom: 65px;
+    left: -55px;
+  }
+  .realityText {
+    bottom: 8px;
+    left: 55px;
+  }
+  .pattern2 {
+    position: absolute;
+    z-index: 2;
+    right: 140px;
+    top: 280px;
+  }
+  .gamesText {
+    position: absolute;
+    z-index: 3;
+    top: 40px;
+    font-size: 12px;
+    left: 12px;
   }
 }

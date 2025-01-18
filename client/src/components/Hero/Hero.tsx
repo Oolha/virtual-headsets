@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../redux/hooks/hooks";
 import { selectIsLoading } from "../../redux/virtual-headsets/selectors";
 import Loader from "../Loader/Loader";
+import { Icon } from "../Icon/Icon";
 
 const Hero = ({}) => {
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ const Hero = ({}) => {
 
         <h2 className={css.title}>Experience a new dimension of reality</h2>
         <div className={css.textBox}>
-          <PiStarFourFill className={css.textIcon} />
+          <Icon id="star" className={css.textIcon} />
           <p className={css.text}>
             Step into the future with our virtual headset, come to life right
             before your eyes
@@ -86,6 +87,16 @@ const Hero = ({}) => {
               alt="line"
             />
           </picture>
+        </div>
+        <div className={css.pattern1}>
+          <Icon id="gamingPatterns1" />
+          <p className={css.greeting}>Hello, John</p>
+          <p className={css.discoverText}>Discover new world</p>
+          <p className={css.realityText}>Ultra reality</p>
+        </div>
+        <div className={css.pattern2}>
+          <Icon id="gamingPatterns2" size={100} />
+          <p className={css.gamesText}>+100 Games</p>
         </div>
 
         <div className={css.iconsBox}>
