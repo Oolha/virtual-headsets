@@ -23,7 +23,7 @@ const GamingCreator = ({}) => {
             <source
               srcSet="../../../public/images/desktop/gaming-creator-desktop@1x.png 1x,
                         ../../../public/images/desktop/gaming-creator-desktop@2x.png 2x"
-              media="(min-width: 1024px)"
+              media="(min-width: 1440px)"
             />
             <source
               srcSet="../../../public/images/mobile/gaming-creator-mobile@1x.png 1x,

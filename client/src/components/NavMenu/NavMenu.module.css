@@ -17,3 +17,11 @@
 .navLink:hover {
   background-color: rgba(255, 255, 255, 0.5);
 }
+@media only screen and ((min-width: 768px) and (max-width: 1439px)) {
+  .nav {
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0;
+    align-items: center;
+  }
+}

@@ -43,6 +43,21 @@
 .btn:focus {
   background-color: #3fcad7;
 }
+@media only screen and ((min-width: 768px) and (max-width: 1439px)) {
+  .input {
+    margin: 0;
+  }
+  .btn {
+    margin: 0;
+  }
+  .inputAndBtnBox {
+    margin-top: 24px;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+  }
+}
 @media only screen and (min-width: 1440px) {
   .subscrBox {
     margin: 0;

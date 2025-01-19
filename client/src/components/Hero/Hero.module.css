@@ -1,3 +1,7 @@
+.headerBox {
+  margin-top: 36px;
+}
+
 .productName {
   font-family: "Satoshi Variable", sans-serif;
   font-weight: 500;
@@ -6,6 +10,7 @@
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.8);
 }
+
 .title {
   font-family: "Satoshi Variable", sans-serif;
   font-weight: 700;
@@ -17,16 +22,19 @@
   margin-top: 24px;
   margin-bottom: 24px;
 }
+
 .textBox {
   display: flex;
   flex-direction: row;
   gap: 12px;
 }
+
 .textIcon {
   width: 20px;
   height: 20px;
   fill: #bf23f5;
 }
+
 .text {
   font-family: "Satoshi Variable", sans-serif;
   font-weight: 500;
@@ -34,49 +42,50 @@
   line-height: 1.5;
   color: rgba(255, 255, 255, 0.8);
 }
+
 .btnsBox {
   display: flex;
-
   gap: 24px;
   margin-top: 24px;
   margin-bottom: 36px;
 }
-.visitStoreBtn {
+
+/* Common button styles */
+.visitStoreBtn,
+.exploreBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 4px;
   padding: 16px 24px;
   width: 248px;
   height: 54px;
-  box-shadow: 0 20px 49px 0 rgba(61, 222, 237, 0.17);
-  background: #3ddeed;
   font-family: "Satoshi Variable", sans-serif;
   text-align: center;
-  color: #182627;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
+
+.visitStoreBtn {
+  box-shadow: 0 20px 49px 0 rgba(61, 222, 237, 0.17);
+  background: #3ddeed;
+  color: #182627;
+}
+
 .visitStoreBtn:focus,
 .visitStoreBtn:hover {
   background-color: #3fcad7;
 }
+
+.exploreBtn {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
 .arrowIcon {
   width: 20px;
   height: 20px;
   margin-left: 24px;
 }
-.exploreBtn {
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
-  padding: 16px 24px;
-  width: 248px;
-  height: 54px;
-  font-family: "Satoshi Variable", sans-serif;
-  text-align: center;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 .exploreIcon {
   width: 20px;
   height: 20px;
@@ -101,23 +110,75 @@
   align-items: center;
 }
 
+.pictureBox {
+  position: relative;
+  width: 100%;
+}
+
+.linePicture {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+/* Common icons styles */
 .iconsBox1,
 .iconsBox2 {
   display: flex;
   gap: 12px;
 }
+
 .iconsBoxText {
   font-family: "Satoshi Variable", sans-serif;
   font-size: 16px;
   color: rgba(255, 255, 255, 0.6);
 }
-@media only screen and (max-width: 1023px) {
-  .headerBox {
-    margin-top: 36px;
-  }
+.pattern1,
+.pattern2 {
+  display: block;
+  position: absolute;
+  z-index: 2;
+}
+
+.gamesText,
+.greeting {
+  font-family: "Satoshi Variable", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: rgba(61, 222, 237, 0.8);
+}
+
+.greeting {
+  position: absolute;
+  z-index: 3;
+}
+
+.discoverText,
+.realityText {
+  font-family: "Satoshi Variable", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  color: #fff;
+  position: absolute;
+  z-index: 5;
+}
+
+.gamesText {
+  position: absolute;
+  z-index: 3;
+  font-size: 12px;
+}
+
+/* Mobile styles - only specific overrides */
+@media only screen and (max-width: 767px) {
   .secondHeaderBox {
     margin-top: 22px;
   }
+
   .btnsBox {
     flex-direction: column;
     justify-content: center;
@@ -128,33 +189,68 @@
     margin-top: 24px;
     margin-bottom: 22px;
   }
-  .pictureBox {
-    position: relative;
-    width: 100%;
+  .pattern1,
+  .pattern2 {
+    display: none;
   }
-  .linePicture {
-    width: 100%;
-    height: auto;
-    position: absolute;
-    z-index: 1;
-    top: 100%;
-    left: 0;
-    right: 0;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1439px) {
+  .headerBox {
+    margin-top: 48px;
+    padding: 0;
+  }
+
+  .title {
+    font-size: 52px;
+    min-width: 520px;
+    max-width: 677px;
+    margin: 32px 0;
+  }
+
+  .text {
+    font-size: 15px;
+    max-width: 676px;
+  }
+
+  .btnsBox {
+    justify-content: center;
+    margin: 32px 0 48px;
+  }
+
+  .visitStoreBtn,
+  .exploreBtn {
+    width: 200px;
+  }
+
+  .secondHeaderBox {
+    margin-top: 56px;
+  }
+
+  .picture {
+    width: 80%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .iconsBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 48px;
+  }
+
+  .iconsSvg {
+    height: 28px;
+    width: 28px;
   }
   .pattern1,
   .pattern2 {
     display: none;
   }
 }
-@media only screen and (min-width: 1024px) {
-  .title {
-    font-size: 60px;
-    width: 450px;
-  }
-  .text {
-    font-size: 16px;
-    max-width: 445px;
-  }
+@media only screen and (min-width: 1440px) {
   .headerBox {
     display: flex;
     flex-direction: row;
@@ -162,104 +258,85 @@
     margin-top: 80px;
     gap: 104px;
   }
-  .btnsBox {
-    flex-direction: row;
+
+  .title {
+    font-size: 60px;
+    width: 450px;
   }
+
+  .text {
+    font-size: 16px;
+    max-width: 445px;
+  }
+
   .visitStoreBtn {
     width: 184px;
     height: 56px;
   }
+
   .exploreBtn {
     width: 145px;
     height: 56px;
   }
+
   .firstHeadetBox {
     width: 512px;
   }
+
   .secondHeaderBox {
     min-width: 512px;
     padding-top: 45px;
   }
-  .pictureBox {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1;
-  }
+
   .picture {
     width: 440px;
   }
+
   img {
     object-fit: cover;
   }
+
   .linePicture {
-    width: auto;
-    height: auto;
-    position: absolute;
-    z-index: 1;
-    top: 100%;
-    left: 0;
-    right: 0;
     margin-right: -156px;
+    width: auto;
   }
+
   .iconsBox {
     display: flex;
     flex-direction: row;
     gap: 42px;
     margin-top: 64px;
   }
+
   .iconsSvg {
     height: 32px;
     width: 32px;
   }
   .pattern1 {
-    position: absolute;
-    z-index: 2;
     top: 170px;
     margin-left: -80px;
   }
-  .gamesText,
-  .greeting {
-    font-family: "Satoshi Variable", sans-serif;
-    font-weight: 500;
-    font-size: 14px;
-    color: rgba(61, 222, 237, 0.8);
+
+  .pattern2 {
+    right: 140px;
+    top: 280px;
   }
   .greeting {
-    position: absolute;
-    z-index: 3;
     top: 30px;
     right: 93px;
-  }
-  .discoverText,
-  .realityText {
-    font-family: "Satoshi Variable", sans-serif;
-    font-weight: 500;
-    font-size: 12px;
-    color: #fff;
-    position: absolute;
-    z-index: 5;
   }
   .discoverText {
     bottom: 65px;
     left: -55px;
   }
+
   .realityText {
     bottom: 8px;
     left: 55px;
   }
-  .pattern2 {
-    position: absolute;
-    z-index: 2;
-    right: 140px;
-    top: 280px;
-  }
+
   .gamesText {
-    position: absolute;
-    z-index: 3;
     top: 40px;
-    font-size: 12px;
     left: 12px;
   }
 }

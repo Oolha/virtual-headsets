@@ -23,9 +23,12 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  width: 233px;
 }
 .imageWrapper {
   position: relative;
+  width: 233px;
+  height: 240px;
 }
 
 .img {
@@ -39,6 +42,8 @@
   left: 0;
   clip-path: url(#clipPathId);
   -webkit-clip-path: url(#clipPathId);
+  width: 233px;
+  height: 240px;
 }
 .svg {
   position: absolute;
@@ -73,30 +78,64 @@
 .navigationContainer {
   display: none;
 }
-@media only screen and (max-width: 1039px) {
+.customPrevButton,
+.customNextButton {
+  border-radius: 4px;
+  padding: 16px;
+  width: 56px;
+  height: 56px;
+  background: rgba(61, 222, 237, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.swiperButtonPrev:hover,
+.swiperButtonNext:hover {
+  background-color: rgba(61, 222, 237, 0.2);
+}
+@media only screen and (max-width: 767px) {
   .text {
     margin-top: 24px;
   }
-  .listItem {
-    width: 233px;
-  }
-  .img {
-    width: 233px;
-    height: 240px;
-  }
 
-  .imageWrapper {
-    width: 233px;
-    height: 240px;
-  }
   .swiper {
     margin-right: -20px;
     width: calc(100% + 25px);
   }
-  .swiperSlide {
-    width: 233px;
+}
+@media only screen and (min-width: 768px) and (max-width: 1439px) {
+  .topGamesBox {
+    margin-top: 56px;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+
+  .text {
+    max-width: 311px;
+    font-size: 12px;
+  }
+
+  .gamesTextBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .navigationContainer {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .swiper {
+    margin-right: -48px;
+    width: calc(100% + 48px);
   }
 }
+
 @media only screen and (min-width: 1440px) {
   .title {
     font-size: 45px;
@@ -113,42 +152,21 @@
     justify-content: space-between;
   }
 
-  .listItem {
-    width: 348px;
-  }
-  .svg {
-    height: 370px;
-  }
-  .img {
-    width: 348px;
-    height: 361px;
-  }
-
+  .listItem,
+  .img,
   .imageWrapper {
     width: 348px;
     height: 361px;
   }
+  .svg {
+    height: 370px;
+  }
+
   .navigationContainer {
     display: flex;
     align-items: center;
     gap: 16px;
     position: relative;
     margin-left: 116px;
-  }
-  .customPrevButton,
-  .customNextButton {
-    border-radius: 4px;
-    padding: 16px;
-    width: 56px;
-    height: 56px;
-    background: rgba(61, 222, 237, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .swiperButtonPrev:hover,
-  .swiperButtonNext:hover {
-    background-color: rgba(61, 222, 237, 0.2);
   }
 }

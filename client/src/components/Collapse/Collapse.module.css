@@ -46,7 +46,15 @@
   width: 15px;
   height: 15px;
 }
-
+@media only screen and (min-width: 768px) {
+  .collapseWrapper :global(.ant-collapse-item) {
+    padding: 27px 32px;
+  }
+  .collapseWrapper :global(.ant-collapse-header-text) {
+    font-weight: 600;
+    font-size: 18px;
+  }
+}
 @media only screen and (min-width: 1440px) {
   .collapseWrapper {
     display: flex;

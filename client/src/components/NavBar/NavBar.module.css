@@ -45,7 +45,7 @@
   display: none;
 }
 
-@media only screen and (max-width: 1023px) {
+@media only screen and (max-width: 767px) {
   .menuBtn {
     display: flex;
     padding: 0;

@@ -69,5 +69,29 @@
   <path d="M0 20.6703L2.11336 22.7837L2.11336 7.33993H14.6309L12.6801 5.38914H0L0 20.6703Z" fill="#3DDEED" fill-opacity="0.8" />
   <path d="M108.431 1.00001V6.03955L45.6807 6.03955L49.5822 1.00001L92.4996 1.00001L108.431 1.00001Z" fill="#3DDEED" fill-opacity="0.8" stroke="#3DDEED" stroke-opacity="0.8" />
 </symbol>
+<symbol id="gradient" width="600" height="600" viewBox="0 0 1367 1704" fill="none" >
+  <g filter="url(#filter0_d_5_795)">
+    <g filter="url(#filter1_f_5_795)">
+      <ellipse cx="683.5" cy="852" rx="394" ry="225.5" transform="rotate(90 683.5 852)" fill="#530070" fill-opacity="0.5" />
+    </g>
+  </g>
+  <defs>
+    <filter id="filter0_d_5_795" x="454" y="458" width="459" height="796" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+      <feOffset dy="4" />
+      <feGaussianBlur stdDeviation="2" />
+      <feComposite in2="hardAlpha" operator="out" />
+      <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_5_795" />
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_5_795" result="shape" />
+    </filter>
+    <filter id="filter1_f_5_795" x="0" y="0" width="1367" height="1704" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+      <feGaussianBlur stdDeviation="229" result="effect1_foregroundBlur_5_795" />
+    </filter>
+  </defs>
+</symbol>
 </defs>
 </svg>

@@ -64,7 +64,7 @@ const Hero = ({}) => {
             <source
               srcSet="../../../public/images/desktop/hero-desktop@1x.png 1x,
                         ../../../public/images/desktop/hero-desktop@2x.png 2x"
-              media="(min-width: 1024px)"
+              media="(min-width: 768px)"
               className={css.heroImg}
             />
             <source
@@ -80,7 +80,7 @@ const Hero = ({}) => {
           <picture className={css.linePicture}>
             <source
               srcSet="../../../public/svg/big-line-under-heroImg.svg"
-              media="(min-width: 1024px)"
+              media="(min-width: 768px)"
             />
             <img
               src="../../../public/svg/small-line-under-heroImg.svg"

@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
-import { useAppDispatch } from "../../redux/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 import css from "./TopGames.module.css";
-
 import {
   selectError,
   selectGames,
@@ -21,10 +20,11 @@ import Loader from "../Loader/Loader";
 const TopGames = () => {
   const [swiper, setSwiper] = useState<SwiperType | null>(null);
   const dispatch = useAppDispatch();
-  const data = useSelector(selectGames);
+  const data = useAppSelector(selectGames);
 
-  const isLoading = useSelector(selectIsLoading);
-  const isError = useSelector(selectError);
+  const isLoading = useAppSelector(selectIsLoading);
+  const isError = useAppSelector(selectError);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -78,6 +78,14 @@ const TopGames = () => {
         slidesPerView={1.5}
         className={css.swiper}
         breakpoints={{
+          768: {
+            slidesPerView: 2.5,
+            spaceBetween: 24,
+          },
+          860: {
+            slidesPerView: 3,
+            spaceBetween: 24,
+          },
           1440: {
             slidesPerView: 3,
             spaceBetween: 32.5,

@@ -16,7 +16,6 @@ import { RootState } from "../../redux/store";
 import { useNavigate } from "react-router-dom";
 import { Icon } from "../Icon/Icon";
 import { selectAuthIsLoggedIn } from "../../redux/auth/selectors";
-import { SignInModal } from "../SignIn/SignIn";
 import { AuthModals } from "../AuthModals/AuthModals";
 
 const Header = () => {

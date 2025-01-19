@@ -3,11 +3,10 @@ import {
   selectIsLoading,
   selectVRHeadsets,
 } from "../../redux/virtual-headsets/selectors";
-import { useSelector } from "react-redux";
 import { VROneHeadset } from "../VROneHeadset/VROneHeadset";
 import { useEffect, useState } from "react";
 import { fetchAllVrHeadsets } from "../../redux/virtual-headsets/operations";
-import { useAppDispatch } from "../../redux/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from "swiper";
 import "swiper/css";
@@ -19,11 +18,11 @@ import Loader from "../Loader/Loader";
 
 const VRHeadsetsList = () => {
   const dispatch = useAppDispatch();
-  const data = useSelector(selectVRHeadsets);
+  const data = useAppSelector(selectVRHeadsets);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1440);
   const [swiper, setSwiper] = useState<SwiperType | null>(null);
-  const isLoading = useSelector(selectIsLoading);
-  const isError = useSelector(selectError);
+  const isLoading = useAppSelector(selectIsLoading);
+  const isError = useAppSelector(selectError);
 
   useEffect(() => {
     const fetchData = async () => {

@@ -1,5 +1,6 @@
 import { PiStarFourFill } from "react-icons/pi";
 import css from "./Features.module.css";
+import { Icon } from "../Icon/Icon";
 
 const Features = ({}) => {
   return (
@@ -56,7 +57,7 @@ const Features = ({}) => {
         <picture className={css.linesPicture}>
           <source
             srcSet="../../../public/svg/Ellipse-big.svg"
-            media="(min-width: 1024px)"
+            media="(min-width: 1440px)"
           />
           <img src="../../../public/svg/Ellipse-small.svg" alt="line" />
         </picture>
@@ -64,7 +65,7 @@ const Features = ({}) => {
           <source
             srcSet="../../../public/images/desktop/headsets-desktop@1x.png 1x,
                         ../../../public/images/desktop/headsets-desktop@2x.png 2x"
-            media="(min-width: 1024px)"
+            media="(min-width: 1440px)"
             className={css.featuresImg}
           />
           <source
@@ -77,6 +78,7 @@ const Features = ({}) => {
             alt="virtual headsets"
           />
         </picture>
+        <div className={css.gradient}></div>
       </div>
     </div>
   );

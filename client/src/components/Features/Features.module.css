@@ -11,6 +11,11 @@
 }
 .linesPicture {
   position: absolute;
+  z-index: 1;
+}
+.picture {
+  position: relative;
+  z-index: 2;
 }
 .title {
   font-family: "Satoshi Variable", sans-serif;
@@ -39,7 +44,18 @@
   line-height: 1.5;
   color: #fff;
 }
-@media only screen and (max-width: 1023px) {
+.gradient {
+  width: 350px;
+  height: 200px;
+  background: rgba(83, 0, 112, 0.7);
+  filter: blur(100px);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  opacity: 0.8;
+}
+@media only screen and (max-width: 767px) {
   .mainBox {
     flex-direction: column;
   }
@@ -60,10 +76,64 @@
   }
   .pictureBox {
     margin-top: 32px;
+    min-height: 300px;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1439px) {
+  .mainBox {
+    flex-direction: row;
+    gap: 48px;
+    padding: 0;
+    margin-top: 76px;
+    align-items: flex-start;
+  }
+
+  .featuresBox {
+    width: 50%;
+  }
+
+  .title {
+    font-size: 32px;
+    max-width: 500px;
+    margin-bottom: 32px;
+  }
+
+  .list {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .listItem {
+    gap: 12px;
+  }
+
+  .listItem:nth-child(n + 4) {
+    display: none;
+  }
+
+  .text {
+    font-size: 15px;
+  }
+
+  .pictureBox {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    margin-top: 0;
+    min-height: 340px;
+    order: -1;
+  }
+
+  .gradient {
+    width: 400px;
+    height: 300px;
+    bottom: auto;
   }
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 1440px) {
   .mainBox {
     flex-direction: row;
     gap: 104px;
@@ -73,7 +143,6 @@
   .pictureBox {
     max-width: 512px;
     height: auto;
-    position: relative;
     order: -1;
   }
   .linesPicture {
@@ -111,5 +180,11 @@
   .listItem {
     gap: 12px;
     width: calc((512px - 32px) / 2);
+  }
+  .gradient {
+    width: 500px;
+    height: 500px;
+    top: -30px;
+    bottom: auto;
   }
 }

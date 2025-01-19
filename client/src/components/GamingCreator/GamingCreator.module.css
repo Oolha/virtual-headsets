@@ -1,8 +1,9 @@
 .mainBox {
   margin-top: 32px;
 }
-.box {
-  position: relative;
+.gamingCreatorBox {
+  display: flex;
+  flex-direction: column;
 }
 .title {
   font-family: "Satoshi Variable", sans-serif;
@@ -44,17 +45,25 @@
   width: 20px;
   height: 20px;
 }
+.box {
+  position: relative;
+}
 .pictureBox {
   margin-top: 24px;
   width: 100%;
 }
-
+.picture {
+  position: relative;
+  z-index: 1;
+}
 .twitterPost {
   display: flex;
   flex-direction: column;
   padding: 14px;
   background-color: white;
   box-shadow: 0 0px 0 0 #ced5dc;
+  position: absolute;
+  z-index: 2;
 }
 .nickNameBox {
   display: flex;
@@ -129,22 +138,69 @@
   justify-content: space-around;
   margin-top: 15px;
 }
-@media only screen and (max-width: 1023px) {
+
+@media only screen and (max-width: 767px) {
   .pictureBox {
-    position: relative;
     margin-bottom: 270px;
   }
-  .picture {
-    position: relative;
-    z-index: 1;
-  }
+
   .twitterPost {
-    position: absolute;
-    z-index: 2;
-    bottom: -245px;
+    bottom: -240px;
+    border-radius: 8px;
   }
 }
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 399px) and (max-width: 767px) {
+  .postTitle {
+    max-width: 347px;
+  }
+  .twitterPost {
+    bottom: -185px;
+    left: -30px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1439px) {
+  .mainBox {
+    margin-top: 76px;
+    display: flex;
+    flex-direction: row;
+    gap: 48px;
+  }
+
+  .gamingCreatorBox {
+    max-width: 330px;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+
+  .text {
+    margin-top: 32px;
+    font-size: 15px;
+  }
+
+  .blogBtn {
+    margin-top: 32px;
+  }
+
+  .box {
+    width: 50%;
+  }
+
+  .pictureBox {
+    margin-top: 0;
+    margin-bottom: 200px;
+  }
+
+  .twitterPost {
+    bottom: 30px;
+    left: -80px;
+    border-radius: 8px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
   .mainBox {
     margin-top: 134px;
     display: flex;
@@ -170,7 +226,6 @@
   }
   .twitterPost {
     position: absolute;
-
     z-index: 1;
     border-radius: 8px;
     bottom: -100px;
