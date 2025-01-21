@@ -92,11 +92,21 @@
   color: rgba(0, 0, 0, 0.8);
   font-weight: 500;
 }
-@media only screen and (max-width: 1439px) {
+
+@media only screen and (max-width: 767px) {
   .container {
     padding-bottom: 24px;
     padding-left: 24px;
     padding-right: 24px;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1439px) {
+  .container {
+    padding-left: 72px;
+    padding-right: 72px;
+  }
+  :global(.ant-collapse-content-box) {
+    padding: 36px 0 !important;
   }
 }
 
@@ -120,5 +130,8 @@
   :global(.ant-collapse-expand-icon svg) {
     width: 32px !important;
     height: 32px !important;
+  }
+  :global(.ant-collapse-content-box) {
+    padding: 36px 0 !important;
   }
 }

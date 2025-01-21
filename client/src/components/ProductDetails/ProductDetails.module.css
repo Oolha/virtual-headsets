@@ -73,11 +73,25 @@
   width: 10px;
   height: 10px;
 }
-@media only screen and (max-width: 1439px) {
+
+@media only screen and (max-width: 767px) {
   .wrapContainer {
     padding: 0 24px;
   }
 }
+@media only screen and (min-width: 768px) and (max-width: 1439px) {
+  .photoBox {
+    padding: 36px 72px;
+  }
+  .img {
+    width: 640px;
+    height: 600px;
+  }
+  .wrapContainer {
+    padding: 0 72px;
+  }
+}
+
 @media only screen and (min-width: 1440px) {
   .mainBox {
     padding: 0 156px;

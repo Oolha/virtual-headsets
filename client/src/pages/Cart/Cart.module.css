@@ -91,7 +91,14 @@
   border-radius: 4px;
   cursor: not-allowed;
 }
-
+@media only screen and (min-width: 768px) {
+  .wrapperHeader {
+    padding: 36px 72px;
+  }
+  .cartContainer {
+    padding: 36px 72px;
+  }
+}
 @media only screen and (min-width: 1440px) {
   .wrapperHeader {
     padding: 36px 156px;

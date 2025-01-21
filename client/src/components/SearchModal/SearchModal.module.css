@@ -156,11 +156,14 @@
 }
 
 @media (max-width: 768px) {
-  .backdrop .content {
+  .backdrop {
     padding: 0;
     height: 100%;
   }
-
+  .content {
+    padding: 0;
+    margin-top: 24px;
+  }
   .backdrop .searchContainer {
     padding: 12px;
     margin-bottom: 0;
@@ -187,7 +190,7 @@
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
   .content {
     margin-top: 80px;
   }

@@ -1,7 +1,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 12px;
   width: 100%;
 }
 
@@ -17,7 +17,7 @@
 }
 
 .input {
-  padding: 24px;
+  padding: 20px;
   border: 2px solid #f5f4f6;
   border-radius: 4px;
   font-size: 16px;
@@ -39,8 +39,7 @@
 
 .error {
   color: #dc3545;
-  font-size: 14px;
-  margin-top: 4px;
+  font-size: 12px;
 }
 
 .submitButton {
@@ -86,7 +85,8 @@
   color: #b035ac;
   text-decoration: underline;
 }
-@media only screen and (min-width: 1440px) {
+
+@media only screen and (min-width: 768px) {
   .input {
     width: 400px;
   }

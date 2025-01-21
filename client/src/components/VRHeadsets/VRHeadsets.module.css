@@ -13,6 +13,9 @@
   .list {
     align-items: center;
     justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 30px;
   }
 }
 @media only screen and ((min-width: 768px) and (max-width: 1439px)) {
@@ -23,13 +26,11 @@
     margin-top: 56px;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     row-gap: 32px;
+    gap: 30px;
   }
 
-  .list > * {
-    flex-basis: calc(50% - 16px);
-  }
   .title {
     font-size: 24px;
   }

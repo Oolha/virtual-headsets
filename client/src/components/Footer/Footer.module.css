@@ -45,17 +45,18 @@
   align-items: center;
   justify-content: center;
 }
-
-@media only screen and (min-width: 768px) and (max-width: 1439px) {
-  .footer {
-    padding: 48px 72px;
-  }
-
+@media only screen and (min-width: 700px) and (max-width: 1439px) {
   .logoAndLinksBox {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
   }
+}
+@media only screen and (min-width: 768px) and (max-width: 1439px) {
+  .footer {
+    padding: 48px 72px;
+  }
+
   .footerBox {
     flex-direction: column;
     gap: 48px;
@@ -87,7 +88,7 @@
   .footerBox {
     display: flex;
     flex-direction: row;
-    gap: 118px;
+    justify-content: space-between;
     margin-bottom: 56px;
   }
   .navLinks {
