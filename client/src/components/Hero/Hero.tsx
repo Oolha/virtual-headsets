@@ -80,7 +80,7 @@ const Hero = ({}) => {
           <picture className={css.linePicture}>
             <source
               srcSet="../../../public/svg/big-line-under-heroImg.svg"
-              media="(min-width: 768px)"
+              media="(min-width: 375px)"
             />
             <img
               src="../../../public/svg/small-line-under-heroImg.svg"

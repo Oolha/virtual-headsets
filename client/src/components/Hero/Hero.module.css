@@ -123,6 +123,8 @@
   top: 100%;
   left: 0;
   right: 0;
+  display: flex;
+  justify-content: flex-end;
 }
 
 /* Common icons styles */
@@ -175,6 +177,9 @@
 
 /* Mobile styles - only specific overrides */
 @media only screen and (max-width: 767px) {
+  .title {
+    max-width: 543px;
+  }
   .secondHeaderBox {
     margin-top: 22px;
   }

@@ -2,7 +2,6 @@
   font-weight: 400;
   font-size: 16px;
   color: rgba(255, 255, 255, 0.8);
-  margin-top: 24px;
 }
 .title {
   font-weight: 700;
@@ -19,7 +18,6 @@
   font-weight: 400;
   font-size: 16px;
   color: rgba(255, 255, 255, 0.8);
-  margin-top: 24px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 4px;
   padding: 10px 16px;
@@ -28,8 +26,6 @@
   background: transparent;
 }
 .btn {
-  margin-top: 24px;
-  margin-bottom: 28px;
   border-radius: 4px;
   padding: 10px 16px;
   width: 327px;
@@ -43,6 +39,22 @@
 .btn:focus {
   background-color: #3fcad7;
 }
+.inputAndBtnBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 24px;
+  gap: 12px;
+  column-gap: 0px;
+}
+@media only screen and (max-width: 767px) {
+  .subscrBox {
+    margin: 24px 0;
+  }
+  .inputAndBtnBox {
+    flex-wrap: wrap;
+  }
+}
 @media only screen and ((min-width: 768px) and (max-width: 1439px)) {
   .input {
     margin: 0;
@@ -51,9 +63,6 @@
     margin: 0;
   }
   .inputAndBtnBox {
-    margin-top: 24px;
-    display: flex;
-
     align-items: center;
     justify-content: center;
   }
@@ -74,7 +83,6 @@
   }
   .inputAndBtnBox {
     margin-top: 45px;
-    display: flex;
     flex-direction: row;
   }
 }

@@ -99,12 +99,14 @@
     margin-top: 24px;
   }
 
+  :global(.swiper-backface-hidden .swiper-slide) {
+    width: 233px;
+  }
   .swiper {
-    margin-right: -20px;
-    width: calc(100% + 25px);
+    width: calc(100% + 27px);
   }
 }
-@media only screen and (min-width: 768px) and (max-width: 1439px) {
+@media only screen and (min-width: 768px) and (max-width: 1440px) {
   .topGamesBox {
     margin-top: 56px;
   }
@@ -112,27 +114,27 @@
   .title {
     font-size: 32px;
   }
-
   .text {
     max-width: 311px;
     font-size: 12px;
   }
-
-  .gamesTextBox {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
   .navigationContainer {
     display: flex;
     align-items: center;
     gap: 16px;
   }
+  .gamesTextBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
 
+@media only screen and (min-width: 930px) and (max-width: 1440px) {
   .swiper {
-    margin-right: -48px;
-    width: calc(100% + 48px);
+    overflow: hidden;
+    margin-right: 0;
+    width: 100%;
   }
 }
 

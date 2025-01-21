@@ -142,6 +142,8 @@
 @media only screen and (max-width: 767px) {
   .pictureBox {
     margin-bottom: 270px;
+    display: flex;
+    justify-content: flex-end;
   }
 
   .twitterPost {
@@ -155,7 +157,6 @@
   }
   .twitterPost {
     bottom: -185px;
-    left: -30px;
   }
 }
 
@@ -164,7 +165,7 @@
     margin-top: 76px;
     display: flex;
     flex-direction: row;
-    gap: 48px;
+    justify-content: space-between;
   }
 
   .gamingCreatorBox {
@@ -183,11 +184,6 @@
   .blogBtn {
     margin-top: 32px;
   }
-
-  .box {
-    width: 50%;
-  }
-
   .pictureBox {
     margin-top: 0;
     margin-bottom: 200px;

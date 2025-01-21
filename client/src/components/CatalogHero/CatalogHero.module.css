@@ -1,7 +1,4 @@
 .fullWidthVideo {
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
   width: 100vw;
   display: block;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
@@ -13,10 +10,8 @@
 .videoContainer {
   position: relative;
   overflow: hidden;
-  margin-top: 27px;
-  left: calc(-1 * var(--body-padding, 24px));
-  width: calc(100% + 2 * var(--body-padding, 24px));
-  margin-bottom: 36px;
+  margin: 27px calc(50% - 50vw);
+  width: 100vw;
 }
 
 .overlay {
@@ -38,21 +33,43 @@
 .title {
   font-size: 1rem;
   width: 60%;
+  max-width: 188px;
+}
+.textWrapper {
+  width: 100%;
+  max-width: 375px;
+}
+@media only screen and (min-width: 768px) and (max-width: 1439px) {
+  .overlay {
+    padding: 40px;
+  }
+  .textWrapper {
+    max-width: 768px;
+    margin: 0 auto;
+  }
+  .title {
+    font-size: 2.5rem;
+    max-width: 420px;
+  }
+
+  .fullWidthVideo {
+    height: 50vh;
+  }
 }
 @media only screen and (min-width: 1440px) {
-  .fullWidthVideo {
-    max-height: 60vh;
-  }
-  .videoContainer {
-    left: calc(-1 * var(--body-padding, 156px));
-    width: calc(100% + 2 * var(--body-padding, 156px));
-    margin-top: 36px;
-  }
   .overlay {
-    padding: 60px 156px;
+    padding: 60px;
+  }
+  .textWrapper {
+    min-width: 1128px;
+    margin: 0 auto;
   }
   .title {
     font-size: 4rem;
-    width: 50%;
+    max-width: 610px;
+  }
+
+  .fullWidthVideo {
+    height: 60vh;
   }
 }

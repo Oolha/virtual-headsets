@@ -39,20 +39,18 @@
   color: rgba(255, 255, 255, 0.8);
   margin-top: 32px;
 }
-@media only screen and (max-width: 767px) {
-  .contentContainer {
-    max-width: 375px;
-    margin: 0 auto;
-  }
+.footerEndBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
+
 @media only screen and (min-width: 768px) and (max-width: 1439px) {
   .footer {
-    padding: 48px;
+    padding: 48px 72px;
   }
-  .contentContainer {
-    max-width: 768px;
-    margin: 0 auto;
-  }
+
   .logoAndLinksBox {
     display: flex;
     flex-direction: row;
@@ -61,7 +59,7 @@
   .footerBox {
     flex-direction: column;
     gap: 48px;
-    margin-bottom: 48px;
+    margin-bottom: 24px;
   }
 
   .navLinks {
@@ -71,12 +69,6 @@
   .title {
     margin-top: 0;
     margin-right: 40px;
-  }
-
-  .footerEndBox {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
 
   .rights {
@@ -104,12 +96,7 @@
   .title {
     margin: 0;
   }
-  .footerEndBox {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
+
   .rights {
     margin-top: 56px;
   }

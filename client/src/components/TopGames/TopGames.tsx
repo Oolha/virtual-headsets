@@ -78,14 +78,19 @@ const TopGames = () => {
         slidesPerView={1.5}
         className={css.swiper}
         breakpoints={{
+          545: {
+            slidesPerView: 2,
+            spaceBetween: 24,
+          },
           768: {
             slidesPerView: 2.5,
             spaceBetween: 24,
           },
-          860: {
+          930: {
             slidesPerView: 3,
-            spaceBetween: 24,
+            spaceBetween: 32.5,
           },
+
           1440: {
             slidesPerView: 3,
             spaceBetween: 32.5,

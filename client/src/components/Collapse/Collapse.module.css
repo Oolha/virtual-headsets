@@ -8,7 +8,7 @@
   background-color: rgba(255, 255, 255, 0.05);
   border-radius: 8px;
   transition: background-color 0.3s ease;
-  padding: 12px;
+  padding: 16px 12px;
 }
 .collapseWrapper :global(.ant-collapse-item-active) {
   background-color: rgba(255, 255, 255, 0.1);
@@ -46,6 +46,11 @@
   width: 15px;
   height: 15px;
 }
+@media only screen and (max-width: 767px) {
+  .collapseWrapper :global(.ant-collapse-header-text) {
+    max-width: 388px;
+  }
+}
 @media only screen and (min-width: 768px) {
   .collapseWrapper :global(.ant-collapse-item) {
     padding: 27px 32px;
@@ -53,6 +58,7 @@
   .collapseWrapper :global(.ant-collapse-header-text) {
     font-weight: 600;
     font-size: 18px;
+    max-width: 388px;
   }
 }
 @media only screen and (min-width: 1440px) {

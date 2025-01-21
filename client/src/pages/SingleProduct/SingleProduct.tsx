@@ -6,7 +6,7 @@ import Footer from "../../components/Footer/Footer";
 
 const SingleProduct = ({}) => {
   return (
-    <div>
+    <div className={css.singleProduct}>
       <div className={css.wrapperHeader}>
         <Header />
       </div>

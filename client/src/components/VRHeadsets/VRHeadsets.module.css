@@ -4,13 +4,34 @@
 .wrapperBox {
   margin: 24px 0;
 }
-@media only screen and (max-width: 1439px) {
+.list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 32px;
+}
+@media only screen and (max-width: 767px) {
   .list {
-    display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 32px;
+  }
+}
+@media only screen and ((min-width: 768px) and (max-width: 1439px)) {
+  .wrapperBox {
+    margin: 72px 0;
+  }
+  .list {
+    margin-top: 56px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 32px;
+  }
+
+  .list > * {
+    flex-basis: calc(50% - 16px);
+  }
+  .title {
+    font-size: 24px;
   }
 }
 @media only screen and (min-width: 1440px) {
@@ -21,7 +42,6 @@
     font-size: 32px;
   }
   .list {
-    display: flex;
     transition: transform 0.3s ease;
   }
 
