@@ -2,6 +2,7 @@ import { notification } from "antd";
 import css from "./Subscription.module.css";
 import { NotificationPlacement } from "antd/es/notification/interface";
 import { ChangeEvent, FC, useState } from "react";
+import AnimatedButton from "../AnimatedButton/AnimatedButton";
 
 interface SubscriptionProps {
   onSubscribe?: (email: string) => void;

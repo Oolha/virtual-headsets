@@ -6,6 +6,7 @@ import { addToCart } from "../../redux/cart/cartSlice";
 import css from "./AddToCart.module.css";
 import { VRHeadset } from "../../redux/types";
 import Loader from "../Loader/Loader";
+import AnimatedButton from "../AnimatedButton/AnimatedButton";
 
 interface AddToCartProps {
   item: VRHeadset;
@@ -60,7 +61,7 @@ const AddToCart: React.FC<AddToCartProps> = ({ item }) => {
           />
           <span className={css.maxQuantity}>Max: 10</span>
         </div>
-        <button
+        <AnimatedButton
           className={css.addButton}
           onClick={handleAddToCart}
           disabled={isAdding}
@@ -70,7 +71,7 @@ const AddToCart: React.FC<AddToCartProps> = ({ item }) => {
           ) : (
             "Add to cart"
           )}
-        </button>
+        </AnimatedButton>
       </div>
       <div className={css.shipping}>
         <FaShippingFast className={css.icon} />

@@ -1,0 +1,35 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+  border-radius: 4px;
+  padding: 16px 24px;
+  width: 248px;
+  height: 54px;
+  font-family: "Satoshi Variable", sans-serif;
+  box-shadow: 0 20px 49px 0 rgba(61, 222, 237, 0.17);
+  background: #3ddeed;
+  color: #182627;
+}
+.button:disabled {
+  cursor: not-allowed;
+}
+.primary {
+  background-color: #3ddeed;
+  color: black;
+}
+
+.button:disabled:hover {
+  transform: none;
+}
+.secondary {
+  background-color: transparent;
+  border: 1px solid #3ddeed;
+  color: white;
+}
+.iconBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

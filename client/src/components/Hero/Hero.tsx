@@ -1,13 +1,13 @@
 import css from "./Hero.module.css";
 import SocialLinks from "../SocialLinks/SocialLinks";
 import { MdOutlineExplore } from "react-icons/md";
-import { PiStarFourFill } from "react-icons/pi";
 import { IoMdArrowForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../redux/hooks/hooks";
 import { selectIsLoading } from "../../redux/virtual-headsets/selectors";
 import Loader from "../Loader/Loader";
 import { Icon } from "../Icon/Icon";
+import AnimatedButton from "../AnimatedButton/AnimatedButton";
 
 const Hero = ({}) => {
   const navigate = useNavigate();
@@ -47,9 +47,13 @@ const Hero = ({}) => {
           </p>
         </div>
         <div className={css.btnsBox}>
-          <button className={css.visitStoreBtn} onClick={handleVisitStoreClick}>
-            Visit Store <IoMdArrowForward className={css.arrowIcon} />
-          </button>
+          <AnimatedButton
+            onClick={handleVisitStoreClick}
+            icon={<IoMdArrowForward className={css.arrowIcon} />}
+            variant="primary"
+          >
+            Visit Store
+          </AnimatedButton>
           <button className={css.exploreBtn}>
             <MdOutlineExplore className={css.exploreIcon} />
             Explore

@@ -65,21 +65,8 @@
     pointer-events: none;
     transition: opacity 0.3s ease;
   }
-
-  .navMenu.isOpen {
-    opacity: 1;
-    pointer-events: all;
-  }
-
-  .closeBtn {
-    display: block;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: none;
-    border: none;
-    font-size: 30px;
-    color: white;
+  .navLink {
+    font-size: 18px;
   }
 }
 
