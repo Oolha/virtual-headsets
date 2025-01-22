@@ -1,5 +1,27 @@
+.heroContainer {
+  position: relative;
+  max-width: 1500px;
+  margin: 0 auto;
+  overflow: visible;
+}
+.animatedBackground {
+  position: absolute;
+  top: 57%;
+  left: calc(50% - 50vw);
+  right: 0;
+  transform: translateY(-50%);
+  width: 100vw;
+  height: auto;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.2;
+}
 .headerBox {
   margin-top: 36px;
+  position: relative;
+  z-index: 2;
+  max-width: 1500px;
+  margin: 0 auto;
 }
 
 .productName {
@@ -177,6 +199,9 @@
 
 /* Mobile styles - only specific overrides */
 @media only screen and (max-width: 767px) {
+  .headerBox {
+    margin-top: 27px;
+  }
   .title {
     max-width: 543px;
   }
@@ -197,6 +222,10 @@
   .pattern1,
   .pattern2 {
     display: none;
+  }
+
+  .animatedBackground {
+    height: 500px;
   }
 }
 
@@ -253,6 +282,10 @@
   .pattern1,
   .pattern2 {
     display: none;
+  }
+  .animatedBackground {
+    height: 600px;
+    top: 47%;
   }
 }
 @media only screen and (min-width: 1440px) {
@@ -343,5 +376,9 @@
   .gamesText {
     top: 40px;
     left: 12px;
+  }
+  .animatedBackground {
+    height: 600px;
+    top: 5%;
   }
 }

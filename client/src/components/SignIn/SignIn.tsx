@@ -15,6 +15,7 @@ import { LoginCredentials } from "../../redux/types";
 import Loader from "../Loader/Loader";
 import { Link } from "react-router-dom";
 import { notification } from "antd";
+import AnimationWrapper from "../AnimationWrapper/AnimationWrapper";
 
 const signInSchema = yup.object().shape({
   email: yup

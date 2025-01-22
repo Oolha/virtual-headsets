@@ -13,6 +13,7 @@ import { Icon } from "../Icon/Icon";
 import CollapseForOneProduct from "../CollapseForOneProduct/CollapseForOneProduct";
 import AddToCart from "../AddToCart/AddToCart";
 import Loader from "../Loader/Loader";
+import AnimationWrapper from "../AnimationWrapper/AnimationWrapper";
 
 const ProductDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -53,8 +54,11 @@ const ProductDetails: React.FC = () => {
           <h2 className={css.title}>{item.name}</h2>
           <p className={css.description}>{item.description}</p>
         </div>
-        <img src={item.photo} alt={item.name} className={css.img} />
+        <AnimationWrapper type="scale" duration={0.5} key={item._id}>
+          <img src={item.photo} alt={item.name} className={css.img} />
+        </AnimationWrapper>
       </div>
+
       <div className={css.wrapContainer}>
         <div className={css.techInfo}>
           <p className={css.text}>High-end VR-Headset</p>

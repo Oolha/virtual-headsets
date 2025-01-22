@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Collapse } from "antd";
 import css from "./Collapse.module.css";
 import { Icon as CustomArrow } from "../Icon/Icon";
+import AnimationWrapper from "../AnimationWrapper/AnimationWrapper";
 
 type FAQItem = {
   key: string;
@@ -113,24 +114,26 @@ const FAQAccordion: React.FC = () => {
   ];
 
   return (
-    <div className={css.collapseWrapper}>
-      <Collapse
-        defaultActiveKey={defaultKeys}
-        accordion
-        expandIcon={({ isActive }) => (
-          <CustomArrow
-            id="icon-arrow-collapse"
-            className={isActive ? css.activeIcon : css.defaultIcon}
-          />
-        )}
-        expandIconPosition="end"
-        items={faqData.map((item) => ({
-          key: item.key,
-          label: item.label,
-          children: item.children,
-        }))}
-      />
-    </div>
+    <AnimationWrapper type="fadeIn" delay={0.2} onScroll>
+      <div className={css.collapseWrapper}>
+        <Collapse
+          defaultActiveKey={defaultKeys}
+          accordion
+          expandIcon={({ isActive }) => (
+            <CustomArrow
+              id="icon-arrow-collapse"
+              className={isActive ? css.activeIcon : css.defaultIcon}
+            />
+          )}
+          expandIconPosition="end"
+          items={faqData.map((item) => ({
+            key: item.key,
+            label: item.label,
+            children: item.children,
+          }))}
+        />
+      </div>
+    </AnimationWrapper>
   );
 };
 

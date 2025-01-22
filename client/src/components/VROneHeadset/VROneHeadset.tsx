@@ -15,8 +15,6 @@ import {
 } from "../../redux/favorites/slice";
 import { notification } from "antd";
 import { selectAuthIsLoggedIn } from "../../redux/auth/selectors";
-import { useState } from "react";
-import { SignInModal } from "../SignIn/SignIn";
 import { AuthModals } from "../AuthModals/AuthModals";
 
 interface VROneHeadsetProps {
