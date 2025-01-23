@@ -21,7 +21,6 @@ import {
   selectAuthIsLoggedIn,
   selectAuthUser,
 } from "../../redux/auth/selectors";
-import { SignInModal } from "../SignIn/SignIn";
 import ReviewForm from "../ReviewForm/ReviewForm";
 import Loader from "../Loader/Loader";
 import { AuthModals } from "../AuthModals/AuthModals";

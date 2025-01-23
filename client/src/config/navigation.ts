@@ -1,4 +1,3 @@
-// config/navigation.ts
 type NavLinkType = {
   readonly path: string;
   readonly label: string;

@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import css from "./Container.module.css";
 
 type ContainerProps = {

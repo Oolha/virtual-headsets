@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -13,9 +12,7 @@ import {
 import { apiLogin } from "../../redux/auth/operations";
 import { LoginCredentials } from "../../redux/types";
 import Loader from "../Loader/Loader";
-import { Link } from "react-router-dom";
 import { notification } from "antd";
-import AnimationWrapper from "../AnimationWrapper/AnimationWrapper";
 
 const signInSchema = yup.object().shape({
   email: yup

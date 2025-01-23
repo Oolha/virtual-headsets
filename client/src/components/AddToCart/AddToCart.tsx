@@ -1,4 +1,3 @@
-// components/AddToCart/AddToCart.tsx
 import { useState } from "react";
 import { FaShippingFast } from "react-icons/fa";
 import { useDispatch } from "react-redux";

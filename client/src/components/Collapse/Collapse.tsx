@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Collapse } from "antd";
 import css from "./Collapse.module.css";
 import { Icon as CustomArrow } from "../Icon/Icon";

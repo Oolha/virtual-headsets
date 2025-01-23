@@ -1,15 +1,24 @@
-import { useSelector } from "react-redux";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import css from "./Cart.module.css";
 import { RootState } from "../../redux/store";
 import { Icon } from "../../components/Icon/Icon";
-import { useAppDispatch } from "../../redux/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 import { deleteItem } from "../../redux/cart/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  const cartItems = useSelector((state: RootState) => state.cart.items);
+  const cartItems = useAppSelector((state: RootState) => state.cart.items);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const handleClick = (id: string) => {
+    try {
+      navigate(`/catalog/${id}`);
+    } catch (error) {
+      console.error("Navigation failed:", error);
+    }
+  };
 
   const totalPrice = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
@@ -41,6 +50,7 @@ const Cart = () => {
                     src={item.photo}
                     alt={item.name}
                     className={css.itemImage}
+                    onClick={() => handleClick(item.id)}
                   />
                   <div className={css.itemDetails}>
                     <h3>{item.name}</h3>

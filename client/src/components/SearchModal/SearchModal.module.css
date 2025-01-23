@@ -211,8 +211,6 @@
     height: 24px;
   }
 }
-
-/* Touch device optimization */
 @media (hover: none) {
   .suggestionArrow {
     opacity: 1;

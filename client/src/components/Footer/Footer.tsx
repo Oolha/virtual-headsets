@@ -1,6 +1,5 @@
 import CompanyMenu from "../CompanyMenu/CompanyMenu";
 import Logo from "../Logo/Logo";
-import NavBar from "../NavBar/NavBar";
 import NavMenu from "../NavMenu/NavMenu";
 import SocialLinks from "../SocialLinks/SocialLinks";
 import Subscription from "../Subscription/Subscription";

@@ -13,10 +13,13 @@ const GamingCreator = ({}) => {
             specializes in designing and manufacturing virtual reality headsets,
             also known as VR headsets.
           </p>
-          <button type="button" className={css.blogBtn}>
+          <div
+            className={css.blogBtn}
+            data-tooltip="Demo project - links are for demonstration purposes only"
+          >
             <p>Read my blog</p>
             <FaArrowRight className={css.arrow} />
-          </button>
+          </div>
         </div>
 
         <div className={css.box}>

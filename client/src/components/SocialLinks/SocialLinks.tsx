@@ -8,21 +8,32 @@ import { MdOutlineFacebook } from "react-icons/md";
 
 const SocialLinks = ({}) => {
   return (
-    <div className={css.links}>
-      <button className={css.linkBtn}>
+    <div className={css.socialIconsWrapper}>
+      <div
+        className={css.socialLink}
+        data-tooltip="Demo project - links are for demonstration purposes only"
+      >
         <PiTwitterLogoFill className={css.linkIcon} />
-      </button>
-      <button className={css.linkBtn}>
+      </div>
+      <div
+        className={css.socialLink}
+        data-tooltip="Demo project - links are for demonstration purposes only"
+      >
         <PiInstagramLogoFill className={css.linkIcon} />
-      </button>
-      <button className={css.linkBtn}>
+      </div>
+      <div
+        className={css.socialLink}
+        data-tooltip="Demo project - links are for demonstration purposes only"
+      >
         <PiDiscordLogoFill className={css.linkIcon} />
-      </button>
-      <button className={css.linkBtn}>
+      </div>
+      <div
+        className={css.socialLink}
+        data-tooltip="Demo project - links are for demonstration purposes only"
+      >
         <MdOutlineFacebook className={css.linkIcon} />
-      </button>
+      </div>
     </div>
   );
 };
-
 export default SocialLinks;

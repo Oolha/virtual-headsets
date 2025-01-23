@@ -25,6 +25,7 @@ const Hero = ({}) => {
 
   return (
     <div className={css.heroContainer}>
+      <div className={css.gradient}></div>
       <div className={css.animatedBackground}>
         <Lottie
           animationData={animatedWaves}
@@ -66,10 +67,10 @@ const Hero = ({}) => {
             >
               Visit Store
             </AnimatedButton>
-            <button className={css.exploreBtn}>
+            <div className={css.exploreBtn}>
               <MdOutlineExplore className={css.exploreIcon} />
               Explore
-            </button>
+            </div>
           </div>
           <p className={css.textFollowUs}>Follow us</p>
           <SocialLinks />

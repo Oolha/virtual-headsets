@@ -1,9 +1,5 @@
-import { useState } from "react";
 import { NavLink } from "react-router-dom";
-
 import css from "./CompanyMenu.module.css";
-import { SignInModal } from "../SignIn/SignIn";
-import { SignUpModal } from "../SignUp/SignUp";
 import { useAuthModals } from "../../redux/hooks/hooks";
 import { AuthModals } from "../AuthModals/AuthModals";
 

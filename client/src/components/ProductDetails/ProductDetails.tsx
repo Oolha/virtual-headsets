@@ -1,5 +1,4 @@
-import { useSelector } from "react-redux";
-import { useAppDispatch } from "../../redux/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 import css from "./ProductDetails.module.css";
 import {
   selectError,
@@ -18,9 +17,9 @@ import AnimationWrapper from "../AnimationWrapper/AnimationWrapper";
 const ProductDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const dispatch = useAppDispatch();
-  const items = useSelector(selectVRHeadsets);
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
+  const items = useAppSelector(selectVRHeadsets);
+  const isLoading = useAppSelector(selectIsLoading);
+  const error = useAppSelector(selectError);
 
   useEffect(() => {
     const fetchData = async () => {

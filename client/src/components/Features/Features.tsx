@@ -1,6 +1,5 @@
 import { PiStarFourFill } from "react-icons/pi";
 import css from "./Features.module.css";
-import { Icon } from "../Icon/Icon";
 import AnimationWrapper from "../AnimationWrapper/AnimationWrapper";
 
 const Features = ({}) => {

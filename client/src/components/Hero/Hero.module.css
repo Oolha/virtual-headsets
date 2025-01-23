@@ -23,6 +23,17 @@
   max-width: 1500px;
   margin: 0 auto;
 }
+.gradient {
+  width: 350px;
+  height: 200px;
+  background: rgba(83, 0, 112, 0.7);
+  filter: blur(100px);
+  position: absolute;
+  z-index: 0;
+  opacity: 0.8;
+  left: -250px;
+  top: 30px;
+}
 
 .productName {
   font-family: "Satoshi Variable", sans-serif;
@@ -230,6 +241,10 @@
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1439px) {
+  .gradient {
+    left: -150px;
+    top: 40px;
+  }
   .headerBox {
     margin-top: 48px;
     padding: 0;
@@ -289,6 +304,13 @@
   }
 }
 @media only screen and (min-width: 1440px) {
+  .gradient {
+    width: 500px;
+    height: 500px;
+    bottom: auto;
+    left: -550px;
+    top: -100px;
+  }
   .headerBox {
     display: flex;
     flex-direction: row;

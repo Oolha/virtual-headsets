@@ -82,7 +82,6 @@ const SearchModal: React.FC<SearchModalProps> = ({
   return createPortal(
     <div className={css.backdrop} onClick={onClose}>
       <div className={css.content} onClick={(e) => e.stopPropagation()}>
-        {/* Search Input Section */}
         <div className={css.searchContainer}>
           <div className={css.searchInputWrapper}>
             <input
@@ -136,7 +135,6 @@ const SearchModal: React.FC<SearchModalProps> = ({
               </div>
             )}
 
-            {/* No Results Message */}
             {searchTerm.length > 0 && suggestions.length === 0 && (
               <div className={css.noResults}>
                 No results found for "{searchTerm}"
