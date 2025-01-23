@@ -26,11 +26,8 @@ const CompanyMenu = () => {
         <button onClick={openSignUp} className={css.authButton}>
           Sign Up
         </button>
-        <NavLink to="/privacy" className={css.navLink}>
+        <NavLink to="/" className={css.navLink}>
           Privacy
-        </NavLink>
-        <NavLink to="/products" className={css.navLink}>
-          Products
         </NavLink>
       </nav>
       <AuthModals

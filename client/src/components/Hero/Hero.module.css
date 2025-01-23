@@ -351,13 +351,13 @@
     width: 32px;
   }
   .pattern1 {
-    top: 170px;
+    top: 0px;
     margin-left: -100px;
   }
 
   .pattern2 {
-    right: 140px;
-    top: 280px;
+    right: 0px;
+    top: 100px;
   }
   .greeting {
     top: 30px;

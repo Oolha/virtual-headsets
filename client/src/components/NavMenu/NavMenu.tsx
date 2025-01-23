@@ -1,21 +1,21 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import css from "./NavMenu.module.css";
+import { handleSectionNavigation, navLinks } from "../../config/navigation";
 
 const NavMenu = ({}) => {
+  const navigate = useNavigate();
   return (
     <nav className={css.nav}>
-      <NavLink to="/" className={css.navLink}>
-        Home
-      </NavLink>
-      <NavLink to="/catalog" className={css.navLink}>
-        Catalog
-      </NavLink>
-      <NavLink to="/contact" className={css.navLink}>
-        Contact
-      </NavLink>
-      <NavLink to="/" className={css.navLink}>
-        Features
-      </NavLink>
+      {navLinks.map(({ path, label, isSection }) => (
+        <NavLink
+          key={label}
+          to={path}
+          className={css.navLink}
+          onClick={(e) => handleSectionNavigation(path, isSection, e, navigate)}
+        >
+          {label}
+        </NavLink>
+      ))}
     </nav>
   );
 };

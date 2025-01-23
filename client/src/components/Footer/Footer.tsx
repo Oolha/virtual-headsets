@@ -8,7 +8,7 @@ import css from "./Footer.module.css";
 
 const Footer = ({}) => {
   return (
-    <div className={css.footer}>
+    <div id="contact" className={css.footer}>
       <div className={css.contentContainer}>
         <div className={css.footerBox}>
           <div className={css.logoAndLinksBox}>

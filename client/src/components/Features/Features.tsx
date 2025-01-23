@@ -6,7 +6,7 @@ import AnimationWrapper from "../AnimationWrapper/AnimationWrapper";
 const Features = ({}) => {
   return (
     <AnimationWrapper type="fadeIn" delay={0.2} onScroll>
-      <div className={css.mainBox}>
+      <div id="features" className={css.mainBox}>
         <div className={css.featuresBox}>
           <h3 className={css.title}>
             Our Virtual Headsets Shine with Unique Features!

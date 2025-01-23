@@ -76,14 +76,17 @@ const Header = () => {
         </div>
         <Logo />
         <div className={css.box2}>
-          <form className={css.form} onSubmit={(e) => e.preventDefault()}>
+          <form
+            className={css.form}
+            onSubmit={(e) => e.preventDefault()}
+            onFocus={() => setIsSearchOpen(true)}
+          >
             <input
               type="text"
               className={css.input}
               value={searchTerm}
               placeholder="Search games & products.."
               onChange={(e) => handleSearchInput(e.target.value)}
-              onFocus={() => setIsSearchOpen(true)}
             />
             <button type="submit" className={css.headerBtns}>
               <PiMagnifyingGlassBold className={css.icons} />

@@ -1,12 +1,13 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import css from "./NavBar.module.css";
 import { useState } from "react";
 import { IoMdMenu } from "react-icons/io";
 import { motion } from "framer-motion";
 import MobileMenu from "../MobileMenu/MobileMenu";
-import { navLinks } from "../../config/navigation";
+import { handleSectionNavigation, navLinks } from "../../config/navigation";
 
 const NavBar = ({}) => {
+  const navigate = useNavigate();
   const [isOpenNavigation, setOpenNavigation] = useState<boolean>(false);
 
   const linkVariants = {
@@ -27,8 +28,15 @@ const NavBar = ({}) => {
       </button>
 
       <div className={css.navMenu}>
-        {navLinks.map(({ path, label }) => (
-          <NavLink key={label} to={path} className={css.navLink}>
+        {navLinks.map(({ path, label, isSection }) => (
+          <NavLink
+            key={label}
+            to={path}
+            className={css.navLink}
+            onClick={(e) =>
+              handleSectionNavigation(path, isSection, e, navigate)
+            }
+          >
             {label}
           </NavLink>
         ))}
@@ -37,12 +45,16 @@ const NavBar = ({}) => {
         isOpen={isOpenNavigation}
         onClose={() => setOpenNavigation(false)}
       >
-        {navLinks.map(({ path, label }) => (
+        {navLinks.map(({ path, label, isSection }) => (
           <motion.div key={label} variants={linkVariants}>
             <NavLink
               to={path}
               className={css.navLink}
-              onClick={() => setOpenNavigation(false)}
+              onClick={(e) =>
+                handleSectionNavigation(path, isSection, e, navigate, () =>
+                  setOpenNavigation(false)
+                )
+              }
             >
               {label}
             </NavLink>
