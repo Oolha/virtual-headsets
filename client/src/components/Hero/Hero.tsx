@@ -41,13 +41,10 @@ const Hero = ({}) => {
 
             <picture className={css.linesPicture}>
               <source
-                srcSet="../../../public/svg/big-virtual-headsets.svg"
+                srcSet="/svg/big-virtual-headsets.svg"
                 media="(min-width: 1024px)"
               />
-              <img
-                src="../../../public/svg/small-virtual-headsets.svg"
-                alt="line"
-              />
+              <img src="/svg/small-virtual-headsets.svg" alt="line" />
             </picture>
           </div>
 
@@ -79,30 +76,27 @@ const Hero = ({}) => {
           <div className={css.pictureBox}>
             <picture className={css.picture}>
               <source
-                srcSet="../../../public/images/desktop/hero-desktop@1x.png 1x,
-                        ../../../public/images/desktop/hero-desktop@2x.png 2x"
+                srcSet="/images/desktop/hero-desktop@1x.png 1x,
+                        /images/desktop/hero-desktop@2x.png 2x"
                 media="(min-width: 768px)"
                 className={css.heroImg}
               />
               <source
-                srcSet="../../../public/images/mobile/hero-mobile@1x.png 1x,
-                                        ../../../public/images/mobile/hero-mobile@2x.png 2x"
+                srcSet="/images/mobile/hero-mobile@1x.png 1x,
+                                        /images/mobile/hero-mobile@2x.png 2x"
                 media="(min-width: 375px)"
               />
               <img
-                src="../../../public/images/desktop/hero-desktop@1x.png 1x"
+                src="/images/desktop/hero-desktop@1x.png 1x"
                 alt="man in virtual headsets"
               />
             </picture>
             <picture className={css.linePicture}>
               <source
-                srcSet="../../../public/svg/big-line-under-heroImg.svg"
+                srcSet="/svg/big-line-under-heroImg.svg"
                 media="(min-width: 375px)"
               />
-              <img
-                src="../../../public/svg/small-line-under-heroImg.svg"
-                alt="line"
-              />
+              <img src="/svg/small-line-under-heroImg.svg" alt="line" />
             </picture>
           </div>
           <div className={css.pattern1}>
@@ -119,7 +113,7 @@ const Hero = ({}) => {
           <div className={css.iconsBox}>
             <div className={css.iconsBox1}>
               <img
-                src="../../../public/svg/school.svg"
+                src="/svg/school.svg"
                 alt="school"
                 className={css.iconsSvg}
               />
@@ -127,7 +121,7 @@ const Hero = ({}) => {
             </div>
             <div className={css.iconsBox2}>
               <img
-                src="../../../public/svg/sport.svg"
+                src="/svg/sport.svg"
                 alt="training"
                 className={css.iconsSvg}
               />
