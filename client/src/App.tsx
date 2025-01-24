@@ -6,6 +6,7 @@ import SharedLayout from "./components/SharedLayout/SharedLayout";
 import Cart from "./pages/Cart/Cart";
 import Profile from "./pages/Profile/Profile";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import Game from "./pages/Game/Game";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route index element={<HomePage />} />
         <Route path="catalog" element={<Catalog />} />
         <Route path="catalog/:id" element={<SingleProduct />} />
+        <Route path="game/:id" element={<Game />} />
         <Route path="cart" element={<Cart />} />
         <Route
           path="profile"

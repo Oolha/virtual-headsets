@@ -16,10 +16,12 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Icon } from "../Icon/Icon";
 import Loader from "../Loader/Loader";
+import { useNavigate } from "react-router-dom";
 
 const TopGames = () => {
   const [swiper, setSwiper] = useState<SwiperType | null>(null);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const data = useAppSelector(selectGames);
 
   const isLoading = useAppSelector(selectIsLoading);
@@ -36,6 +38,14 @@ const TopGames = () => {
 
     fetchData();
   }, [dispatch]);
+
+  const handleClick = (id: string) => {
+    try {
+      navigate(`/game/${id}`);
+    } catch (error) {
+      console.error("Navigation failed:", error);
+    }
+  };
 
   const handlePrevClick = () => {
     if (swiper) swiper.slidePrev();
@@ -100,7 +110,12 @@ const TopGames = () => {
       >
         {data.map((game) => (
           <SwiperSlide key={game._id} className={css.swiperSlide}>
-            <div className={css.listItem}>
+            <div
+              className={css.listItem}
+              onClick={() => {
+                handleClick(game._id);
+              }}
+            >
               <div className={css.imageWrapper}>
                 <svg className={css.svg}>
                   <defs>
@@ -124,8 +139,8 @@ const TopGames = () => {
                   }}
                 />
               </div>
-              <p className={css.gameName}>{game.name}</p>
             </div>
+            <p className={css.gameName}>{game.name}</p>
           </SwiperSlide>
         ))}
       </Swiper>

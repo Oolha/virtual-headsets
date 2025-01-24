@@ -23,7 +23,21 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 233px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.listItem:focus,
+.listItem:hover {
+  scale: 3px;
+  transform: scale(1);
+}
+.listItem:hover .svg path {
+  stroke: rgba(191, 35, 245, 0.8);
+  stroke-width: 6px;
+  transition: stroke 0.3s ease, stroke-width 0.3s ease;
+}
+.svg path {
+  transition: stroke 0.3s ease, stroke-width 0.3s ease;
 }
 .imageWrapper {
   position: relative;
@@ -153,7 +167,9 @@
     flex-direction: row;
     justify-content: space-between;
   }
-
+  .gameName {
+    font-size: 24px;
+  }
   .listItem,
   .img,
   .imageWrapper {

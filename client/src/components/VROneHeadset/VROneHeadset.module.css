@@ -32,6 +32,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.3s ease;
 }
 .img {
   width: 200px;
@@ -40,6 +41,11 @@
   object-position: center;
   margin-top: -120px;
   margin-right: -150px;
+}
+.imgBox:hover,
+.imgBox:focus {
+  scale: 3px;
+  transform: scale(1.03);
 }
 .box {
   border-radius: 0 0 16px 16px;
