@@ -11,6 +11,17 @@ import AnimatedButton from "../AnimatedButton/AnimatedButton";
 import animatedWaves from "../../../public/animations/backround.json";
 import Lottie from "lottie-react";
 
+import desktopHero1x from "/images/desktop/hero-desktop@1x.png";
+import desktopHero2x from "/images/desktop/hero-desktop@2x.png";
+import mobileHero1x from "/images/mobile/hero-mobile@1x.png";
+import mobileHero2x from "/images/mobile/hero-mobile@2x.png";
+import schoolIcon from "/svg/school.svg";
+import sportIcon from "/svg/sport.svg";
+import bigVR from "/svg/big-virtual-headsets.svg";
+import smallVR from "/svg/small-virtual-headsets.svg";
+import bigLine from "/svg/big-line-under-heroImg.svg";
+import smallLine from "/svg/small-line-under-heroImg.svg";
+
 const Hero = ({}) => {
   const navigate = useNavigate();
   const isLoading = useAppSelector(selectIsLoading);
@@ -40,11 +51,8 @@ const Hero = ({}) => {
             <h3 className={css.productName}>virtual headsets</h3>
 
             <picture className={css.linesPicture}>
-              <source
-                srcSet="/svg/big-virtual-headsets.svg"
-                media="(min-width: 1024px)"
-              />
-              <img src="/svg/small-virtual-headsets.svg" alt="line" />
+              <source srcSet={bigVR} media="(min-width: 1024px)" />
+              <img src={smallVR} alt="line" />
             </picture>
           </div>
 
@@ -76,27 +84,19 @@ const Hero = ({}) => {
           <div className={css.pictureBox}>
             <picture className={css.picture}>
               <source
-                srcSet="/images/desktop/hero-desktop@1x.png 1x,
-                        /images/desktop/hero-desktop@2x.png 2x"
+                srcSet={`${desktopHero1x} 1x, ${desktopHero2x} 2x`}
                 media="(min-width: 768px)"
                 className={css.heroImg}
               />
               <source
-                srcSet="/images/mobile/hero-mobile@1x.png 1x,
-                                        /images/mobile/hero-mobile@2x.png 2x"
+                srcSet={`${mobileHero1x} 1x, ${mobileHero2x} 2x`}
                 media="(min-width: 375px)"
               />
-              <img
-                src="/images/desktop/hero-desktop@1x.png 1x"
-                alt="man in virtual headsets"
-              />
+              <img src={mobileHero1x} alt="man in virtual headsets" />
             </picture>
             <picture className={css.linePicture}>
-              <source
-                srcSet="/svg/big-line-under-heroImg.svg"
-                media="(min-width: 375px)"
-              />
-              <img src="/svg/small-line-under-heroImg.svg" alt="line" />
+              <source srcSet={bigLine} media="(min-width: 375px)" />
+              <img src={smallLine} alt="line" />
             </picture>
           </div>
           <div className={css.pattern1}>
@@ -112,19 +112,11 @@ const Hero = ({}) => {
 
           <div className={css.iconsBox}>
             <div className={css.iconsBox1}>
-              <img
-                src="/svg/school.svg"
-                alt="school"
-                className={css.iconsSvg}
-              />
+              <img src={schoolIcon} alt="school" className={css.iconsSvg} />
               <p className={css.iconsBoxText}> Enhanced Education</p>
             </div>
             <div className={css.iconsBox2}>
-              <img
-                src="/svg/sport.svg"
-                alt="training"
-                className={css.iconsSvg}
-              />
+              <img src={sportIcon} alt="training" className={css.iconsSvg} />
               <p className={css.iconsBoxText}>Training and Simulation</p>
             </div>
           </div>

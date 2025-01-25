@@ -14,7 +14,6 @@ export const getSuggestions =
     try {
       dispatch(setLoading(true));
       const { virtualHeadsets, games } = getState();
-      console.log("State data:", { virtualHeadsets, games });
 
       //Filter VRs
       const headsetSuggestions = virtualHeadsets.virtualHeadsets

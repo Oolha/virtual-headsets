@@ -2,6 +2,13 @@ import { PiStarFourFill } from "react-icons/pi";
 import css from "./Features.module.css";
 import AnimationWrapper from "../AnimationWrapper/AnimationWrapper";
 
+import bigEllipse from "/svg/Ellipse-big.svg";
+import smallEllipse from "/svg/Ellipse-small.svg";
+import vrDesktop1x from "/images/desktop/headsets-desktop@1x.png";
+import vrDesktop2x from "/images/desktop/headsets-desktop@2x.png";
+import vrMobile1x from "/images/mobile/headsets-mobile@1x.png";
+import vrMobile2x from "/images/mobile/headsets-mobile@2x.png";
+
 const Features = ({}) => {
   return (
     <AnimationWrapper type="fadeIn" delay={0.2} onScroll>
@@ -57,28 +64,20 @@ const Features = ({}) => {
         </div>
         <div className={css.pictureBox}>
           <picture className={css.linesPicture}>
-            <source
-              srcSet="../../../public/svg/Ellipse-big.svg"
-              media="(min-width: 1440px)"
-            />
-            <img src="../../../public/svg/Ellipse-small.svg" alt="line" />
+            <source srcSet={bigEllipse} media="(min-width: 1440px)" />
+            <img src={smallEllipse} alt="line" />
           </picture>
           <picture className={css.picture}>
             <source
-              srcSet="../../../public/images/desktop/headsets-desktop@1x.png 1x,
-                        ../../../public/images/desktop/headsets-desktop@2x.png 2x"
+              srcSet={`${vrDesktop1x} 1x, ${vrDesktop2x} 2x`}
               media="(min-width: 1440px)"
               className={css.featuresImg}
             />
             <source
-              srcSet="../../../public/images/mobile/headsets-mobile@1x.png 1x,
-                                        ../../../public/images/mobile/headsets-mobile@2x.png 2x"
+              srcSet={`${vrMobile1x} 1x, ${vrMobile2x} 2x`}
               media="(min-width: 375px)"
             />
-            <img
-              src="../../../public/images/desktop/headsets-desktop@1x.png 1x"
-              alt="virtual headsets"
-            />
+            <img src={vrDesktop1x} alt="virtual headsets" />
           </picture>
           <div className={css.gradient}></div>
         </div>

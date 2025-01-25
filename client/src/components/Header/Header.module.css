@@ -26,7 +26,6 @@
 .menuIcon:hover {
   transform: scale(1.2);
 }
-
 .box2 {
   display: flex;
   align-items: center;
@@ -51,9 +50,7 @@
   color: #3ddeed;
   fill: #3ddeed;
 }
-.mobileSearchBtn {
-  display: none;
-}
+
 .cartQuantity {
   position: absolute;
   background-color: #3ddeed;
@@ -65,7 +62,28 @@
   bottom: -0.1px;
   right: -0.1px;
 }
-
+.form {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  border-radius: 4px;
+  padding: 12px 24px;
+  width: 300px;
+  height: 46px;
+  background: rgba(255, 255, 255, 0.05);
+}
+.input {
+  padding: 12px 5px;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+  font-family: "Satoshi Variable", sans-serif;
+  color: #7b678a;
+}
+.mobileSearchBtn {
+  display: flex;
+}
 @media only screen and (max-width: 767px) {
   .gradient {
     left: -150px;
@@ -74,42 +92,19 @@
   .form {
     display: none;
   }
-
-  .mobileSearchBtn {
-    display: flex;
-  }
 }
-@media only screen and (min-width: 768px) and (max-width: 1439px) {
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
   .form {
     display: none;
   }
-
-  .mobileSearchBtn {
-    display: flex;
-  }
-
   .box2 {
     gap: 16px;
   }
 }
+
 @media only screen and (min-width: 1439px) {
-  .form {
-    display: flex;
-    justify-content: space-between;
-    gap: 16px;
-    border-radius: 4px;
-    padding: 12px 24px;
-    width: 300px;
-    height: 46px;
-    background: rgba(255, 255, 255, 0.05);
-  }
-  .input {
-    padding: 12px 5px;
-    width: 100%;
-    height: 100%;
-    border: none;
-    background: transparent;
-    font-family: "Satoshi Variable", sans-serif;
-    color: #7b678a;
+  .box2 {
+    gap: 22px;
   }
 }

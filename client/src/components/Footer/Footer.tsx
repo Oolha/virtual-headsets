@@ -5,6 +5,9 @@ import SocialLinks from "../SocialLinks/SocialLinks";
 import Subscription from "../Subscription/Subscription";
 import css from "./Footer.module.css";
 
+import lineDesktop from "/images/desktop/Line-footer-desktop.png";
+import lineMobile from "/images/mobile/Line-footer-mobile.png";
+
 const Footer = ({}) => {
   return (
     <div id="contact" className={css.footer}>
@@ -30,18 +33,9 @@ const Footer = ({}) => {
         </div>
         <div className={css.footerEndBox}>
           <picture className={css.linesPicture}>
-            <source
-              srcSet="../../../public/images/desktop/Line-footer-desktop.png"
-              media="(min-width: 1440px)"
-            />
-            <source
-              srcSet="../../../public/images/mobile/Line-footer-mobile.png"
-              media="(min-width: 320px)"
-            />
-            <img
-              src="../../../public/images/desktop/Line-footer-desktop.png"
-              alt="line"
-            />
+            <source srcSet={lineDesktop} media="(min-width: 1440px)" />
+            <source srcSet={lineMobile} media="(min-width: 320px)" />
+            <img src={lineDesktop} alt="line" />
           </picture>
           <p className={css.rights}>© 2025 HoloGaze. All rights reserved.</p>
         </div>
