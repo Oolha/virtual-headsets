@@ -2,6 +2,14 @@ import AnimationWrapper from "../AnimationWrapper/AnimationWrapper";
 import css from "./GamingCreator.module.css";
 import { FaArrowRight } from "react-icons/fa6";
 
+import creatorDesk1x from "/images/desktop/gaming-creator-desktop@1x.png";
+import creatorDesk2x from "/images/desktop/gaming-creator-desktop@2x.png";
+import creatorMob1x from "/images/mobile/gaming-creator-mobile@1x.png";
+import creatorMob2x from "/images/mobile/gaming-creator-mobile@2x.png";
+import icon1x from "/images/desktop/icon@1x.png";
+import icon2x from "/images/desktop/icon@2x.png";
+import { Icon } from "../Icon/Icon";
+
 const GamingCreator = ({}) => {
   return (
     <AnimationWrapper type="fadeIn" delay={0.2} onScroll>
@@ -26,34 +34,25 @@ const GamingCreator = ({}) => {
           <div className={css.pictureBox}>
             <picture className={css.picture}>
               <source
-                srcSet="../../../public/images/desktop/gaming-creator-desktop@1x.png 1x,
-                        ../../../public/images/desktop/gaming-creator-desktop@2x.png 2x"
+                srcSet={`${creatorDesk1x} 1x, ${creatorDesk2x} 2x`}
                 media="(min-width: 1440px)"
               />
               <source
-                srcSet="../../../public/images/mobile/gaming-creator-mobile@1x.png 1x,
-                                        ../../../public/images/mobile/gaming-creator-mobile@2x.png 2x"
+                srcSet={`${creatorMob1x} 1x, ${creatorMob2x} 2x`}
                 media="(min-width: 375px)"
               />
-              <img
-                src="../../../public/images/desktop/gaming-creator-desktop@1x.png 1x"
-                alt="woman in virtual headsets"
-              />
+              <img src={creatorDesk1x} alt="woman in virtual headsets" />
             </picture>
           </div>
           <div className={css.twitterPost}>
             <div className={css.nickNameBox}>
               <picture className={css.pictureIcon}>
                 <source
-                  srcSet="../../../public/images/desktop/icon@1x.png 1x,
-                        ../../../public/images/desktop/icon@2x.png 2x"
+                  srcSet={`${icon1x} 1x, ${icon2x} 2x`}
                   media="(min-width: 375px)"
                   className={css.gamingCreatorIcon}
                 />
-                <img
-                  src="../../../public/images/desktop/icon@1x.png 1x"
-                  alt="icon"
-                />
+                <img src={icon1x} alt="icon" />
               </picture>
               <div className={css.namesBox}>
                 <p className={css.name}>Jane Wilson</p>
@@ -78,22 +77,10 @@ const GamingCreator = ({}) => {
             </div>
             <div className={css.line}></div>
             <div className={css.postIcons}>
-              <img
-                src="../../../public/svg/Comment-Stroke Icon-2.svg"
-                alt="comment"
-              />
-              <img
-                src="../../../public/svg/Retweet-Stroke Icon-2.svg"
-                alt="retweet"
-              />
-              <img
-                src="../../../public/svg/Heart-Stroke Icon-2.svg"
-                alt="heart"
-              />
-              <img
-                src="../../../public/svg/Share-Stroke icon-2.svg"
-                alt="share"
-              />
+              <Icon id="comment" size={18} />
+              <Icon id="retweet" size={20} />
+              <Icon id="like" size={18} />
+              <Icon id="share" size={18} />
             </div>
           </div>
         </div>

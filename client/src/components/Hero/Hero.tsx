@@ -21,6 +21,7 @@ import bigVR from "/svg/big-virtual-headsets.svg";
 import smallVR from "/svg/small-virtual-headsets.svg";
 import bigLine from "/svg/big-line-under-heroImg.svg";
 import smallLine from "/svg/small-line-under-heroImg.svg";
+import { useEffect, useState } from "react";
 
 const Hero = ({}) => {
   const navigate = useNavigate();
@@ -49,7 +50,6 @@ const Hero = ({}) => {
         <div className={css.firstHeaderBox}>
           <div>
             <h3 className={css.productName}>virtual headsets</h3>
-
             <picture className={css.linesPicture}>
               <source srcSet={bigVR} media="(min-width: 1024px)" />
               <img src={smallVR} alt="line" />
@@ -112,11 +112,11 @@ const Hero = ({}) => {
 
           <div className={css.iconsBox}>
             <div className={css.iconsBox1}>
-              <img src={schoolIcon} alt="school" className={css.iconsSvg} />
+              <Icon id="school-icon" size={22} className={css.iconsSvg} />
               <p className={css.iconsBoxText}> Enhanced Education</p>
             </div>
             <div className={css.iconsBox2}>
-              <img src={sportIcon} alt="training" className={css.iconsSvg} />
+              <Icon id="sport-icon" size={22} className={css.iconsSvg} />
               <p className={css.iconsBoxText}>Training and Simulation</p>
             </div>
           </div>
