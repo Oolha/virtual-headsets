@@ -1,4 +1,4 @@
-# Virtual Headsets E-commerce
+# Virtual Headsets E-commerce Template
 
 Full-stack e-commerce application for VR headsets and games.
 
