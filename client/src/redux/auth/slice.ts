@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AuthState } from "../types";
 import { apiLogin, apiRegister, apiLogout, refreshAuth } from "./operations";
 import { getToken, getUser } from "./localStorage";
@@ -9,6 +9,23 @@ const initialState: AuthState = {
   isLoading: false,
   isLoggedIn: !!getToken(),
   error: null,
+};
+const setPending = (state: AuthState) => {
+  state.isLoading = true;
+  state.error = null;
+};
+
+const setError = (state: AuthState, action: PayloadAction<unknown>) => {
+  state.isLoading = false;
+  state.error = action.payload as string;
+};
+
+const setAuthSuccess = (state: AuthState, action: PayloadAction<any>) => {
+  state.isLoading = false;
+  state.isLoggedIn = true;
+  state.user = action.payload.data.user;
+  state.accessToken = action.payload.data.accessToken;
+  state.error = null;
 };
 
 const authSlice = createSlice({
@@ -22,61 +39,24 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       // Refresh
-      .addCase(refreshAuth.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addCase(refreshAuth.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isLoggedIn = true;
-        state.user = action.payload.data.user;
-        state.accessToken = action.payload.data.accessToken;
-        state.error = null;
-      })
+      .addCase(refreshAuth.pending, setPending)
+      .addCase(refreshAuth.fulfilled, setAuthSuccess)
       .addCase(refreshAuth.rejected, (state, action) => {
-        state.isLoading = false;
+        setError(state, action);
         state.isLoggedIn = false;
         state.user = null;
         state.accessToken = null;
-        state.error = action.payload as string;
       })
       // Login
-      .addCase(apiLogin.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addCase(apiLogin.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isLoggedIn = true;
-        state.user = action.payload.data.user;
-        state.accessToken = action.payload.data.accessToken;
-        state.error = null;
-      })
-      .addCase(apiLogin.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload as string;
-      })
+      .addCase(apiLogin.pending, setPending)
+      .addCase(apiLogin.fulfilled, setAuthSuccess)
+      .addCase(apiLogin.rejected, setError)
       // Register
-      .addCase(apiRegister.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addCase(apiRegister.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isLoggedIn = true;
-        state.user = action.payload.data.user;
-        state.accessToken = action.payload.data.accessToken;
-        state.error = null;
-      })
-      .addCase(apiRegister.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload as string;
-      })
+      .addCase(apiRegister.pending, setPending)
+      .addCase(apiRegister.fulfilled, setAuthSuccess)
+      .addCase(apiRegister.rejected, setError)
       // Logout
-      .addCase(apiLogout.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
+      .addCase(apiLogout.pending, setPending)
       .addCase(apiLogout.fulfilled, (state) => {
         state.isLoading = false;
         state.isLoggedIn = false;
@@ -84,10 +64,7 @@ const authSlice = createSlice({
         state.accessToken = null;
         state.error = null;
       })
-      .addCase(apiLogout.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload as string;
-      });
+      .addCase(apiLogout.rejected, setError);
   },
 });
 

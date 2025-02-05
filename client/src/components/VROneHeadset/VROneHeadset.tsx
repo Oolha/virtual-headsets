@@ -16,6 +16,7 @@ import {
 import { notification } from "antd";
 import { selectAuthIsLoggedIn } from "../../redux/auth/selectors";
 import { AuthModals } from "../AuthModals/AuthModals";
+import React from "react";
 
 interface VROneHeadsetProps {
   item: VRHeadset;
@@ -138,3 +139,4 @@ export const VROneHeadset: React.FC<VROneHeadsetProps> = ({ item }) => {
     </>
   );
 };
+export const MemoizedVROneHeadset = React.memo(VROneHeadset);

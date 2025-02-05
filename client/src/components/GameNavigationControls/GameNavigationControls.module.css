@@ -1,0 +1,31 @@
+.navigationContainer {
+  display: none;
+}
+.customPrevButton,
+.customNextButton {
+  border-radius: 4px;
+  padding: 16px;
+  width: 56px;
+  height: 56px;
+  background: rgba(61, 222, 237, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1440px) {
+  .navigationContainer {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .navigationContainer {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: relative;
+    margin-left: 116px;
+  }
+}

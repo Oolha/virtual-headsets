@@ -8,20 +8,16 @@ import { selectIsLoading } from "../../redux/virtual-headsets/selectors";
 import Loader from "../Loader/Loader";
 import { Icon } from "../Icon/Icon";
 import AnimatedButton from "../AnimatedButton/AnimatedButton";
-import animatedWaves from "../../../public/animations/backround.json";
 import Lottie from "lottie-react";
-
+import animationData from "../../animations/background.json";
 import desktopHero1x from "/images/desktop/hero-desktop@1x.png";
 import desktopHero2x from "/images/desktop/hero-desktop@2x.png";
 import mobileHero1x from "/images/mobile/hero-mobile@1x.png";
 import mobileHero2x from "/images/mobile/hero-mobile@2x.png";
-import schoolIcon from "/svg/school.svg";
-import sportIcon from "/svg/sport.svg";
 import bigVR from "/svg/big-virtual-headsets.svg";
 import smallVR from "/svg/small-virtual-headsets.svg";
 import bigLine from "/svg/big-line-under-heroImg.svg";
 import smallLine from "/svg/small-line-under-heroImg.svg";
-import { useEffect, useState } from "react";
 
 const Hero = ({}) => {
   const navigate = useNavigate();
@@ -39,12 +35,14 @@ const Hero = ({}) => {
     <div className={css.heroContainer}>
       <div className={css.gradient}></div>
       <div className={css.animatedBackground}>
-        <Lottie
-          animationData={animatedWaves}
-          loop={true}
-          autoplay={true}
-          style={{ width: "100%", height: "100%" }}
-        />
+        {animationData && (
+          <Lottie
+            animationData={animationData}
+            loop={true}
+            autoplay={true}
+            style={{ width: "100%", height: "100%" }}
+          />
+        )}
       </div>
       <div className={css.headerBox}>
         <div className={css.firstHeaderBox}>

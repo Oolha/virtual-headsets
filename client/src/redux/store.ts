@@ -1,12 +1,22 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import storage from "redux-persist/lib/storage";
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
+
 import virtualHeadsetsReducer from "./virtual-headsets/slice";
 import gamesReducer from "./games/slice";
 import searchReducer from "./search/searchSlice";
 import cartReducer from "./cart/cartSlice";
 import authReducer from "./auth/slice";
 import { favoritesReducer } from "./favorites/slice";
-import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
 
 const persistConfig = {
   key: "root",
@@ -30,7 +40,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: ["persist/PERSIST", "persist/REHYDRATE"],
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
         ignoredPaths: ["_persist"],
       },
     }),

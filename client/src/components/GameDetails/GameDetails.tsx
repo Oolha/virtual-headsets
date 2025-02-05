@@ -10,7 +10,7 @@ import { useEffect } from "react";
 import { fetchTop5Games } from "../../redux/games/operations";
 import Loader from "../Loader/Loader";
 import Lottie from "lottie-react";
-import animationData from "../../../public/animations/cat.json";
+import animationData from "../../animations/cat.json";
 
 const GameDetails = ({}) => {
   const { id } = useParams<{ id: string }>();

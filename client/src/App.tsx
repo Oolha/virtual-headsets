@@ -1,12 +1,15 @@
+import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import HomePage from "./pages/HomePage/HomePage";
-import Catalog from "./pages/Catalog/Catalog";
-import SingleProduct from "./pages/SingleProduct/SingleProduct";
+import Loader from "./components/Loader/Loader";
 import SharedLayout from "./components/SharedLayout/SharedLayout";
-import Cart from "./pages/Cart/Cart";
-import Profile from "./pages/Profile/Profile";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
-import Game from "./pages/Game/Game";
+
+const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
+const Catalog = lazy(() => import("./pages/Catalog/Catalog"));
+const SingleProduct = lazy(() => import("./pages/SingleProduct/SingleProduct"));
+const Cart = lazy(() => import("./pages/Cart/Cart"));
+const Profile = lazy(() => import("./pages/Profile/Profile"));
+const Game = lazy(() => import("./pages/Game/Game"));
 
 function App() {
   return (

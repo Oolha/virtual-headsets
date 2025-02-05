@@ -1,0 +1,7 @@
+@media only screen and (min-width: 1440px) {
+  .sliderContainer {
+    display: block;
+    position: relative;
+    overflow: hidden;
+  }
+}
