@@ -45,12 +45,14 @@ const Cart = () => {
             <h2>Shopping Cart</h2>
             {cartItems.map((item) => (
               <div key={item.id} className={css.cartItem}>
-                <div className={css.photoBox}>
+                <div
+                  className={css.photoBox}
+                  onClick={() => handleClick(item.id)}
+                >
                   <img
                     src={item.photo}
                     alt={item.name}
                     className={css.itemImage}
-                    onClick={() => handleClick(item.id)}
                   />
                   <div className={css.itemDetails}>
                     <h3>{item.name}</h3>

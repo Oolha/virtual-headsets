@@ -24,7 +24,6 @@ const VRHeadsetsList = () => {
   const data = useAppSelector(selectVRHeadsets);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1440);
   const [swiper, setSwiper] = useState<SwiperType | null>(null);
-  const isLoading = useAppSelector(selectIsLoading);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
   const isError = useAppSelector(selectError);
 
@@ -74,10 +73,6 @@ const VRHeadsetsList = () => {
   const handleNextClick = useCallback(() => {
     if (swiper) swiper.slideNext();
   }, [swiper]);
-
-  if (isInitialLoad) {
-    return <Loader />;
-  }
 
   if (isInitialLoad) {
     return (
