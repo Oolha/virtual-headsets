@@ -1,7 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios, { InternalAxiosRequestConfig, AxiosResponse } from "axios";
 import { VRHeadset } from "../types";
 import { RootState } from "../store";
+
+interface ExtendedRequestConfig extends InternalAxiosRequestConfig {
+  metadata?: {
+    startTime: number;
+  };
+}
 
 interface ApiResponse {
   data: {
@@ -17,35 +23,57 @@ export type FetchHeadsetsResponse = VRHeadset[];
 type FetchHeadsetsError = string;
 
 const BASE_URL = "https://virtual-headsets-store-api.onrender.com";
+const CACHE_DURATION = 30 * 60 * 1000;
+
+const api = axios.create({
+  baseURL: BASE_URL,
+  timeout: 60000,
+});
+
+api.interceptors.request.use((config: InternalAxiosRequestConfig) => {
+  (config as ExtendedRequestConfig).metadata = { startTime: performance.now() };
+  return config;
+});
+
+api.interceptors.response.use((response: AxiosResponse) => {
+  const config = response.config as ExtendedRequestConfig;
+  const startTime = config.metadata?.startTime;
+  if (startTime) {
+    const endTime = performance.now();
+    const duration = endTime - startTime;
+  }
+  return response;
+});
 
 interface ReviewFormData {
   comment: string;
   reviewer_rating: number;
   productId: string;
 }
-
-interface NewReview {
-  reviewer_name: string;
-  reviewer_rating: number;
-  comment: string;
-}
-
-interface UpdatedProductData {
-  reviews: NewReview[];
-}
-
 export const fetchAllVrHeadsets = createAsyncThunk<
   FetchHeadsetsResponse,
   void,
   { rejectValue: FetchHeadsetsError }
 >("virtualHeadsets/fetchVirtualHeadsets", async (_, thunkAPI) => {
-  const END_POINT = "/headsets";
-  const url = BASE_URL + END_POINT;
   try {
-    const response = await axios.get<ApiResponse>(url);
+    const cachedData = localStorage.getItem("vrHeadsets");
+    const cacheTimestamp = localStorage.getItem("vrHeadsetsCacheTime");
+
+    if (cachedData && cacheTimestamp) {
+      const cacheAge = Date.now() - Number(cacheTimestamp);
+      if (cacheAge < CACHE_DURATION) {
+        return JSON.parse(cachedData);
+      }
+    }
+
+    const response = await api.get<ApiResponse>("/headsets");
     const sortedData = response.data.data.data.sort(
       (a, b) => a.order - b.order
     );
+
+    localStorage.setItem("vrHeadsets", JSON.stringify(sortedData));
+    localStorage.setItem("vrHeadsetsCacheTime", Date.now().toString());
+
     return sortedData;
   } catch (error) {
     return thunkAPI.rejectWithValue((error as Error).message);
@@ -57,12 +85,9 @@ export const addReview = createAsyncThunk<
   ReviewFormData,
   { rejectValue: string }
 >("virtualHeadsets/addReview", async (formData: ReviewFormData, thunkAPI) => {
-  const END_POINT = `/headsets/${formData.productId}`;
-  const url = BASE_URL + END_POINT;
-
-  const user = (thunkAPI.getState() as RootState).auth.user;
-
   try {
+    const user = (thunkAPI.getState() as RootState).auth.user;
+
     const newReview = {
       reviews: [
         {
@@ -73,8 +98,10 @@ export const addReview = createAsyncThunk<
       ],
     };
 
-    await axios.patch(url, newReview);
+    await api.patch(`/headsets/${formData.productId}`, newReview);
     await thunkAPI.dispatch(fetchAllVrHeadsets());
+    localStorage.removeItem("vrHeadsets");
+    localStorage.removeItem("vrHeadsetsCacheTime");
   } catch (error) {
     if (error instanceof Error) {
       return thunkAPI.rejectWithValue(error.message);

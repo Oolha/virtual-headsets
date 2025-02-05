@@ -24,7 +24,9 @@
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 .listItem:focus,
 .listItem:hover {
@@ -34,10 +36,14 @@
 .listItem:hover .svg path {
   stroke: rgba(191, 35, 245, 0.8);
   stroke-width: 6px;
-  transition: stroke 0.3s ease, stroke-width 0.3s ease;
+  transition:
+    stroke 0.3s ease,
+    stroke-width 0.3s ease;
 }
 .svg path {
-  transition: stroke 0.3s ease, stroke-width 0.3s ease;
+  transition:
+    stroke 0.3s ease,
+    stroke-width 0.3s ease;
 }
 .imageWrapper {
   position: relative;
@@ -107,6 +113,13 @@
 .swiperButtonPrev:hover,
 .swiperButtonNext:hover {
   background-color: rgba(61, 222, 237, 0.2);
+}
+.loadingContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
 }
 @media only screen and (max-width: 767px) {
   .text {

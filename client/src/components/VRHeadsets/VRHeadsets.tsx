@@ -4,7 +4,7 @@ import {
   selectVRHeadsets,
 } from "../../redux/virtual-headsets/selectors";
 import { VROneHeadset } from "../VROneHeadset/VROneHeadset";
-import { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { fetchAllVrHeadsets } from "../../redux/virtual-headsets/operations";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -15,6 +15,9 @@ import css from "./VRHeadsets.module.css";
 import { Navigation } from "swiper/modules";
 import { Icon } from "../Icon/Icon";
 import Loader from "../Loader/Loader";
+import FirstLoading from "../FirstLoading/FirstLoading";
+
+const MemoizedVROneHeadset = React.memo(VROneHeadset);
 
 const VRHeadsetsList = () => {
   const dispatch = useAppDispatch();
@@ -22,19 +25,38 @@ const VRHeadsetsList = () => {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1440);
   const [swiper, setSwiper] = useState<SwiperType | null>(null);
   const isLoading = useAppSelector(selectIsLoading);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
   const isError = useAppSelector(selectError);
 
   useEffect(() => {
     const fetchData = async () => {
+      const startTime = performance.now();
       try {
         await dispatch(fetchAllVrHeadsets()).unwrap();
       } catch (error) {
         console.error("Failed to fetch headsets:", error);
+      } finally {
+        const endTime = performance.now();
+        console.log(`Total loading time: ${endTime - startTime}ms`);
+        setIsInitialLoad(false);
       }
     };
 
     fetchData();
   }, [dispatch]);
+
+  useEffect(() => {
+    const prefetchData = async () => {
+      data.forEach((headset) => {
+        const img = new Image();
+        img.src = headset.photo;
+      });
+    };
+
+    if (data.length > 0) {
+      prefetchData();
+    }
+  }, [data]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -44,18 +66,27 @@ const VRHeadsetsList = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-  const handlePrevClick = () => {
+
+  const handlePrevClick = useCallback(() => {
     if (swiper) swiper.slidePrev();
-  };
+  }, [swiper]);
 
-  const handleNextClick = () => {
+  const handleNextClick = useCallback(() => {
     if (swiper) swiper.slideNext();
-  };
+  }, [swiper]);
 
-  if (isLoading) {
+  if (isInitialLoad) {
     return <Loader />;
   }
 
+  if (isInitialLoad) {
+    return (
+      <div className={css.loadingContainer}>
+        <Loader />
+        <FirstLoading />
+      </div>
+    );
+  }
   if (isError) {
     return <div>Error loading data: {isError}</div>;
   }
@@ -85,16 +116,16 @@ const VRHeadsetsList = () => {
             spaceBetween={70}
             className={css.sliderContainer}
           >
-            {data.map((item, index) => (
-              <SwiperSlide key={index}>
-                <VROneHeadset item={item} />
+            {data.map((item) => (
+              <SwiperSlide key={item._id}>
+                <MemoizedVROneHeadset item={item} />
               </SwiperSlide>
             ))}
           </Swiper>
         ) : (
           <ul className={css.list}>
-            {data.map((item, index) => (
-              <VROneHeadset item={item} key={index} />
+            {data.map((item) => (
+              <MemoizedVROneHeadset item={item} key={item._id} />
             ))}
           </ul>
         )}

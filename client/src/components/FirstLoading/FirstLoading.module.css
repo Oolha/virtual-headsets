@@ -1,0 +1,15 @@
+.loadingMessageWrapper {
+  margin-top: 20px;
+  text-align: center;
+  max-width: 400px;
+}
+
+.loadingMessage {
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.loadingSubMessage {
+  color: #888;
+  font-size: 14px;
+}
